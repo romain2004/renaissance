@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact — Romain Maulave. Collaborations, press, and inquiries.">
+  <title>Contact — Romain Maulave</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ══ NAVIGATION ═══════════════════════════════════════════ -->
+  <nav class="nav scrolled" id="nav">
+    <a href="index.html" class="nav__logo">RM</a>
+    <ul class="nav__links">
+      <li><a href="fashion-weeks.html">Fashion Weeks</a></li>
+      <!-- <li><a href="book.html">Book</a></li> -->
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <button class="nav__hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <div class="nav__mobile" role="dialog" aria-label="Navigation">
+    <a href="fashion-weeks.html">Fashion Weeks</a>
+    <!-- <a href="book.html">Book</a> -->
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <!-- ══ CONTACT ══════════════════════════════════════════════ -->
+  <main class="contact-wrap">
+
+    <!-- ── Left column: info & socials ───────────────────────── -->
+    <div class="contact-info">
+      <!-- Edit headline below -->
+      <h1 class="contact-info__title reveal">
+        Let's<br>Talk.
+      </h1>
+
+      <!-- Edit email address below -->
+      <a href="mailto:romain.maulave2004@gmail.com" class="contact-info__email reveal d1">
+        romain.maulave2004@gmail.com
+      </a>
+
+      <!-- Social links — edit handles, add/remove as needed -->
+      <div class="contact-socials reveal d2">
+        <a href="https://instagram.com/romlve" target="_blank" rel="noopener noreferrer">
+          Instagram — @romlve
+        </a>
+        <!-- Add more social links here:
+        <a href="https://twitter.com/handle" target="_blank" rel="noopener">Twitter — @handle</a>
+        <a href="https://vimeo.com/handle" target="_blank" rel="noopener">Vimeo — @handle</a>
+        -->
+      </div>
+    </div>
+
+    <!-- ── Right column: contact form ────────────────────────── -->
+    <!--
+      FORMSPREE SETUP (à faire une seule fois) :
+      1. Va sur https://formspree.io et crée un compte gratuit
+      2. Crée un nouveau form → copie ton endpoint (ex: https://formspree.io/f/xpwzabcd)
+      3. Remplace l'URL ci-dessous par ton endpoint
+      → Formspree enverra chaque message directement sur romain.maulave2004@gmail.com
+    -->
+    <form class="contact-form reveal d1" action="https://formsubmit.co/romain.maulave2004@gmail.com" method="POST" novalidate>
+
+      <!-- FormSubmit config -->
+      <input type="hidden" name="_captcha"  value="false">
+      <input type="hidden" name="_subject"  value="Nouveau message — Portfolio RM">
+      <input type="hidden" name="_template" value="table">
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Your name" required autocomplete="name">
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="your@email.com" required autocomplete="email">
+      </div>
+
+      <div class="form-group">
+        <label for="subject">Subject</label>
+        <select id="subject" name="subject" required>
+          <option value="" disabled selected>Select a subject</option>
+          <option value="fashion-week">Fashion Week Coverage</option>
+          <option value="editorial">Editorial Shoot</option>
+          <option value="film-video">Film / Video Project</option>
+          <option value="collaboration">Collaboration</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Your message…" required></textarea>
+      </div>
+
+      <button type="submit" class="btn-submit">Send Message</button>
+
+    </form>
+
+  </main>
+
+  <!-- ══ FOOTER ═══════════════════════════════════════════════ -->
+  <footer>
+    <span>© Romain Maulave — All rights reserved</span>
+    <a href="https://instagram.com/romlve" target="_blank" rel="noopener noreferrer">@romlve</a>
+  </footer>
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="loader" id="loader" aria-hidden="true">
+    <span class="loader__logo">RM</span>
+  </div>
+  <div class="cursor-dot"  id="cursor-dot"  aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true">
+    <span class="cursor-label" id="cursor-label"></span>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

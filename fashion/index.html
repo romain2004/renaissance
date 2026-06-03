@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Romain Maulave — Filmmaker & Photographer. Fashion Weeks, Paris, Milan, New York, London.">
+  <title>Romain Maulave — @romlve</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-home">
+
+  <!-- ══ NAVIGATION ═══════════════════════════════════════════
+       Logo = "RM" in gold, links on the right.
+       Nav becomes solid (#000) after 48px of scroll.
+  ════════════════════════════════════════════════════════════ -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo">RM</a>
+    <ul class="nav__links">
+      <li><a href="fashion-weeks.html">Fashion Weeks</a></li>
+      <!-- <li><a href="book.html">Book</a></li> -->
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <!-- Hamburger — visible only on mobile -->
+    <button class="nav__hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile fullscreen menu overlay -->
+  <div class="nav__mobile" role="dialog" aria-label="Navigation">
+    <a href="fashion-weeks.html">Fashion Weeks</a>
+    <!-- <a href="book.html">Book</a> -->
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <!-- ══ HERO ═════════════════════════════════════════════════
+       Background image is set via --hero-bg-url in style.css.
+       To swap the image, edit that variable or override inline:
+         <section class="hero" style="--hero-bg-url: url('images/hero.jpg')">
+  ════════════════════════════════════════════════════════════ -->
+  <section class="hero" role="banner">
+    <!-- Overlay (.hero::before pseudo-element handles this) -->
+    <div class="hero__content">
+      <!-- Edit the headline lines below. One word per line. -->
+      <!-- The <span class="gold"> wraps the word you want in amber. -->
+      <h1 class="hero__headline">
+        BETWEEN<br>
+        <span class="gold">THE</span><br>
+        LIGHTS.
+      </h1>
+      <div class="hero__cta">
+        <a href="#latest-work" class="btn-hero btn-hero--ghost">See my work</a>
+        <a href="contact.html" class="btn-hero btn-hero--gold">Book me</a>
+      </div>
+    </div>
+    <span class="hero__scroll" aria-hidden="true">Scroll</span>
+  </section>
+
+  <!-- ══ INTRO ════════════════════════════════════════════════
+       Short blurb under the hero. Edit freely.
+  ════════════════════════════════════════════════════════════ -->
+  <section class="intro">
+    <span class="label reveal">Filmmaker · Photographer</span>
+    <h2 class="display-title reveal d1">
+      Documenting<br>Fashion.
+    </h2>
+    <p class="subtitle reveal d2">Paris · Milan · New York · London</p>
+    <!-- Edit the blurb below -->
+    <div class="credentials reveal d3">
+      <div class="credentials__line"></div>
+      <p class="credentials__shows">NYFW · <a href="https://nyfw.com/designer/filipinxt/" target="_blank" rel="noopener noreferrer" class="credentials__link">FILIPINXT</a> · <a href="https://www.globalfashioncollective.com" target="_blank" rel="noopener noreferrer" class="credentials__link">GLOBAL FASHION COLLECTIVE</a></p>
+      <p class="credentials__location">NEW YORK · 2025</p>
+    </div>
+  </section>
+
+  <!-- ══ LATEST WORK ══════════════════════════════════════════ -->
+  <section class="latest-work" id="latest-work">
+    <div class="latest-work__header reveal">
+      <span class="label">Latest Work</span>
+      <h2 class="display-title">New York<br>Fashion Week</h2>
+      <p class="subtitle">2025</p>
+    </div>
+    <div class="latest-work__grid reveal d1">
+      <div class="lw-item">
+        <img src="images/FILIPINXT/USA01162.webp" alt="FILIPINXT runway — NYFW 2025" style="object-position: center 30%;">
+      </div>
+      <div class="lw-item">
+        <img src="images/GFC4/USA01814.webp" alt="Global Fashion Collective — NYFW 2025">
+      </div>
+      <div class="lw-item">
+        <img src="images/GFC2/USA00337.webp" alt="Global Fashion Collective — NYFW 2025">
+      </div>
+    </div>
+    <div class="latest-work__cta reveal d2">
+      <a href="fashion-weeks.html" class="btn-hero btn-hero--ghost">View full coverage →</a>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ═══════════════════════════════════════════════ -->
+  <footer>
+    <!-- Edit name and year below -->
+    <span>© Romain Maulave — All rights reserved</span>
+    <!-- Edit your Instagram handle below -->
+    <a href="https://instagram.com/romlve" target="_blank" rel="noopener noreferrer">@romlve</a>
+  </footer>
+
+  <!-- Film grain — cinematic texture (CSS animated, no JS) -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- Intro loader — "RM" animates in then fades out (1.45s) -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <span class="loader__logo">RM</span>
+  </div>
+
+  <!-- Custom cursor (hidden automatically on touch devices via CSS) -->
+  <div class="cursor-dot"  id="cursor-dot"  aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true">
+    <span class="cursor-label" id="cursor-label"></span>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

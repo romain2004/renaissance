@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Book — Romain Maulave. Personal work, coming soon.">
+  <title>Book — Romain Maulave</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ══ NAVIGATION ═══════════════════════════════════════════ -->
+  <nav class="nav scrolled" id="nav">
+    <a href="index.html" class="nav__logo">RM</a>
+    <ul class="nav__links">
+      <li><a href="fashion-weeks.html">Fashion Weeks</a></li>
+      <li><a href="book.html" class="active">Book</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="nav__hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <div class="nav__mobile" role="dialog" aria-label="Navigation">
+    <a href="fashion-weeks.html">Fashion Weeks</a>
+    <!-- <a href="book.html">Book</a> -->
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <!-- ══ COMING SOON ══════════════════════════════════════════
+       This page is intentionally minimal.
+       Edit the text below freely when the Book section is ready.
+  ════════════════════════════════════════════════════════════ -->
+  <main class="coming-soon">
+    <!-- Large title -->
+    <h1 class="coming-soon__title reveal">Book</h1>
+    <!-- Italic subtitle -->
+    <p class="coming-soon__sub reveal d1">Coming soon.</p>
+    <!-- Gold separator line -->
+    <div class="gold-rule reveal d2"></div>
+    <!-- Small note -->
+    <p class="coming-soon__note reveal d3">Personal work. Unveiled soon.</p>
+  </main>
+
+  <!-- ══ FOOTER ═══════════════════════════════════════════════ -->
+  <footer>
+    <span>© Romain Maulave — All rights reserved</span>
+    <a href="https://instagram.com/romlve" target="_blank" rel="noopener noreferrer">@romlve</a>
+  </footer>
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="loader" id="loader" aria-hidden="true">
+    <span class="loader__logo">RM</span>
+  </div>
+  <div class="cursor-dot"  id="cursor-dot"  aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true">
+    <span class="cursor-label" id="cursor-label"></span>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
