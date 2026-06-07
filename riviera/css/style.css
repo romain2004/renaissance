@@ -881,6 +881,7 @@ footer {
     align-items: center;
     justify-content: center;
     padding: 40px 24px;
+    padding-bottom: 60px;
     background-attachment: scroll;
   }
   .contact-h { font-size: clamp(3rem, 12vw, 5.5rem); margin-bottom: 1.5rem; }
