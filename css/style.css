@@ -689,90 +689,250 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ════════════════════════════════════════════════════════
-   RESPONSIVE
+   MOBILE — max-width: 768px uniquement. Desktop intact.
    ════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
 
-  .worlds {
+  /* ── Hero mobile dédié — caché sur desktop ──────────── */
+  .hero__mobile { display: flex; }
+
+  /* ── Masquer les éléments desktop dans le hero ───────── */
+  .hero__identity { display: none; }
+  .worlds         { display: none; }
+  .worlds__sep    { display: none; }
+
+  /* ── Hero — fond noir pleine hauteur ────────────────── */
+  .hero {
+    height: 100svh;
+    min-height: 600px;
     flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    background: var(--black);
+    padding: 0;
   }
 
-  .world {
-    flex: 1 1 0 !important;
-    min-height: 0;
-    transition: none;
-  }
-
-  .worlds__sep {
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(
-      to right,
-      transparent 0%,
-      rgba(200, 168, 107, 0.28) 18%,
-      rgba(200, 168, 107, 0.6) 50%,
-      rgba(200, 168, 107, 0.28) 82%,
-      transparent 100%
-    );
-  }
-
-  .world__location { opacity: 0.52; }
-  .world__cta { display: none; }
-
-  .manifesto { display: none; }
-
-  .campaign__bg { background-attachment: scroll; }
-
-  .footer__contact {
+  /* ── Hero mobile layout ─────────────────────────────── */
+  .hero__mobile {
     flex-direction: column;
-    gap: 32px;
+    justify-content: space-between;
+    height: 100%;
+    padding: 0;
   }
 
-  .footer__contact {
+  /* NAV — RM + Book */
+  .hero__mobile-nav-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 24px;
+    border-bottom: 1px solid rgba(200, 168, 107, 0.1);
+  }
+
+  /* Nom principal — plein écran */
+  .hero__mobile-name {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 24px;
+  }
+
+  .hero__mobile-name span {
+    display: block;
+    font-family: var(--display);
+    font-size: clamp(58px, 16vw, 82px);
+    line-height: 0.87;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+
+  .hero__mobile-name em {
+    display: block;
+    font-family: var(--display);
+    font-style: normal;
+    font-size: clamp(58px, 16vw, 82px);
+    line-height: 0.87;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 6px;
+  }
+
+  .hero__mobile-tag {
+    padding: 0 24px;
+    font-size: 10px;
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
+    color: rgba(245, 241, 234, 0.38);
+    font-weight: 300;
+    margin-top: 18px;
+    text-align: center;
+  }
+
+  /* CTAs — Book + Fashion/Riviera */
+  .hero__mobile-ctas {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero__mobile-book {
+    display: block;
+    background: var(--gold);
+    color: #050505;
+    text-align: center;
+    padding: 17px;
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    text-decoration: none;
+  }
+
+  .hero__mobile-nav {
+    display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: clamp(32px, 8vw, 64px);
+    gap: 10px;
   }
 
-  .footer__specialties {
-    gap: 8px 0;
+  .hero__mobile-card {
+    position: relative;
+    height: 190px;
+    border-radius: 3px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 14px 12px;
+    text-decoration: none;
+    color: #F5F1EA;
+  }
+
+  .hero__mobile-card-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .hero__mobile-card-bg--fashion {
+    background-image: url('../fashion/images/USA00093.jpg');
+    filter: brightness(0.55) saturate(0.85);
+  }
+
+  .hero__mobile-card-bg--riviera {
+    background-image: url('../riviera/images/USA02706.jpeg');
+    filter: brightness(0.55) saturate(1.0);
+  }
+
+  .hero__mobile-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 60%);
+  }
+
+  .hero__mobile-card-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .hero__mobile-card-num {
+    font-size: 8px;
+    letter-spacing: 0.4em;
+    color: #C8A86B;
+    font-weight: 400;
+  }
+
+  .hero__mobile-card-title {
+    font-family: 'Bebas Neue', Impact, sans-serif;
+    font-size: 30px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  .hero__mobile-card-sub {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,241,234,0.5);
+  }
+
+  .hero__mobile-card-arrow {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 14px;
+    color: #C8A86B;
+    z-index: 2;
+  }
+
+  /* ── Manifesto — compact ────────────────────────────── */
+  .manifesto {
+    display: flex;
+    padding: 40px 24px;
+  }
+
+  .manifesto__line      { font-size: clamp(34px, 9vw, 54px); }
+  .manifesto__line--accent { font-size: clamp(22px, 6vw, 34px); }
+
+  /* ── Campaign — hauteur réduite ─────────────────────── */
+  .campaign { height: 56vh; min-height: 300px; }
+  .campaign__bg { background-attachment: scroll; }
+  .campaign__headline { font-size: clamp(28px, 8vw, 48px); }
+
+  /* ── Footer ─────────────────────────────────────────── */
+  .footer { padding: 52px 24px 44px; gap: 36px; }
+  .footer__name { font-size: clamp(34px, 9vw, 54px); }
+  .footer__tagline { font-size: 10px; line-height: 2; }
+
+  .footer__contact {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .footer__contact-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 18px 16px;
+    border: 1px solid rgba(200, 168, 107, 0.18);
+    border-radius: 2px;
+    gap: 6px;
+  }
+
+  .footer__contact-label {
+    font-size: 9px;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: #C8A86B;
+    opacity: 0.78;
+  }
+
+  .footer__contact-link {
+    font-size: 13px;
+    color: rgba(245, 241, 234, 0.6);
   }
 }
 
-/* ════════════════════════════════════════════════════════
-   MOBILE HERO
-   ════════════════════════════════════════════════════════ */
-@media (max-width: 768px) {
-  .hero__name { font-size: clamp(52px, 14vw, 72px); }
-  .worlds { flex-direction: column; }
-  .worlds__sep { width: 100%; height: 1px; }
-  .world__cta { display: none; }
-  .world--fashion .world__bg { background-image: url('../fashion/images/USA00093.jpg'); }
-  .world--riviera .world__bg { background-image: url('../riviera/images/USA02706.jpeg'); }
+/* Desktop — hero mobile caché */
+@media (min-width: 769px) {
+  .hero__mobile { display: none; }
 }
 
-@media (max-width: 480px) {
-
-  .hero__name {
-    font-size: clamp(42px, 11vw, 64px);
-  }
-
-  .manifesto__line {
-    font-size: clamp(28px, 8vw, 48px);
-  }
-
-  .manifesto__line--accent {
-    font-size: clamp(18px, 5vw, 30px);
-  }
-
-  .campaign__headline {
-    font-size: clamp(28px, 7vw, 52px);
-  }
-
-  .campaign__subline {
-    font-size: clamp(14px, 4vw, 26px);
-  }
-
-  .footer__name {
-    font-size: clamp(32px, 9vw, 60px);
-  }
+/* Très petits écrans */
+@media (max-width: 380px) {
+  .hero__mobile-name span,
+  .hero__mobile-name em { font-size: 48px; }
 }
