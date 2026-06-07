@@ -5,9 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Romain Maulavé — Photographer. Fashion Weeks & Mediterranean Riviera.">
   <title>Romain Maulavé</title>
+
+  <!-- Preconnect Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+
+  <!-- Google Fonts — non-bloquant -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap"
+        rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+  </noscript>
+
+  <!-- Preload des 2 images hero (LCP critique) -->
+  <link rel="preload" as="image" href="../fashion/images/USA00093.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="../riviera/images/USA02706.jpeg" fetchpriority="high">
+
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -26,6 +39,7 @@
   <!-- ═══════════════════════════════════════════
        SECTION 1 — HERO
   ════════════════════════════════════════════ -->
+  <main>
   <section class="hero" id="hero">
 
     <div class="hero__identity">
@@ -68,12 +82,10 @@
 
     </div>
 
-
   </section>
 
   <!-- ═══════════════════════════════════════════
        SECTION 2 — MANIFESTO
-       TWO WORLDS. dominant · ONE SIGNATURE. precious
   ════════════════════════════════════════════ -->
   <section class="manifesto" id="manifesto">
     <div class="manifesto__inner">
@@ -84,12 +96,10 @@
   </section>
 
   <!-- ═══════════════════════════════════════════
-       SECTION 3 — CAMPAIGN
-       Human presence · warm cinematic grade
-       To swap the image: edit .campaign__bg in css/style.css
+       SECTION 3 — CAMPAIGN SAINT-TROPEZ
   ════════════════════════════════════════════ -->
   <section class="campaign" id="campaign">
-    <div class="campaign__bg"></div>
+    <div class="campaign__bg" role="img" aria-label="Saint-Tropez"></div>
     <div class="campaign__grade"></div>
     <div class="campaign__text">
       <span class="campaign__eyebrow reveal">Saint-Tropez · 2026</span>
@@ -101,13 +111,15 @@
        SECTION 4 — CAMPAIGN NEW YORK
   ════════════════════════════════════════════ -->
   <section class="campaign campaign--newyork" id="campaign-newyork">
-    <div class="campaign__bg campaign__bg--newyork"></div>
+    <div class="campaign__bg campaign__bg--newyork" role="img" aria-label="New York"></div>
     <div class="campaign__grade"></div>
     <div class="campaign__text">
       <span class="campaign__eyebrow reveal">New York · 2026</span>
       <p class="campaign__headline reveal d1">New York.</p>
     </div>
   </section>
+
+  </main>
 
   <!-- ═══════════════════════════════════════════
        SECTION 5 — FOOTER
@@ -137,6 +149,7 @@
 
   </footer>
 
-  <script src="js/main.js"></script>
+  <!-- JS différé — ne bloque plus le rendu -->
+  <script src="js/main.js" defer></script>
 </body>
 </html>

@@ -68,7 +68,7 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ════════════════════════════════════════════════════════
-   01. FILM GRAIN
+   01. FILM GRAIN — optimisé (réduit sur mobile)
    ════════════════════════════════════════════════════════ */
 .grain {
   position: fixed;
@@ -78,7 +78,16 @@ a { color: inherit; text-decoration: none; }
   pointer-events: none;
   opacity: 0.04;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  /* OPTIMISATION: animation réduite à 1s sur mobile via media query */
   animation: grain-shift 0.5s steps(1) infinite;
+}
+
+/* Désactiver le grain animé sur mobile — gain GPU significatif */
+@media (hover: none) {
+  .grain {
+    animation: none;
+    opacity: 0.03;
+  }
 }
 
 @keyframes grain-shift {
@@ -91,7 +100,7 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ════════════════════════════════════════════════════════
-   02. LOADER
+   02. LOADER — durée réduite sur mobile
    ════════════════════════════════════════════════════════ */
 .loader {
   position: fixed;
@@ -118,6 +127,13 @@ a { color: inherit; text-decoration: none; }
   animation: monogram-in 1.65s var(--out) forwards;
 }
 
+/* OPTIMISATION: loader plus court sur mobile */
+@media (hover: none) {
+  .loader__monogram {
+    animation-duration: 0.9s;
+  }
+}
+
 @keyframes monogram-in {
   0%   { opacity: 0; letter-spacing: 0.52em; }
   28%  { opacity: 1; letter-spacing: 0.26em; }
@@ -127,7 +143,7 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ════════════════════════════════════════════════════════
-   03. CUSTOM CURSOR
+   03. CUSTOM CURSOR — desktop uniquement
    ════════════════════════════════════════════════════════ */
 .cursor-dot,
 .cursor-ring {
@@ -350,41 +366,35 @@ a { color: inherit; text-decoration: none; }
 
 .world__title {
   font-family: var(--display);
-  font-size: clamp(48px, 7vw, 104px);
-  line-height: 0.86;
-  letter-spacing: 0.04em;
+  font-size: clamp(36px, 4.5vw, 68px);
+  line-height: 0.88;
   text-transform: uppercase;
-  transition: letter-spacing 0.75s var(--expo);
+  letter-spacing: 0.06em;
+  color: var(--white);
+  margin-bottom: 10px;
 }
-
-.world:hover .world__title { letter-spacing: 0.1em; }
 
 .world__location {
-  margin-top: 10px;
-  font-size: 8px;
-  font-weight: 400;
-  letter-spacing: 0.34em;
+  font-family: var(--sans);
+  font-size: clamp(8px, 0.82vw, 10px);
+  font-weight: 300;
+  letter-spacing: 0.36em;
   text-transform: uppercase;
-  color: var(--muted);
-  opacity: 0.42;
-  transition: opacity 0.5s ease;
+  color: rgba(245, 241, 234, 0.55);
 }
-
-.world:hover .world__location { opacity: 0.82; }
 
 .world__cta {
   position: absolute;
   bottom: clamp(28px, 5.5vh, 56px);
   right: var(--gutter);
-  z-index: 2;
-  font-size: 8.5px;
-  font-weight: 400;
-  letter-spacing: 0.3em;
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.36em;
   text-transform: uppercase;
   color: var(--gold);
   opacity: 0;
-  transform: translateX(-10px);
-  transition: opacity 0.4s ease 0.1s, transform 0.4s var(--out) 0.1s;
+  transition: opacity 0.4s ease, transform 0.4s var(--out);
+  transform: translateX(-6px);
 }
 
 .world:hover .world__cta {
@@ -394,18 +404,18 @@ a { color: inherit; text-decoration: none; }
 
 .worlds__sep {
   width: 1px;
-  flex-shrink: 0;
+  height: 100%;
   background: linear-gradient(
     to bottom,
     transparent 0%,
     rgba(200, 168, 107, 0.28) 18%,
-    rgba(200, 168, 107, 0.65) 50%,
+    rgba(200, 168, 107, 0.6) 50%,
     rgba(200, 168, 107, 0.28) 82%,
     transparent 100%
   );
-  pointer-events: none;
+  flex-shrink: 0;
   z-index: 10;
-  animation: sep-reveal 0.7s ease 1.68s both;
+  animation: sep-reveal 1s var(--out) 1.9s both;
 }
 
 @keyframes sep-reveal {
@@ -448,7 +458,6 @@ a { color: inherit; text-decoration: none; }
 
 /* ════════════════════════════════════════════════════════
    SECTION 2 — MANIFESTO
-   Massive editorial typography · iconic
    ════════════════════════════════════════════════════════ */
 .manifesto {
   padding: clamp(128px, 20vh, 220px) var(--gutter);
@@ -477,7 +486,6 @@ a { color: inherit; text-decoration: none; }
 
 .manifesto__line--accent {
   color: var(--gold);
-  /* ~38% smaller than the dominant line — precious, not shouting */
   font-size: clamp(24px, 4.6vw, 70px);
 }
 
@@ -490,9 +498,8 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ════════════════════════════════════════════════════════
-   SECTION 3 — CAMPAIGN
-   Human presence · warm cinematic grade
-   Swap image: change background-image in .campaign__bg
+   SECTION 3 & 4 — CAMPAIGN
+   OPTIMISATION: images campaign chargées en lazy via JS
    ════════════════════════════════════════════════════════ */
 .campaign {
   position: relative;
@@ -504,21 +511,23 @@ a { color: inherit; text-decoration: none; }
 .campaign__bg {
   position: absolute;
   inset: 0;
-  /* Human presence — candid street/dock scene · Saint-Tropez */
-  background-image: url('../riviera/images/USA02707.jpeg');
   background-size: cover;
   background-position: center 40%;
   transform: scale(1.06);
   transition: transform 1.4s var(--out);
-  /* Warm cinematic grade — beige highlights, soft contrast, gentle sepia */
   filter: brightness(0.92) contrast(1.02) saturate(0.95) sepia(0.03);
+  /* OPTIMISATION: pas de background-image ici — chargé en JS après LCP */
+}
+
+/* Classe ajoutée par JS après le chargement initial */
+.campaign__bg.loaded {
+  background-image: url('../riviera/images/USA02707.jpeg');
 }
 
 .campaign.is-visible .campaign__bg {
   transform: scale(1.01);
 }
 
-/* Warm cinematic grade overlay — no blue in interface, only warm shadows */
 .campaign__grade {
   position: absolute;
   inset: 0;
@@ -550,7 +559,6 @@ a { color: inherit; text-decoration: none; }
   margin-bottom: 20px;
 }
 
-/* Editorial size — confident but not decorative */
 .campaign__headline {
   display: block;
   font-family: var(--display);
@@ -573,11 +581,15 @@ a { color: inherit; text-decoration: none; }
   margin-top: 10px;
 }
 
-
+/* OPTIMISATION: New York aussi chargé en lazy */
 .campaign__bg--newyork {
-  background-image: url('../riviera/images/USA05801.jpg');
   background-position: center 30%;
 }
+
+.campaign__bg--newyork.loaded {
+  background-image: url('../riviera/images/USA05801.jpg');
+}
+
 
 /* ════════════════════════════════════════════════════════
    SECTION 5 — FOOTER
@@ -595,7 +607,6 @@ a { color: inherit; text-decoration: none; }
   overflow: hidden;
 }
 
-/* Subtle grain on the footer surface */
 .footer::before {
   content: '';
   position: absolute;
@@ -691,11 +702,13 @@ a { color: inherit; text-decoration: none; }
    ════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
 
-  .worlds { flex-direction: column; }
+  .worlds {
+    flex-direction: column;
+  }
 
   .world {
-    flex: 1 1 auto !important;
-    min-height: 44vh;
+    flex: 1 1 0 !important;
+    min-height: 0;
     transition: none;
   }
 
@@ -715,6 +728,8 @@ a { color: inherit; text-decoration: none; }
   .world__location { opacity: 0.52; }
   .world__cta { display: none; }
 
+  .manifesto { display: none; }
+
   .campaign__bg { background-attachment: scroll; }
 
   .footer__contact {
@@ -730,6 +745,18 @@ a { color: inherit; text-decoration: none; }
   .footer__specialties {
     gap: 8px 0;
   }
+}
+
+/* ════════════════════════════════════════════════════════
+   MOBILE HERO
+   ════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .hero__name { font-size: clamp(52px, 14vw, 72px); }
+  .worlds { flex-direction: column; }
+  .worlds__sep { width: 100%; height: 1px; }
+  .world__cta { display: none; }
+  .world--fashion .world__bg { background-image: url('../fashion/images/USA00093.jpg'); }
+  .world--riviera .world__bg { background-image: url('../riviera/images/USA02706.jpeg'); }
 }
 
 @media (max-width: 480px) {
