@@ -225,6 +225,17 @@ img { display: block; width: 100%; }
   z-index: 1;
 }
 
+.hero__bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 50%;
+  z-index: 0;
+  display: block;
+}
+
 .hero__content {
   position: absolute;
   bottom: 80px;
@@ -1719,17 +1730,15 @@ footer a:hover { color: var(--gold); }
 
 @media (max-width: 768px) {
   .page-home {
-    background-attachment: scroll;
-  }
-
-  .hero {
-    background-attachment: scroll;
-    background-image: url('../images/USA00093.jpg');
-    background-size: cover;
-    background-position: center 50%;
+    background-image: none;
   }
 
   .page-home .hero {
-    background-image: url('../images/USA00093.jpg');
+    background-image: none;
+  }
+
+  .hero {
+    background-image: none;
+    background-attachment: scroll;
   }
 }
