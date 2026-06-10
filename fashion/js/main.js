@@ -266,12 +266,17 @@
 
     // Touch swipe
     var touchStartX = 0;
+    var touchStartY = 0;
     track.addEventListener('touchstart', function (e) {
       touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
     }, { passive: true });
     track.addEventListener('touchend', function (e) {
-      var diff = touchStartX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 50) goTo(diff > 0 ? current + 1 : current - 1);
+      var diffX = touchStartX - e.changedTouches[0].clientX;
+      var diffY = touchStartY - e.changedTouches[0].clientY;
+      if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 40) {
+        goTo(diffX > 0 ? current + 1 : current - 1);
+      }
     }, { passive: true });
 
     // Keyboard nav when carousel is in view
