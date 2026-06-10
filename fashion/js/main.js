@@ -223,12 +223,14 @@
      the CSS animation can loop from 0 → -50% invisibly.
      Speed is set via animation-duration inline on each track.
      ────────────────────────────────────────────────────────── */
-  document.querySelectorAll('.auto-scroll-track').forEach(function (track) {
-    var children = Array.prototype.slice.call(track.children);
-    children.forEach(function (child) {
-      track.appendChild(child.cloneNode(true));
+  if (window.innerWidth > 768) {
+    document.querySelectorAll('.auto-scroll-track').forEach(function (track) {
+      var children = Array.prototype.slice.call(track.children);
+      children.forEach(function (child) {
+        track.appendChild(child.cloneNode(true));
+      });
     });
-  });
+  }
 
 
   /* ──────────────────────────────────────────────────────────
