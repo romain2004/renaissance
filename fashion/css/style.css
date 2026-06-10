@@ -1759,7 +1759,21 @@ footer a:hover { color: var(--gold); }
   .hero__content {
     position: relative;
     z-index: 2;
+    bottom: 100px;
+    left: 20px;
+    right: 20px;
   }
+
+  .hero__headline {
+    font-size: clamp(48px, 13vw, 68px);
+    line-height: 0.88;
+  }
+
+  .hero__cta {
+    margin-top: 20px;
+  }
+
+  .hero__scroll { display: none; }
 
   .hero::before {
     z-index: 1;
