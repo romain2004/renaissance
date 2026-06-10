@@ -1716,3 +1716,20 @@ footer a:hover { color: var(--gold); }
     flex-shrink: 0;
   }
 }
+
+@media (max-width: 768px) {
+  .page-home {
+    background-attachment: scroll;
+  }
+
+  .hero {
+    background-attachment: scroll;
+    background-image: url('../images/USA00093.jpg');
+    background-size: cover;
+    background-position: center 50%;
+  }
+
+  .page-home .hero {
+    background-image: url('../images/USA00093.jpg');
+  }
+}
