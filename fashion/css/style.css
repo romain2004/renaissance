@@ -1696,3 +1696,23 @@ footer a:hover { color: var(--gold); }
     z-index: 2;
   }
 }
+
+@media (max-width: 768px) {
+  .auto-scroll-wrap {
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+    cursor: grab;
+  }
+  .auto-scroll-track {
+    animation: none !important;
+    display: flex;
+    gap: 4px;
+    padding: 0 20px 16px;
+  }
+  .auto-scroll-track img {
+    height: 56vw;
+    max-height: 260px;
+    width: auto;
+    flex-shrink: 0;
+  }
+}
