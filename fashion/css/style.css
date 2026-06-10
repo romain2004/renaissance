@@ -1729,16 +1729,39 @@ footer a:hover { color: var(--gold); }
 }
 
 @media (max-width: 768px) {
+  .hero {
+    position: relative;
+    background-image: none !important;
+    background-attachment: scroll;
+    overflow: hidden;
+  }
+
   .page-home {
-    background-image: none;
+    background-image: none !important;
   }
 
   .page-home .hero {
-    background-image: none;
+    background-image: none !important;
   }
 
-  .hero {
-    background-image: none;
-    background-attachment: scroll;
+  .hero__bg-img {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center 50%;
+    z-index: 0;
+    display: block !important;
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero::before {
+    z-index: 1;
   }
 }
