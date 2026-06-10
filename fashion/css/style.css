@@ -1773,6 +1773,16 @@ footer a:hover { color: var(--gold); }
     margin-top: 20px;
   }
 
+  .hero__cta {
+    align-items: flex-start;
+  }
+
+  .btn-hero {
+    width: 160px;
+    text-align: center;
+    padding: 14px 0;
+  }
+
   .hero__scroll { display: none; }
 
   .hero::before {
