@@ -131,8 +131,15 @@ nav.scrolled {
 .hero-bg { display: none; }
 .hero-content {
   position: absolute;
-  bottom: 3.5rem; left: 3.5rem;
-  max-width: 640px;
+  top: 0;
+  left: 3.5rem;
+  right: 3.5rem;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 4rem;
+  max-width: 580px;
   z-index: 1;
 }
 .hero-label {
@@ -145,8 +152,8 @@ nav.scrolled {
 }
 h1 {
   font-family: var(--bebas);
-  font-size: clamp(4.5rem, 9vw, 10rem);
-  line-height: .92;
+  font-size: clamp(4.5rem, 8vw, 9rem);
+  line-height: .88;
   letter-spacing: .02em;
   text-transform: uppercase;
   margin-bottom: 1.25rem;
@@ -802,7 +809,7 @@ footer {
     background-position: center center;
     min-height: 100svh;
   }
-  .hero-content { left: 24px; right: 24px; bottom: 32px; max-width: none; }
+  .hero-content { top: 50%; left: 24px; right: 24px; bottom: auto; transform: translateY(-50%); max-width: none; }
   h1 { font-size: clamp(3.2rem, 12vw, 5rem); margin-bottom: 1rem; }
   .hero-sub { font-size: 0.88rem; max-width: none; margin-bottom: 1.5rem; }
   .hero-btns { flex-direction: column; gap: 10px; }

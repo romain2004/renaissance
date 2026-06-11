@@ -118,8 +118,12 @@ img { display: block; width: 100%; }
   font-family: var(--font-display);
   font-size: 26px;
   letter-spacing: 0.12em;
-  color: var(--gold);
+  color: var(--white);
   line-height: 1;
+}
+
+.nav__logo .gold {
+  color: var(--gold);
 }
 
 .nav__links {
