@@ -3,7 +3,9 @@
    Edit the variables in :root to change colors / fonts globally.
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
+/* Fonts are now loaded via <link rel="stylesheet"> + preconnect in the
+   HTML <head> instead of @import here — @import is render-blocking and
+   delays the whole stylesheet until the font CSS round-trip finishes. */
 
 /* ── Design tokens ─────────────────────────────────────────── */
 :root {
@@ -19,12 +21,11 @@
 
   /* ── Hero background image ──────────────────────────────────
      TO CHANGE THE HERO IMAGE:
-     Replace the url() value below with your own image path.
-     Example: url('../images/hero.jpg')
-     You can also override it inline on the .hero element:
-       <section class="hero" style="--hero-bg-url: url('../images/hero.jpg')">
+     The hero now renders through the <img class="hero__bg-img">
+     element in index.html (not a CSS background) — this avoids
+     downloading the same photo twice. To swap it, just change the
+     src="" on that <img> tag.
      ────────────────────────────────────────────────────────── */
-  --hero-bg-url: url('../images/USA00093.jpg');
 
   --nav-height: 72px;
   --page-gutter: 56px;
@@ -59,35 +60,38 @@ img { display: block; width: 100%; }
 
 /* ── Home page — background visible through scroll ──────────── */
 /*
-   The image is fixed to the viewport as the body's background.
-   The hero removes its own background-image so body shows through.
-   The intro is transparent, then fades to black.
-   TO CHANGE THE IMAGE: update --hero-bg-url in :root AND the
-   url() below (they must match).
+   TO CHANGE THE INTRO IMAGE: update the url() below.
 */
-.page-home {
-  background-image: url('../images/USA00093.jpg');
+/* Intro has its own fixed background (disabled on mobile — see @media 960px) */
+.page-home .intro {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 100px;
+  background-image: url('../images/USA00994.jpg');
   background-attachment: fixed;
   background-size: cover;
-  background-position: center 50%;
+  background-position: center;
 }
 
-/* Hero delegates the image to body — no duplicate */
-.page-home .hero {
-  background-image: none;
-}
-
-/* Intro is transparent so the fixed image shows through */
-.page-home .intro {
+.page-home .intro::before {
+  content: '';
+  position: absolute;
+  inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.05) 0%,
-    rgba(0, 0, 0, 0.7)  55%,
-    #000 90%
+    rgba(0, 0, 0, 0.88) 0%,
+    rgba(0, 0, 0, 0.3) 16%,
+    rgba(0, 0, 0, 0.5) 100%
   );
-  /* Extra top padding pushes the content down so hero titles
-     are fully off-screen before the intro text appears */
-  padding-top: 280px;
+  pointer-events: none;
+}
+
+.page-home .intro > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* Footer stays solid black */
@@ -116,8 +120,8 @@ img { display: block; width: 100%; }
 
 .nav__logo {
   font-family: var(--font-display);
-  font-size: 26px;
-  letter-spacing: 0.12em;
+  font-size: 2rem;
+  letter-spacing: 0.05em;
   color: var(--white);
   line-height: 1;
 }
@@ -210,22 +214,27 @@ img { display: block; width: 100%; }
   position: relative;
   height: 100vh;
   min-height: 640px;
-  background-image: var(--hero-bg-url);
-  background-size: cover;
-  background-position: center 50%;
-  background-attachment: fixed; /* subtle parallax */
+  overflow: hidden; /* clips the JS-driven parallax scale below */
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   padding: 0 var(--page-gutter) 88px;
 }
 
-/* Dark overlay for legibility */
+/* Dark overlay for legibility, fading to black at the bottom edge.
+   That bottom fade meets the next section's own dark overlay, so the
+   scroll transition reads as a deliberate dip-to-black cut rather
+   than an abrupt jump between two unrelated photos. */
 .hero::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.18);
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.18) 0%,
+    rgba(0, 0, 0, 0.18) 65%,
+    rgba(0, 0, 0, 0.94) 100%
+  );
   z-index: 1;
 }
 
@@ -238,6 +247,7 @@ img { display: block; width: 100%; }
   object-position: center 50%;
   z-index: 0;
   display: block;
+  will-change: transform;
 }
 
 .hero__content {
@@ -247,6 +257,7 @@ img { display: block; width: 100%; }
   right: var(--page-gutter);
   z-index: 2;
   max-width: 960px;
+  will-change: opacity, transform;
 }
 
 .hero__headline {
@@ -473,10 +484,41 @@ img { display: block; width: 100%; }
 
 .latest-work__header {
   margin-bottom: 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
 .latest-work__header .display-title {
   font-size: clamp(28px, 4vw, 48px);
+}
+
+.latest-work__header-meta {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.lw-header-line {
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  margin: 0 0 18px auto;
+}
+
+.lw-header-shows {
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 8px;
+}
+
+.lw-header-location {
+  font-size: 9.5px;
+  letter-spacing: 0.44em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.2);
 }
 
 .latest-work__grid {
@@ -488,6 +530,42 @@ img { display: block; width: 100%; }
 .lw-item {
   overflow: hidden;
   height: 320px;
+  position: relative;
+}
+
+.lw-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, transparent 48%);
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.lw-item:hover::after {
+  opacity: 1;
+}
+
+.lw-item__caption {
+  position: absolute;
+  bottom: 16px;
+  left: 20px;
+  z-index: 2;
+  font-size: 9.5px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+  pointer-events: none;
+}
+
+.lw-item:hover .lw-item__caption {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .lw-item img {
@@ -509,6 +587,13 @@ img { display: block; width: 100%; }
 }
 
 @media (max-width: 700px) {
+  .latest-work__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+  }
+  .latest-work__header-meta { text-align: left; }
+  .lw-header-line { margin: 0 0 18px 0; }
   .latest-work__grid { grid-template-columns: 1fr; }
   .lw-item { height: 240px; }
   .hero__cta { flex-direction: column; }
@@ -849,8 +934,10 @@ footer a:hover { color: var(--gold); }
   .nav__links    { display: none; }
   .nav__hamburger { display: flex; }
 
-  /* Disable parallax on mobile (can cause glitches) */
+  /* Disable parallax on mobile (can cause glitches — especially iOS Safari,
+     where background-attachment:fixed can fail to render the image at all) */
   .hero { background-attachment: scroll; }
+  .page-home .intro { background-attachment: scroll; }
 
   .contact-wrap {
     grid-template-columns: 1fr;
@@ -884,8 +971,11 @@ footer a:hover { color: var(--gold); }
    ══════════════════════════════════════════════════════════════ */
 
 /* ── 01. Custom cursor — desktop only ───────────────────────── */
+/* Gated behind .has-custom-cursor, added by JS only after the cursor
+   actually initializes. If main.js is blocked/slow/fails, the native
+   cursor stays visible instead of vanishing site-wide. */
 @media (hover: hover) and (pointer: fine) {
-  * { cursor: none !important; }
+  html.has-custom-cursor * { cursor: none !important; }
 }
 
 .cursor-dot,
@@ -1755,26 +1845,27 @@ footer a:hover { color: var(--gold); }
     width: 100% !important;
     height: 100% !important;
     object-fit: cover !important;
-    object-position: center 50%;
+    object-position: center top;
     z-index: 0;
     display: block !important;
   }
 
   .hero__content {
-    position: relative;
-    z-index: 2;
-    bottom: 100px;
+    position: absolute;
+    bottom: 56px;
     left: 20px;
     right: 20px;
+    z-index: 2;
   }
 
   .hero__headline {
-    font-size: clamp(48px, 13vw, 68px);
+    font-size: clamp(34px, 11vw, 52px);
     line-height: 0.88;
   }
 
   .hero__cta {
-    margin-top: 20px;
+    margin-top: 28px;
+    gap: 12px;
   }
 
   .hero__cta {
@@ -1785,6 +1876,21 @@ footer a:hover { color: var(--gold); }
     width: 160px;
     text-align: center;
     padding: 14px 0;
+    font-size: 11px;
+  }
+
+  /* CTA différenciation mobile : gold = primaire plein, ghost = secondaire discret */
+  .btn-hero--gold {
+    width: 100%;
+    padding: 16px 0;
+  }
+
+  .btn-hero--ghost {
+    width: 100%;
+    border-color: rgba(255, 255, 255, 0.22);
+    color: rgba(255, 255, 255, 0.55);
+    padding: 14px 28px;
+    background: transparent;
   }
 
   .hero__scroll { display: none; }

@@ -47,6 +47,10 @@
 
   if (cursorDot && cursorRing && hasPointer) {
 
+    // Only now do we tell the CSS to hide the native cursor site-wide —
+    // if this script had failed to run, the native cursor stays visible.
+    document.documentElement.classList.add('has-custom-cursor');
+
     var mouseX = 0, mouseY = 0;
     var ringX  = 0, ringY  = 0;
 
@@ -115,6 +119,55 @@
 
   window.addEventListener('scroll', updateNav, { passive: true });
   updateNav();
+
+
+  /* ──────────────────────────────────────────────────────────
+     HERO — scroll-linked parallax + headline fade
+     Replaces the old background-attachment:fixed approach (which
+     was invisible anyway, fully covered by .hero__bg-img).
+     - Headline + CTA fade out and lift slightly as you scroll,
+       so they never get abruptly clipped by the nav bar.
+     - Background image drifts slower than the page for a subtle
+       cinematic depth effect. Skipped on small screens (perf).
+     ────────────────────────────────────────────────────────── */
+  var heroEl      = document.querySelector('.hero');
+  var heroBgImg   = document.querySelector('.hero__bg-img');
+  var heroContent = document.querySelector('.hero__content');
+  var heroTicking = false;
+
+  function renderHero() {
+    heroTicking = false;
+    if (!heroEl) return;
+
+    var heroHeight = heroEl.offsetHeight;
+    var scrollY    = window.scrollY;
+
+    if (scrollY > heroHeight) return; // stop once the hero is fully passed
+
+    if (heroContent) {
+      var fadeProgress = Math.min(scrollY / (heroHeight * 0.55), 1);
+      heroContent.style.opacity   = String(1 - fadeProgress);
+      heroContent.style.transform = 'translateY(' + (fadeProgress * -36) + 'px)';
+    }
+
+    if (heroBgImg && window.innerWidth > 768) {
+      heroBgImg.style.transform =
+        'translate3d(0,' + (scrollY * 0.32).toFixed(1) + 'px,0) scale(1.08)';
+    }
+  }
+
+  function onHeroScroll() {
+    if (!heroTicking) {
+      heroTicking = true;
+      requestAnimationFrame(renderHero);
+    }
+  }
+
+  if (heroEl) {
+    window.addEventListener('scroll', onHeroScroll, { passive: true });
+    window.addEventListener('resize', onHeroScroll, { passive: true });
+    renderHero();
+  }
 
 
   /* ──────────────────────────────────────────────────────────

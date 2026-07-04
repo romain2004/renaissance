@@ -4,8 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Romain Maulave — Filmmaker & Photographer. Fashion Weeks, Paris, Milan, New York, London.">
-  <title>Romain Maulave — @romlve</title>
+  <meta name="theme-color" content="#000000">
+  <title>Romain Maulavé — Fashion Week Coverage | Filmmaker &amp; Photographer</title>
+
+  <!-- Open Graph / social preview — shown when this link is shared by email, LinkedIn, iMessage, etc.
+       IMPORTANT: og:image and og:url must be ABSOLUTE URLs once this is live on romainmaulave.com,
+       e.g. https://romainmaulave.com/fashion/images/USA00093.jpg — relative paths below are placeholders. -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Romain Maulavé — Fashion Week Coverage">
+  <meta property="og:description" content="Filmmaker & Photographer documenting NYFW — FILIPINXT and Global Fashion Collective.">
+  <meta property="og:image" content="images/USA00093.jpg">
+  <meta property="og:url" content="https://romainmaulave.com/fashion/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Romain Maulavé — Fashion Week Coverage">
+  <meta name="twitter:description" content="Filmmaker & Photographer documenting NYFW — FILIPINXT and Global Fashion Collective.">
+  <meta name="twitter:image" content="images/USA00093.jpg">
+
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+  <!-- Fonts moved out of CSS @import (render-blocking) into preconnect + link,
+       so the browser can fetch fonts and CSS in parallel instead of sequentially. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap">
+
+  <!-- Preload the hero image so it starts downloading immediately, before CSS/JS parse -->
+  <link rel="preload" as="image" href="images/USA00093.jpg" fetchpriority="high">
+
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="page-home">
@@ -37,15 +62,17 @@
   </div>
 
   <!-- ══ HERO ═════════════════════════════════════════════════
-       Background image is set via --hero-bg-url in style.css.
-       To swap the image, edit that variable or override inline:
-         <section class="hero" style="--hero-bg-url: url('images/hero.jpg')">
+       Background image = the <img class="hero__bg-img"> below.
+       To swap the image, just change its src="".
   ════════════════════════════════════════════════════════════ -->
   <section class="hero" role="banner">
-    <img src="images/USA00093.jpg"
-         alt="Fashion Week"
-         class="hero__bg-img"
-         fetchpriority="high">
+    <picture>
+      <source media="(max-width: 768px)" srcset="images/GFC3/USA00633.webp">
+      <img src="images/USA00093.jpg"
+           alt="Fashion Week"
+           class="hero__bg-img"
+           fetchpriority="high">
+    </picture>
     <!-- Overlay (.hero::before pseudo-element handles this) -->
     <div class="hero__content">
       <!-- Edit the headline lines below. One word per line. -->
@@ -82,19 +109,29 @@
   <!-- ══ LATEST WORK ══════════════════════════════════════════ -->
   <section class="latest-work" id="latest-work">
     <div class="latest-work__header reveal">
-      <span class="label">Latest Work</span>
-      <h2 class="display-title">New York<br>Fashion Week</h2>
-      <p class="subtitle">2025</p>
+      <div class="latest-work__header-main">
+        <span class="label">Latest Work</span>
+        <h2 class="display-title">New York<br>Fashion Week</h2>
+        <p class="subtitle">2025</p>
+      </div>
+      <div class="latest-work__header-meta">
+        <div class="lw-header-line"></div>
+        <p class="lw-header-shows">FILIPINXT · GLOBAL FASHION COLLECTIVE</p>
+        <p class="lw-header-location">NEW YORK · 2025</p>
+      </div>
     </div>
     <div class="latest-work__grid reveal d1">
       <div class="lw-item">
         <img src="images/FILIPINXT/USA01162.webp" alt="FILIPINXT runway — NYFW 2025" style="object-position: center 30%;">
+        <span class="lw-item__caption">FILIPINXT</span>
       </div>
       <div class="lw-item">
         <img src="images/GFC4/USA01814.webp" alt="Global Fashion Collective — NYFW 2025">
+        <span class="lw-item__caption">Global Fashion Collective</span>
       </div>
       <div class="lw-item">
         <img src="images/GFC2/USA00337.webp" alt="Global Fashion Collective — NYFW 2025">
+        <span class="lw-item__caption">Global Fashion Collective</span>
       </div>
     </div>
     <div class="latest-work__cta reveal d2">
