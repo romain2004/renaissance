@@ -168,7 +168,7 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: clamp(64px, 10vh, 112px) var(--gutter) clamp(36px, 5vh, 56px);
+  padding: clamp(44px, 7vh, 84px) var(--gutter) clamp(20px, 3vh, 36px);
   flex-shrink: 0;
   animation: identity-reveal 1s var(--expo) 1.4s both;
 }
@@ -533,12 +533,12 @@ a { color: inherit; text-decoration: none; }
 .footer {
   position: relative;
   background: #050505;
-  padding: clamp(60px, 10.5vh, 105px) var(--gutter) clamp(39px, 6vh, 66px);
+  padding: clamp(72px, 12vh, 120px) var(--gutter) clamp(52px, 8vh, 88px);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: clamp(44px, 7vh, 68px);
+  gap: clamp(36px, 5.5vh, 56px);
   border-top: 1px solid rgba(200, 168, 107, 0.1);
   overflow: hidden;
 }
@@ -557,20 +557,20 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(20px, 3.2vh, 36px);
+  gap: clamp(8px, 1vh, 12px);
 }
 
 .footer__name {
   font-family: var(--display);
-  font-size: clamp(33px, 5.6vw, 78px);
-  letter-spacing: 0.1em;
+  font-size: clamp(28px, 3.2vw, 46px);
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--white);
 }
 
 .footer__tagline {
   font-family: var(--sans);
-  font-size: clamp(11px, 1.1vw, 13px);
+  font-size: 11px;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--gold);
@@ -579,78 +579,66 @@ a { color: inherit; text-decoration: none; }
   font-weight: 300;
 }
 
-.footer__contact {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(48px, 10vw, 120px);
-  text-align: center;
-}
-
-.footer__contact-col {
+.footer__cta {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 9px;
-}
-
-.footer__contact-label {
-  font-family: var(--sans);
-  font-size: 11px;
-  letter-spacing: 0.34em;
-  text-transform: uppercase;
-  color: var(--gold);
-  opacity: 0.78;
-  font-weight: 400;
+  gap: 10px;
+  margin-top: clamp(10px, 1.5vh, 16px);
+  margin-bottom: clamp(10px, 1.5vh, 16px);
 }
 
 .footer__contact-link {
   font-family: var(--sans);
-  font-size: 13px;
-  letter-spacing: 0.12em;
-  color: rgba(245, 241, 234, 0.62);
-  font-weight: 300;
-  transition: color 0.35s ease;
-}
-
-.footer__contact-link:hover { color: var(--white); }
-
-.footer__territory {
-  font-family: var(--sans);
-  font-size: 10px;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: rgba(245, 241, 234, 0.32);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: rgba(245, 241, 234, 0.55);
   font-weight: 300;
 }
 
-.footer__copy {
-  font-family: var(--sans);
-  font-size: 9px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(245, 241, 234, 0.22);
-  font-weight: 300;
+.footer__contact-link:hover {
+  text-decoration: underline;
+  text-decoration-color: rgba(245, 241, 234, 0.35);
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
 }
 
 .footer__whatsapp {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  background: var(--gold);
-  color: var(--black);
+  gap: 6px;
   font-family: var(--sans);
-  font-size: 10px;
-  font-weight: 600;
+  font-size: 11px;
+  font-weight: 300;
   letter-spacing: 0.3em;
   text-transform: uppercase;
+  color: rgba(245, 241, 234, 0.55);
   text-decoration: none;
-  padding: 14px 28px;
-  border-radius: 2px;
-  transition: background 0.2s ease;
 }
 
 .footer__whatsapp:hover {
-  background: #d4b87a;
+  text-decoration: underline;
+  text-decoration-color: rgba(245, 241, 234, 0.35);
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+
+.footer__territory {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(245, 241, 234, 0.55);
+  font-weight: 300;
+}
+
+.footer__copy {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(245, 241, 234, 0.28);
+  font-weight: 300;
 }
 
 
@@ -770,7 +758,7 @@ a { color: inherit; text-decoration: none; }
 
   .hero__mobile-card {
     position: relative;
-    height: 190px;
+    height: 224px;
     border-radius: 3px;
     overflow: hidden;
     display: flex;
@@ -858,38 +846,10 @@ a { color: inherit; text-decoration: none; }
   .campaign__headline { font-size: clamp(28px, 8vw, 48px); }
 
   /* ── Footer ─────────────────────────────────────────── */
-  .footer { padding: 52px 24px 44px; gap: 36px; }
-  .footer__name { font-size: clamp(34px, 9vw, 54px); }
+  .footer { padding: 56px 24px 44px; gap: 28px; }
+  .footer__name { font-size: clamp(24px, 6vw, 34px); }
   .footer__tagline { font-size: 10px; line-height: 2; }
-
-  .footer__contact {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
-  .footer__contact-col {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 18px 16px;
-    border: 1px solid rgba(200, 168, 107, 0.18);
-    border-radius: 2px;
-    gap: 6px;
-  }
-
-  .footer__contact-label {
-    font-size: 9px;
-    letter-spacing: 0.34em;
-    text-transform: uppercase;
-    color: #C8A86B;
-    opacity: 0.78;
-  }
-
-  .footer__contact-link {
-    font-size: 13px;
-    color: rgba(245, 241, 234, 0.6);
-  }
+  .footer__cta { margin-top: 10px; margin-bottom: 10px; gap: 8px; }
 }
 
 /* Desktop — hero mobile caché */

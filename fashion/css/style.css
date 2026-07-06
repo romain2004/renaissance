@@ -1876,20 +1876,20 @@ footer a:hover { color: var(--gold); }
     width: 160px;
     text-align: center;
     padding: 14px 0;
-    font-size: 11px;
+    font-size: 10px;
   }
 
   /* CTA différenciation mobile : gold = primaire plein, ghost = secondaire discret */
   .btn-hero--gold {
     width: 100%;
-    padding: 16px 0;
+    padding: 12px 0;
   }
 
   .btn-hero--ghost {
     width: 100%;
     border-color: rgba(255, 255, 255, 0.22);
     color: rgba(255, 255, 255, 0.55);
-    padding: 14px 28px;
+    padding: 12px 24px;
     background: transparent;
   }
 
