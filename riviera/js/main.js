@@ -100,3 +100,81 @@ const srvObserver = new IntersectionObserver(entries => {
 }, { threshold: 0.5 });
 
 serviceCards.forEach(card => srvObserver.observe(card));
+
+/* ── BURGER MENU ── */
+const burgerBtn   = document.getElementById('burgerBtn');
+const menuOverlay = document.getElementById('menuOverlay');
+
+function toggleMenu(force) {
+  const open = force !== undefined ? force : !burgerBtn.classList.contains('open');
+  burgerBtn.classList.toggle('open', open);
+  menuOverlay.classList.toggle('open', open);
+  document.body.classList.toggle('no-scroll', open);
+}
+
+burgerBtn.addEventListener('click', () => toggleMenu());
+
+menuOverlay.querySelectorAll('.menu-link').forEach(link => {
+  link.addEventListener('click', () => toggleMenu(false));
+});
+
+/* ── LIGHTBOX ── */
+const lightbox  = document.getElementById('lightbox');
+const lbImage   = document.getElementById('lbImage');
+const lbCaption = document.getElementById('lbCaption');
+const lbCounter = document.getElementById('lbCounter');
+const lbClose   = document.getElementById('lbClose');
+const lbPrev    = document.getElementById('lbPrev');
+const lbNext    = document.getElementById('lbNext');
+
+const tiles = Array.from(document.querySelectorAll('.tile'));
+const lbItems = tiles.map(tile => {
+  const img = tile.querySelector('img.portfolio-img');
+  const url = tile.dataset.full || (img ? img.src : '');
+  const titleEl = tile.querySelector('.portfolio-title');
+  return { url, name: titleEl ? titleEl.textContent : '' };
+});
+
+let lbIndex = 0;
+
+function lbShow(idx) {
+  lbIndex = (idx + lbItems.length) % lbItems.length;
+  const item = lbItems[lbIndex];
+  lbImage.style.backgroundImage = `url('${item.url}')`;
+  lbCaption.textContent = item.name;
+  lbCounter.textContent = `${lbIndex + 1} / ${lbItems.length}`;
+  lightbox.classList.add('open');
+  document.body.classList.add('no-scroll');
+}
+
+function lbHide() {
+  lightbox.classList.remove('open');
+  document.body.classList.remove('no-scroll');
+}
+
+tiles.forEach((tile, i) => {
+  tile.addEventListener('click', () => lbShow(i));
+});
+
+lbClose.addEventListener('click', lbHide);
+lbPrev.addEventListener('click',  () => lbShow(lbIndex - 1));
+lbNext.addEventListener('click',  () => lbShow(lbIndex + 1));
+
+lightbox.addEventListener('click', e => {
+  if (e.target === lightbox) lbHide();
+});
+
+document.addEventListener('keydown', e => {
+  if (!lightbox.classList.contains('open')) return;
+  if (e.key === 'Escape')      lbHide();
+  if (e.key === 'ArrowLeft')   lbShow(lbIndex - 1);
+  if (e.key === 'ArrowRight')  lbShow(lbIndex + 1);
+});
+
+/* swipe support */
+let tsX = 0;
+lightbox.addEventListener('touchstart', e => { tsX = e.touches[0].clientX; }, { passive: true });
+lightbox.addEventListener('touchend',   e => {
+  const dx = e.changedTouches[0].clientX - tsX;
+  if (Math.abs(dx) > 50) lbShow(lbIndex + (dx < 0 ? 1 : -1));
+}, { passive: true });

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Romain Maulave — Filmmaker · Saint-Tropez</title>
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -31,7 +31,16 @@
       <button id="lang-fr" class="lang-btn" onclick="setLang('fr')">FR</button>
     </div>
     <a href="#contact" class="nav-cta" data-en="Book Now" data-fr="Réserver">Book Now</a>
+    <button class="burger" id="burgerBtn" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
+
+  <div class="menu-overlay" id="menuOverlay">
+    <span class="menu-sub">Menu</span>
+    <a href="#services" class="menu-link">Services</a>
+    <a href="#portfolio" class="menu-link">Portfolio</a>
+    <a href="#about" class="menu-link">About</a>
+    <a href="#contact" class="menu-link" style="color:var(--gold);">Contact</a>
+  </div>
 
   <!-- HERO — bg: images/USA02706.jpeg -->
   <section id="hero">
@@ -123,7 +132,7 @@
     <div class="portfolio-grid reveal reveal-delay-2">
 
       <!-- 1 — portrait left, spans 2 rows -->
-      <div class="portfolio-item">
+      <div class="portfolio-item tile" data-index="0">
         <img src="images/Select-image/IMG_3349.jpeg" alt="Villa Giralda" class="portfolio-img" />
         <div class="portfolio-overlay">
           <div class="portfolio-cat">VILLA · PHOTO</div>
@@ -132,7 +141,7 @@
       </div>
 
       <!-- 2 — landscape top-middle -->
-      <div class="portfolio-item">
+      <div class="portfolio-item tile" data-index="1">
         <img src="images/Select-image/USA02706.jpeg" alt="Super Yacht Session" class="portfolio-img" />
         <div class="portfolio-overlay">
           <div class="portfolio-cat">YACHT · PHOTO</div>
@@ -141,7 +150,7 @@
       </div>
 
       <!-- 3 — landscape right, spans 2 rows -->
-      <div class="portfolio-item">
+      <div class="portfolio-item tile" data-index="2">
         <img src="images/Select-image/A7408921.jpg" alt="Port de Saint-Tropez" class="portfolio-img" />
         <div class="portfolio-overlay">
           <div class="portfolio-cat">YACHT · PHOTO</div>
@@ -150,7 +159,7 @@
       </div>
 
       <!-- 4 — landscape middle -->
-      <div class="portfolio-item">
+      <div class="portfolio-item tile" data-index="3">
         <img src="images/Select-image/A7408912.jpg" alt="Golden Hour Harbor" class="portfolio-img" />
         <div class="portfolio-overlay">
           <div class="portfolio-cat">YACHT · PHOTO</div>
@@ -159,16 +168,16 @@
       </div>
 
       <!-- 5 — landscape bottom-left -->
-      <div class="portfolio-item">
-        <img src="images/Select-image/A7408583.jpg" alt="Villa Giralda" class="portfolio-img" />
+      <div class="portfolio-item tile" data-index="4">
+        <img src="images/Select-image/A7408583.jpg" alt="Saint-Tropez" class="portfolio-img" />
         <div class="portfolio-overlay">
           <div class="portfolio-cat">VILLA · PHOTO</div>
-          <div class="portfolio-title">VILLA GIRALDA</div>
+          <div class="portfolio-title">SAINT-TROPEZ</div>
         </div>
       </div>
 
       <!-- 6 — landscape bottom-middle -->
-      <div class="portfolio-item">
+      <div class="portfolio-item tile" data-index="5">
         <img src="images/Select-image/A7408907.jpg" alt="Saint-Tropez Summer" class="portfolio-img" />
         <div class="portfolio-overlay">
           <div class="portfolio-cat">STREET · PHOTO</div>
@@ -177,7 +186,7 @@
       </div>
 
       <!-- 7 — landscape bottom-right -->
-      <div class="portfolio-item">
+      <div class="portfolio-item tile" data-index="6">
         <img src="images/Select-image/USA02708.jpeg" alt="Quai de l'Épi" class="portfolio-img" />
         <div class="portfolio-overlay">
           <div class="portfolio-cat">STREET · PHOTO</div>
@@ -240,6 +249,19 @@
     <div class="footer-logo">R<span>M</span></div>
     <div class="footer-copy" data-en="© 2026 Romain Maulave — All rights reserved" data-fr="© 2026 Romain Maulave — Tous droits réservés">© 2026 Romain Maulave — All rights reserved</div>
   </footer>
+
+  <div class="lightbox" id="lightbox">
+    <div class="lb-top">
+      <span class="lb-counter" id="lbCounter">1 / 1</span>
+      <button class="lb-close" id="lbClose">&times;</button>
+    </div>
+    <button class="lb-nav lb-prev" id="lbPrev">&#8249;</button>
+    <div class="lb-image" id="lbImage"></div>
+    <button class="lb-nav lb-next" id="lbNext">&#8250;</button>
+    <div class="lb-bottom">
+      <div class="lb-caption" id="lbCaption"></div>
+    </div>
+  </div>
 
   <script src="js/main.js"></script>
 </body>
