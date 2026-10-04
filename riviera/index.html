@@ -1,14 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Romain Maulavé — Filmmaker · Saint-Tropez</title>
+  <title>Romain Maulavé — Riviera · Saint-Tropez</title>
+  <meta name="description" content="Photo et film dans le Golfe de Saint-Tropez : abonnements mensuels pour hôtels, beach clubs et boutiques, et séances privées."
+        data-desc-fr="Photo et film dans le Golfe de Saint-Tropez : abonnements mensuels pour hôtels, beach clubs et boutiques, et séances privées."
+        data-desc-en="Photo and film in the Gulf of Saint-Tropez: monthly content for hotels, beach clubs and boutiques, and private sessions." />
+  <link rel="canonical" href="https://www.romainmaulave.com/riviera/" />
+
+  <!-- Open Graph / aperçu au partage -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:title" content="Romain Maulavé — Riviera · Saint-Tropez" />
+  <meta property="og:description" content="Photo et film dans le Golfe de Saint-Tropez : abonnements mensuels pour hôtels, beach clubs et boutiques, et séances privées." />
+  <meta property="og:image" content="https://www.romainmaulave.com/riviera/images/hospitality/og.jpg" />
+  <meta property="og:url" content="https://www.romainmaulave.com/riviera/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Romain Maulavé — Riviera · Saint-Tropez" />
+  <meta name="twitter:description" content="Photo et film dans le Golfe de Saint-Tropez : abonnements mensuels pour hôtels, beach clubs et boutiques, et séances privées." />
+  <meta name="twitter:image" content="https://www.romainmaulave.com/riviera/images/hospitality/og.jpg" />
+
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/hospitality.css" />
 </head>
 <body>
 
@@ -20,52 +39,50 @@
   <nav id="main-nav">
     <a href="../index.html" class="nav-logo">ROMAIN <span>MAULAVÉ</span></a>
     <ul class="nav-links">
-      <li><a href="#services" data-en="Services" data-fr="Services">Services</a></li>
-      <li><a href="#portfolio" data-en="Portfolio" data-fr="Portfolio">Portfolio</a></li>
-      <li><a href="#about" data-en="About" data-fr="À Propos">About</a></li>
-      <li><a href="#contact" data-en="Contact" data-fr="Contact">Contact</a></li>
-      <li><a href="../hospitality/index.html" class="nav-business" data-en="For Business" data-fr="Établissements">For Business</a></li>
+      <li><a href="#offres" data-fr="Offres" data-en="Offers">Offres</a></li>
+      <li><a href="#methode" data-fr="Méthode" data-en="Process">Méthode</a></li>
+      <li><a href="#about" data-fr="À Propos" data-en="About">À Propos</a></li>
+      <li><a href="#contact" data-fr="Contact" data-en="Contact">Contact</a></li>
     </ul>
     <div class="lang-switcher">
-      <button id="lang-en" class="lang-btn lang-active" onclick="setLang('en')">EN</button>
+      <button id="lang-en" class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
       <span class="lang-sep">|</span>
-      <button id="lang-fr" class="lang-btn" onclick="setLang('fr')">FR</button>
+      <button id="lang-fr" class="lang-btn lang-active" data-lang="fr" onclick="setLang('fr')">FR</button>
     </div>
-    <a href="#contact" class="nav-cta" data-en="Book Now" data-fr="Réserver">Book Now</a>
-    <button class="burger" id="burgerBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+    <a href="#contact" class="nav-cta" data-fr="Réserver" data-en="Book Now">Réserver</a>
+    <button class="burger" id="burgerBtn" aria-label="Menu" aria-expanded="false" aria-controls="menuOverlay"><span></span><span></span><span></span></button>
   </nav>
 
   <div class="menu-overlay" id="menuOverlay">
     <span class="menu-sub">Menu</span>
-    <a href="#services" class="menu-link">Services</a>
-    <a href="#portfolio" class="menu-link">Portfolio</a>
-    <a href="#about" class="menu-link">About</a>
+    <a href="#offres" class="menu-link" data-fr="Offres" data-en="Offers">Offres</a>
+    <a href="#methode" class="menu-link" data-fr="Méthode" data-en="Process">Méthode</a>
+    <a href="#about" class="menu-link" data-fr="À Propos" data-en="About">À Propos</a>
     <a href="#contact" class="menu-link" style="color:var(--gold);">Contact</a>
-    <a href="../hospitality/index.html" class="menu-link menu-link--business" data-en="For Business" data-fr="Établissements">For Business</a>
+    <div class="lang-switcher lang-switcher--menu">
+      <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn lang-active" data-lang="fr" onclick="setLang('fr')">FR</button>
+    </div>
   </div>
+
+  <main>
 
   <!-- HERO — bg: images/USA02706.jpeg -->
   <section id="hero">
     <div class="hero-content reveal">
       <h1>YOUR<br>MOMENTS<br><span class="gold">ELEVATED.</span><br>IN THE SUN.</h1>
       <div class="hero-btns">
-        <a href="#contact" class="btn-gold">Book a Session</a>
+        <a href="#contact" class="btn-gold" data-fr="Réserver une séance" data-en="Book a Session">Réserver une séance</a>
+        <a href="#offres" class="btn-outline" data-fr="Voir les offres" data-en="See the offers">Voir les offres</a>
       </div>
     </div>
-    <div class="scroll-line"><span data-en="Scroll" data-fr="Défiler">Scroll</span></div>
+    <div class="scroll-line"><span data-fr="Défiler" data-en="Scroll">Défiler</span></div>
   </section>
-
-  <!-- STREET BANNER — images/USA02708.jpeg -->
-  <div class="street-banner">
-    <div class="street-banner-content reveal">
-      <p class="street-banner-label" data-en="SAINT-TROPEZ · SUMMER" data-fr="SAINT-TROPEZ · ÉTÉ">SAINT-TROPEZ · SUMMER</p>
-      <div class="street-banner-heading" data-en="THE PLACE.<br>THE MOMENT." data-fr="LE LIEU.<br>L'INSTANT.">THE PLACE.<br>THE MOMENT.</div>
-    </div>
-  </div>
 
   <!-- SHOWREEL -->
   <section id="showreel">
-    <p class="section-label reveal" data-en="The Work" data-fr="Le Travail">The Work</p>
+    <p class="section-label reveal" data-en="The Work" data-fr="Le Travail">Le Travail</p>
     <div class="showreel-player reveal reveal-delay-1">
       <!-- SWAP: update src paths if file names or folder change -->
       <video id="showreel-video" muted playsinline loop>
@@ -73,142 +90,234 @@
         <source src="images/video/teaser.mov" type="video/quicktime" />
       </video>
     </div>
-    <p class="showreel-caption reveal reveal-delay-2" data-en="Saint-Tropez · Summer 2025" data-fr="Saint-Tropez · Été 2025">Saint-Tropez · Summer 2025</p>
+    <p class="showreel-caption reveal reveal-delay-2" data-en="Saint-Tropez · Summer 2025" data-fr="Saint-Tropez · Été 2025">Saint-Tropez · Été 2025</p>
   </section>
 
-  <!-- MANIFESTO — bg: images/USA02504.jpeg -->
-  <section id="manifesto">
-    <p class="section-label reveal" data-en="Manifesto" data-fr="Manifeste">Manifesto</p>
-    <div class="manifesto-quote reveal reveal-delay-1" data-en="THE LIGHT<br>NEVER <span class='gold'>REPEATS.</span>" data-fr="LA LUMIÈRE<br>NE SE RÉPÈTE <span class='gold'>JAMAIS.</span>">
-      THE LIGHT<br>NEVER <span class="gold">REPEATS.</span>
-    </div>
-    <p class="manifesto-body reveal reveal-delay-2" data-en="Every session is a singular collaboration. I arrive before the sun drops, stay until the magic fades. What you take home: images that breathe the place, the light, and you." data-fr="Chaque session est une collaboration unique. J'arrive avant que le soleil ne tombe, je reste jusqu'à ce que la magie s'efface. Ce que vous emportez : des images qui respirent le lieu, la lumière et vous.">
-      Every session is a singular collaboration. I arrive before the sun drops, stay until the magic fades. What you take home: images that breathe the place, the light, and you.
-    </p>
-  </section>
+  <!-- ═══ 2 — POUR QUI ═══ -->
+  <section class="hs" id="pour-qui">
+    <h2 class="reveal" data-fr="Trois mondes,<br><span class='gold'>une signature.</span>" data-en="Three worlds,<br><span class='gold'>one signature.</span>">Trois mondes,<br><span class="gold">une signature.</span></h2>
+    <div class="audience-grid">
 
-  <!-- SERVICES -->
-  <section id="services">
-    <div class="services-split">
-
-      <div class="services-photo" id="services-photo">
-        <img src="images/A7408912.jpg" alt="Full Day Yacht" class="srv-img srv-img--active" />
-        <img src="images/A7408808.jpg" alt="Villa Stay" class="srv-img" />
-        <img src="images/A7408907.jpg" alt="Portrait Session" class="srv-img" />
-        <span class="services-photo-label" id="services-photo-label">GULF · SAINT-TROPEZ</span>
-      </div>
-
-      <div class="services-content">
-        <p class="section-label reveal" data-en="Services" data-fr="Services">Services</p>
-        <h2 class="reveal reveal-delay-1" data-en="WHAT I<br><span class='gold'>CREATE</span>" data-fr="CE QUE JE<br><span class='gold'>CRÉE</span>">WHAT I<br><span class="gold">CREATE</span></h2>
-        <div class="services-grid">
-
-          <div class="service-card reveal reveal-delay-1">
-            <div class="service-icon" data-en="01 — On Water" data-fr="01 — Sur l'Eau">01 — On Water</div>
-            <div class="service-name" data-en="FULL DAY<br>YACHT" data-fr="JOURNÉE<br>YACHT">FULL DAY<br>YACHT</div>
-            <p class="service-desc" data-en="Complete on-water coverage — departure, open sea, golden hour. 4K cinematic edit included. Your day at sea, made eternal." data-fr="Couverture complète en mer — départ, large, golden hour. Montage cinématique 4K inclus. Votre journée en mer, rendue éternelle.">Complete on-water coverage — departure, open sea, golden hour. 4K cinematic edit included. Your day at sea, made eternal.</p>
-          </div>
-
-          <div class="service-card reveal reveal-delay-2">
-            <div class="service-icon" data-en="02 — On Land" data-fr="02 — À Terre">02 — On Land</div>
-            <div class="service-name" data-en="VILLA<br>STAY" data-fr="SÉJOUR<br>VILLA">VILLA<br>STAY</div>
-            <p class="service-desc" data-en="Architecture, atmosphere, and intimate portraits at your private villa. Photo reportage + short film. No setup, all feeling." data-fr="Architecture, atmosphère et portraits intimes dans votre villa privée. Reportage photo + court-métrage. Sans mise en scène, tout en émotion.">Architecture, atmosphere, and intimate portraits at your private villa. Photo reportage + short film. No setup, all feeling.</p>
-          </div>
-
-          <div class="service-card reveal reveal-delay-3">
-            <div class="service-icon" data-en="03 — Portrait" data-fr="03 — Portrait">03 — Portrait</div>
-            <div class="service-name" data-en="PORTRAIT<br>SESSION" data-fr="SÉANCE<br>PORTRAIT">PORTRAIT<br>SESSION</div>
-            <p class="service-desc" data-en="Solo or duo, 2 hours in natural Mediterranean light. Beach, harbour, olive grove — you choose the backdrop, I find the frame." data-fr="Solo ou duo, 2 heures en lumière méditerranéenne naturelle. Plage, port, oliveraie — vous choisissez le décor, je trouve le cadre.">Solo or duo, 2 hours in natural Mediterranean light. Beach, harbour, olive grove — you choose the backdrop, I find the frame.</p>
-          </div>
-
+      <article class="audience-card reveal reveal-delay-1">
+        <!-- TODO: remplacer par une vraie photo d'hôtel / de vitrine -->
+        <img src="images/hospitality/hotels.webp" alt="" loading="lazy" width="900" height="1350" />
+        <div class="audience-body">
+          <span class="audience-num">01</span>
+          <h3 class="audience-title" data-fr="Hôtels" data-en="Hotels">Hôtels</h3>
+          <p class="audience-text" data-fr="Chambres, table, spa, événements. Des images qui donnent envie de réserver, de la pré-saison à la dernière soirée." data-en="Rooms, dining, spa, events. Images that make people book, from pre-season to the last night of summer.">Chambres, table, spa, événements. Des images qui donnent envie de réserver, de la pré-saison à la dernière soirée.</p>
         </div>
+      </article>
 
-        <a href="../hospitality/index.html" class="services-business reveal" data-en="Hotel, beach club or boutique? Discover the monthly plans →" data-fr="Vous êtes un hôtel, un beach club ou une boutique ? Découvrez les abonnements →">Hotel, beach club or boutique? Discover the monthly plans →</a>
-      </div>
+      <article class="audience-card reveal reveal-delay-2">
+        <img src="images/hospitality/beach-clubs.webp" alt="" loading="lazy" width="900" height="1350" />
+        <div class="audience-body">
+          <span class="audience-num">02</span>
+          <h3 class="audience-title">Beach Clubs</h3>
+          <p class="audience-text" data-fr="Le déjeuner qui s'étire, la lumière de fin d'après-midi, la fête. L'énergie de votre plage, capturée chaque mois." data-en="The long lunch, the late-afternoon light, the party. Your beach's energy, captured every month.">Le déjeuner qui s'étire, la lumière de fin d'après-midi, la fête. L'énergie de votre plage, capturée chaque mois.</p>
+        </div>
+      </article>
+
+      <article class="audience-card reveal reveal-delay-3">
+        <!-- TODO: remplacer par une vraie photo d'hôtel / de vitrine -->
+        <img src="images/hospitality/boutiques.webp" alt="" loading="lazy" width="1200" height="800" />
+        <div class="audience-body">
+          <span class="audience-num">03</span>
+          <h3 class="audience-title">Boutiques</h3>
+          <p class="audience-text" data-fr="Nouvelles collections, vitrines, pièces portées dans les ruelles. Un contenu à la hauteur de vos créations." data-en="New collections, windows, pieces worn in the old streets. Content worthy of what you make.">Nouvelles collections, vitrines, pièces portées dans les ruelles. Un contenu à la hauteur de vos créations.</p>
+        </div>
+      </article>
 
     </div>
   </section>
 
-  <!-- PORTFOLIO -->
-  <section id="portfolio">
-    <p class="section-label reveal" data-en="Portfolio" data-fr="Portfolio">Portfolio</p>
-    <h2 class="reveal reveal-delay-1" data-en="SELECTED<br><span class='gold'>WORK</span>" data-fr="SÉLECTION<br><span class='gold'>PORTFOLIO</span>">SELECTED<br><span class="gold">WORK</span></h2>
-    <div class="portfolio-grid reveal reveal-delay-2">
-
-      <!-- 1 — portrait left, spans 2 rows -->
-      <div class="portfolio-item tile" data-index="0">
-        <img src="images/Select-image/IMG_3349.jpeg" alt="Villa Giralda" class="portfolio-img" />
-        <div class="portfolio-overlay">
-          <div class="portfolio-cat">VILLA · PHOTO</div>
-          <div class="portfolio-title">VILLA GIRALDA</div>
-        </div>
+  <!-- ═══ 3 — POURQUOI UN ABONNEMENT ═══ -->
+  <section class="hs why">
+    <p class="section-label reveal" data-fr="Pourquoi un abonnement" data-en="Why a subscription">Pourquoi un abonnement</p>
+    <h2 class="reveal reveal-delay-1" data-fr="Une image,<br><span class='gold'>pas des photos.</span>" data-en="An image,<br><span class='gold'>not just photos.</span>">Une image,<br><span class="gold">pas des photos.</span></h2>
+    <p class="hs-intro reveal reveal-delay-2" data-fr="Un shooting ponctuel donne quelques belles images. Un regard régulier construit une identité que vos clients reconnaissent avant même de lire votre nom." data-en="A one-off shoot gives you a few beautiful images. A regular eye builds an identity your guests recognise before they read your name.">Un shooting ponctuel donne quelques belles images. Un regard régulier construit une identité que vos clients reconnaissent avant même de lire votre nom.</p>
+    <div class="why-grid">
+      <div class="why-item reveal reveal-delay-1">
+        <span class="why-num">I</span>
+        <h3 class="why-name" data-fr="Cohérence" data-en="Consistency">Cohérence</h3>
+        <p class="why-text" data-fr="Une seule direction artistique, du premier post au dernier. Votre fil Instagram et votre site parlent enfin d'une seule voix." data-en="One art direction from the first post to the last. Your feed and your website finally speak with one voice.">Une seule direction artistique, du premier post au dernier. Votre fil Instagram et votre site parlent enfin d'une seule voix.</p>
       </div>
-
-      <!-- 2 — landscape top-middle -->
-      <div class="portfolio-item tile" data-index="1">
-        <img src="images/Select-image/USA02706.jpeg" alt="Super Yacht Session" class="portfolio-img" />
-        <div class="portfolio-overlay">
-          <div class="portfolio-cat">YACHT · PHOTO</div>
-          <div class="portfolio-title">SUPER YACHT SESSION</div>
-        </div>
+      <div class="why-item reveal reveal-delay-2">
+        <span class="why-num">II</span>
+        <h3 class="why-name" data-fr="Régularité" data-en="Rhythm">Régularité</h3>
+        <p class="why-text" data-fr="Du contenu frais chaque mois, sans avoir à y penser. Vous gérez votre établissement, je m'occupe de votre image." data-en="Fresh content every month, without thinking about it. You run your house, I take care of its image.">Du contenu frais chaque mois, sans avoir à y penser. Vous gérez votre établissement, je m'occupe de votre image.</p>
       </div>
-
-      <!-- 3 — landscape right, spans 2 rows -->
-      <div class="portfolio-item tile" data-index="2">
-        <img src="images/Select-image/A7408921.jpg" alt="Port de Saint-Tropez" class="portfolio-img" />
-        <div class="portfolio-overlay">
-          <div class="portfolio-cat">YACHT · PHOTO</div>
-          <div class="portfolio-title">PORT DE SAINT-TROPEZ</div>
-        </div>
+      <div class="why-item reveal reveal-delay-3">
+        <span class="why-num">III</span>
+        <h3 class="why-name" data-fr="Priorité" data-en="Priority">Priorité</h3>
+        <p class="why-text" data-fr="En plein été, les dates partent vite. Les abonnés passent en premier, et leurs livrables aussi." data-en="In high summer, dates go fast. Subscribers come first, and so do their deliverables.">En plein été, les dates partent vite. Les abonnés passent en premier, et leurs livrables aussi.</p>
       </div>
+    </div>
+  </section>
 
-      <!-- 4 — landscape middle -->
-      <div class="portfolio-item tile" data-index="3">
-        <img src="images/Select-image/A7408912.jpg" alt="Golden Hour Harbor" class="portfolio-img" />
-        <div class="portfolio-overlay">
-          <div class="portfolio-cat">YACHT · PHOTO</div>
-          <div class="portfolio-title">GOLDEN HOUR HARBOR</div>
-        </div>
+  <!-- ═══ 4 — LES OFFRES ═══
+       ┌──────────────────────────────────────────────────────────┐
+       │ PRIX — à modifier uniquement dans les attributs data-price │
+       │   ATELIER    data-price="900"    (€ / mois, HT)            │
+       │   ESSENTIEL  data-price="1500"                             │
+       │   SIGNATURE  data-price="3200"                             │
+       │   PRESTIGE   data-price="6500"                             │
+       │   Journée yacht (section Ponctuel) data-price="4000"       │
+       │ Le texte affiché est réécrit automatiquement à partir de   │
+       │ data-price, au bon format (900 € en FR, €900 en EN).       │
+       └──────────────────────────────────────────────────────────┘ -->
+  <section class="hs cream" id="offres">
+    <h2 class="reveal" data-fr="Chaque mois,<br><span class='gold'>sur mesure.</span>" data-en="Every month,<br><span class='gold'>made to measure.</span>">Chaque mois,<br><span class="gold">sur mesure.</span></h2>
+    <p class="hs-intro reveal reveal-delay-1" data-fr="Contrat à la saison (avril–septembre) ou à l'année. Chaque formule s'adapte à votre établissement." data-en="Seasonal contract (April–September) or yearly. Every plan adapts to your house.">Contrat à la saison (avril–septembre) ou à l'année. Chaque formule s'adapte à votre établissement.</p>
+
+    <div class="plans">
+
+      <article class="plan reveal reveal-delay-1">
+        <p class="plan-target" data-fr="Boutiques" data-en="Boutiques">Boutiques</p>
+        <h3 class="plan-name">Atelier</h3>
+        <p class="plan-from" data-fr="À partir de" data-en="From">À partir de</p>
+        <p class="plan-price" data-price="900">900 €</p>
+        <p class="plan-per" data-fr="/ mois" data-en="/ month">/ mois</p>
+        <ul class="plan-list">
+          <li data-fr="Une demi-journée de tournage par mois" data-en="One half-day shoot per month">Une demi-journée de tournage par mois</li>
+          <li data-fr="20 photos retouchées : produits, vitrine, portés" data-en="20 retouched photos: product, window, worn">20 photos retouchées : produits, vitrine, portés</li>
+          <li data-fr="2 reels courts" data-en="2 short reels">2 reels courts</li>
+          <li data-fr="Livraison des photos sous 48 h" data-en="Photos delivered within 48h">Livraison des photos sous 48 h</li>
+        </ul>
+        <a href="#contact" class="btn-outline plan-btn" data-fr="Choisir Atelier" data-en="Choose Atelier">Choisir Atelier</a>
+      </article>
+
+      <article class="plan reveal reveal-delay-2">
+        <p class="plan-target" data-fr="Restaurants · Petits hôtels" data-en="Restaurants · Boutique hotels">Restaurants · Petits hôtels</p>
+        <h3 class="plan-name">Essentiel</h3>
+        <p class="plan-from" data-fr="À partir de" data-en="From">À partir de</p>
+        <p class="plan-price" data-price="1500">1 500 €</p>
+        <p class="plan-per" data-fr="/ mois" data-en="/ month">/ mois</p>
+        <ul class="plan-list">
+          <li data-fr="Une journée de tournage par mois" data-en="One full-day shoot per month">Une journée de tournage par mois</li>
+          <li data-fr="40 photos retouchées" data-en="40 retouched photos">40 photos retouchées</li>
+          <li data-fr="2 reels courts" data-en="2 short reels">2 reels courts</li>
+          <li data-fr="Livraison des photos sous 48 h" data-en="Photos delivered within 48h">Livraison des photos sous 48 h</li>
+        </ul>
+        <a href="#contact" class="btn-outline plan-btn" data-fr="Choisir Essentiel" data-en="Choose Essentiel">Choisir Essentiel</a>
+      </article>
+
+      <article class="plan plan--featured reveal reveal-delay-3">
+        <span class="plan-badge" data-fr="Le plus choisi" data-en="Most chosen">Le plus choisi</span>
+        <p class="plan-target" data-fr="Beach clubs · Hôtels" data-en="Beach clubs · Hotels">Beach clubs · Hôtels</p>
+        <h3 class="plan-name">Signature</h3>
+        <p class="plan-from" data-fr="À partir de" data-en="From">À partir de</p>
+        <p class="plan-price" data-price="3200">3 200 €</p>
+        <p class="plan-per" data-fr="/ mois" data-en="/ month">/ mois</p>
+        <ul class="plan-list">
+          <li data-fr="Deux journées de tournage par mois" data-en="Two full-day shoots per month">Deux journées de tournage par mois</li>
+          <li data-fr="80 photos retouchées" data-en="80 retouched photos">80 photos retouchées</li>
+          <li data-fr="4 reels courts" data-en="4 short reels">4 reels courts</li>
+          <li data-fr="Couverture d'un événement par mois" data-en="One event covered per month">Couverture d'un événement par mois</li>
+          <li data-fr="Un film de marque par saison" data-en="One brand film per season">Un film de marque par saison</li>
+        </ul>
+        <a href="#contact" class="btn-gold plan-btn" data-fr="Choisir Signature" data-en="Choose Signature">Choisir Signature</a>
+      </article>
+
+      <article class="plan reveal reveal-delay-4">
+        <p class="plan-target" data-fr="Grands hôtels · Marques" data-en="Luxury hotels · Brands">Grands hôtels · Marques</p>
+        <h3 class="plan-name">Prestige</h3>
+        <p class="plan-from" data-fr="À partir de" data-en="From">À partir de</p>
+        <p class="plan-price" data-price="6500">6 500 €</p>
+        <p class="plan-per" data-fr="/ mois" data-en="/ month">/ mois</p>
+        <ul class="plan-list">
+          <li data-fr="Quatre journées de tournage par mois en saison" data-en="Four shoot days per month in season">Quatre journées de tournage par mois en saison</li>
+          <li data-fr="150 photos retouchées, livrées sous 24 h" data-en="150 retouched photos, delivered within 24h">150 photos retouchées, livrées sous 24 h</li>
+          <li data-fr="8 reels et un film de marque par mois" data-en="8 reels and one brand film per month">8 reels et un film de marque par mois</li>
+          <li data-fr="Tous vos grands événements couverts" data-en="All your major events covered">Tous vos grands événements couverts</li>
+          <li data-fr="Direction artistique de votre Instagram" data-en="Art direction of your Instagram">Direction artistique de votre Instagram</li>
+          <li data-fr="Images drone à partir de la saison 2027" data-en="Drone footage from the 2027 season">Images drone à partir de la saison 2027</li>
+        </ul>
+        <a href="#contact" class="btn-outline plan-btn" data-fr="Choisir Prestige" data-en="Choose Prestige">Choisir Prestige</a>
+      </article>
+
+    </div>
+
+    <p class="plans-note reveal" data-fr="Tarifs mensuels hors taxes. Les contrats annuels incluent une séance pré-saison pour vos campagnes de réservation." data-en="Monthly rates, excluding taxes. Yearly contracts include a pre-season shoot for your booking campaigns.">Tarifs mensuels hors taxes. Les contrats annuels incluent une séance pré-saison pour vos campagnes de réservation.</p>
+  </section>
+
+  <!-- ═══ 5 — MAISONS FONDATRICES ═══ -->
+  <section class="hs cream cream--deep founding">
+    <div class="founding-photo reveal">
+      <img src="images/hospitality/founding.webp" alt="" loading="lazy" width="1000" height="1500" />
+    </div>
+    <div class="founding-text">
+      <p class="section-label reveal" data-fr="Saison 2027" data-en="2027 Season">Saison 2027</p>
+      <h2 class="reveal reveal-delay-1" data-fr="Maisons<br><span class='gold'>fondatrices.</span>" data-en="Founding<br><span class='gold'>houses.</span>">Maisons<br><span class="gold">fondatrices.</span></h2>
+      <p class="hs-intro reveal reveal-delay-2" data-fr="Trois établissements seulement rejoindront l'aventure dès le départ, avec des conditions réservées." data-en="Only three houses will join from the very start, with reserved terms.">Trois établissements seulement rejoindront l'aventure dès le départ, avec des conditions réservées.</p>
+      <div class="seats reveal reveal-delay-2" aria-hidden="true">
+        <span>1</span><span>2</span><span>3</span>
       </div>
+      <ul class="perks reveal reveal-delay-3">
+        <li data-fr="<strong>-20 %</strong> sur toute la première saison" data-en="<strong>-20%</strong> on the entire first season"><strong>-20 %</strong> sur toute la première saison</li>
+        <li data-fr="<strong>Tarif garanti</strong> pour la saison suivante" data-en="<strong>Rate locked</strong> for the following season"><strong>Tarif garanti</strong> pour la saison suivante</li>
+        <li data-fr="Votre maison mise en avant dans mon portfolio" data-en="Your house featured in my portfolio">Votre maison mise en avant dans mon portfolio</li>
+      </ul>
+      <a href="#contact" class="btn-gold reveal reveal-delay-4" data-fr="Réserver une place" data-en="Claim a place">Réserver une place</a>
+    </div>
+  </section>
 
-      <!-- 5 — landscape bottom-left -->
-      <div class="portfolio-item tile" data-index="4">
-        <img src="images/Select-image/A7408583.jpg" alt="Saint-Tropez" class="portfolio-img" />
-        <div class="portfolio-overlay">
-          <div class="portfolio-cat">VILLA · PHOTO</div>
-          <div class="portfolio-title">SAINT-TROPEZ</div>
-        </div>
+  <!-- ═══ 6 — MÉTHODE ═══ -->
+  <section class="hs" id="methode">
+    <h2 class="reveal" data-fr="Simple,<br><span class='gold'>du premier café à la livraison.</span>" data-en="Simple,<br><span class='gold'>from first coffee to delivery.</span>">Simple,<br><span class="gold">du premier café à la livraison.</span></h2>
+    <div class="process-grid">
+      <div class="process-step reveal reveal-delay-1">
+        <div class="process-numeral">01</div>
+        <h3 class="process-name" data-fr="Rencontre" data-en="Meet">Rencontre</h3>
+        <p class="process-desc" data-fr="On se voit chez vous. Je découvre l'établissement, votre clientèle, ce que vous voulez transmettre." data-en="We meet at your place. I discover the house, your guests, and what you want to convey.">On se voit chez vous. Je découvre l'établissement, votre clientèle, ce que vous voulez transmettre.</p>
       </div>
-
-      <!-- 6 — landscape bottom-middle -->
-      <div class="portfolio-item tile" data-index="5">
-        <img src="images/Select-image/A7408907.jpg" alt="Saint-Tropez Summer" class="portfolio-img" />
-        <div class="portfolio-overlay">
-          <div class="portfolio-cat">STREET · PHOTO</div>
-          <div class="portfolio-title">SAINT-TROPEZ SUMMER</div>
-        </div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="process-numeral">02</div>
+        <h3 class="process-name">Direction</h3>
+        <p class="process-desc" data-fr="Je propose une direction artistique et un calendrier de tournages calé sur vos temps forts." data-en="I propose an art direction and a shoot calendar built around your key moments.">Je propose une direction artistique et un calendrier de tournages calé sur vos temps forts.</p>
       </div>
-
-      <!-- 7 — landscape bottom-right -->
-      <div class="portfolio-item tile" data-index="6">
-        <img src="images/Select-image/USA02708.jpeg" alt="Quai de l'Épi" class="portfolio-img" />
-        <div class="portfolio-overlay">
-          <div class="portfolio-cat">STREET · PHOTO</div>
-          <div class="portfolio-title">QUAI DE L'ÉPI</div>
-        </div>
+      <div class="process-step reveal reveal-delay-3">
+        <div class="process-numeral">03</div>
+        <h3 class="process-name" data-fr="Tournage" data-en="Shoot">Tournage</h3>
+        <p class="process-desc" data-fr="Chaque mois, je viens aux bonnes heures, dans la bonne lumière, discrètement, sans perturber vos clients." data-en="Every month I come at the right hours, in the right light, discreetly, without disturbing your guests.">Chaque mois, je viens aux bonnes heures, dans la bonne lumière, discrètement, sans perturber vos clients.</p>
       </div>
+      <div class="process-step reveal reveal-delay-4">
+        <div class="process-numeral">04</div>
+        <h3 class="process-name" data-fr="Livraison" data-en="Delivery">Livraison</h3>
+        <p class="process-desc" data-fr="Photos sous 24 à 48 h, reels et films dans la foulée, prêts à publier sur tous vos supports." data-en="Photos within 24–48h, reels and films shortly after, ready for every channel.">Photos sous 24 à 48 h, reels et films dans la foulée, prêts à publier sur tous vos supports.</p>
+      </div>
+    </div>
+  </section>
 
+  <!-- ═══ 7 — PONCTUEL ═══ -->
+  <section class="hs oneoff">
+    <h2 class="reveal" data-fr="Pour un<br><span class='gold'>moment précis.</span>" data-en="For one<br><span class='gold'>specific moment.</span>">Pour un<br><span class="gold">moment précis.</span></h2>
+    <div class="oneoff-grid">
+      <div class="oneoff-item reveal reveal-delay-1">
+        <h3 class="oneoff-name" data-fr="Événement" data-en="Event">Événement</h3>
+        <p class="oneoff-text" data-fr="Soirée d'ouverture, lancement de collection, dîner privé. Photos livrées le soir même ou le lendemain." data-en="Opening night, collection launch, private dinner. Photos delivered the same night or the next day.">Soirée d'ouverture, lancement de collection, dîner privé. Photos livrées le soir même ou le lendemain.</p>
+        <p class="oneoff-price" data-fr="Sur devis" data-en="On request">Sur devis</p>
+      </div>
+      <div class="oneoff-item reveal reveal-delay-2">
+        <h3 class="oneoff-name" data-fr="Film de marque" data-en="Brand film">Film de marque</h3>
+        <p class="oneoff-text" data-fr="Un film court et cinématographique qui raconte votre maison, pour votre site et vos campagnes." data-en="A short, cinematic film that tells your house's story, for your website and campaigns.">Un film court et cinématographique qui raconte votre maison, pour votre site et vos campagnes.</p>
+        <p class="oneoff-price" data-fr="Sur devis" data-en="On request">Sur devis</p>
+      </div>
+      <div class="oneoff-item reveal reveal-delay-3">
+        <h3 class="oneoff-name" data-fr="Journée yacht" data-en="Yacht day">Journée yacht</h3>
+        <p class="oneoff-text" data-fr="Départ, pleine mer, golden hour. Photo et film, pour un loueur, une marque ou un client privé." data-en="Departure, open sea, golden hour. Photo and film, for a charter company, a brand or a private client.">Départ, pleine mer, golden hour. Photo et film, pour un loueur, une marque ou un client privé.</p>
+        <p class="oneoff-price"><span data-fr="À partir de" data-en="From">À partir de</span> <span data-price="4000">4 000 €</span></p>
+      </div>
     </div>
   </section>
 
   <!-- ABOUT -->
   <section id="about">
-    <p class="section-label reveal" data-en="About" data-fr="À Propos">About</p>
+    <p class="section-label reveal" data-en="About" data-fr="À Propos">À Propos</p>
     <div class="about-grid">
 
       <div class="about-photo-wrap reveal">
         <div class="about-photo">
-          <img src="images/A7408916.jpg" alt="Romain Maulavé" />
+          <img src="images/A7408916.jpg" alt="Romain Maulavé" loading="lazy" />
         </div>
         <div class="bracket bracket-tl"></div>
         <div class="bracket bracket-tr"></div>
@@ -218,54 +327,65 @@
 
       <div class="reveal reveal-delay-2">
         <div class="about-name">ROMAIN<br>MAULAVÉ</div>
-        <div class="about-role" data-en="Filmmaker · France &amp; New York" data-fr="Cinéaste · France &amp; New York">Filmmaker · France & New York</div>
-        <p class="about-bio">
-          At 18, I left everything behind to travel the world with nothing but a camera. From the streets of Bangkok to the runways of New York Fashion Week, I spent years chasing light, documenting moments, and developing an eye for the extraordinary in the everyday.<br><br>
+        <div class="about-role" data-en="Filmmaker · France &amp; New York" data-fr="Cinéaste · France &amp; New York">Cinéaste · France &amp; New York</div>
+        <p class="about-bio" data-fr="À 18 ans, j'ai tout quitté pour parcourir le monde avec pour seul bagage un appareil photo. Des rues de Bangkok aux podiums de la New York Fashion Week, j'ai passé des années à chasser la lumière, à documenter des instants et à affûter un regard qui voit l'extraordinaire dans le quotidien.<br><br>Après avoir vécu à New York et photographié pour des plateformes de mode internationales, j'ai ramené cette vision cinématographique dans le Sud de la France, où la lumière ne ressemble à aucune autre.<br><br>Aujourd'hui, je travaille avec des clients privés dans le Golfe de Saint-Tropez, et je crée des films et des photographies qui ne se contentent pas de documenter votre expérience. Ils la rendent légendaire." data-en="At 18, I left everything behind to travel the world with nothing but a camera. From the streets of Bangkok to the runways of New York Fashion Week, I spent years chasing light, documenting moments, and developing an eye for the extraordinary in the everyday.<br><br>
           After living in New York and shooting for international fashion platforms, I brought that cinematic vision back to the South of France, where the light is unlike anywhere else on earth.<br><br>
-          Today I work with private clients in the Gulf of Saint-Tropez, creating films and photography that don't just document your experience. They make it legendary.
+          Today I work with private clients in the Gulf of Saint-Tropez, creating films and photography that don't just document your experience. They make it legendary.">
+          À 18 ans, j'ai tout quitté pour parcourir le monde avec pour seul bagage un appareil photo. Des rues de Bangkok aux podiums de la New York Fashion Week, j'ai passé des années à chasser la lumière, à documenter des instants et à affûter un regard qui voit l'extraordinaire dans le quotidien.<br><br>Après avoir vécu à New York et photographié pour des plateformes de mode internationales, j'ai ramené cette vision cinématographique dans le Sud de la France, où la lumière ne ressemble à aucune autre.<br><br>Aujourd'hui, je travaille avec des clients privés dans le Golfe de Saint-Tropez, et je crée des films et des photographies qui ne se contentent pas de documenter votre expérience. Ils la rendent légendaire.
         </p>
       </div>
 
     </div>
   </section>
 
-  <!-- CONTACT CTA -->
-  <section id="contact">
-    <p class="section-label reveal" data-en="Contact" data-fr="Contact">Contact</p>
-    <div class="contact-h reveal reveal-delay-1" data-en="LET'S<br>MAKE<br><span class='gold'>SOMETHING.</span>" data-fr="CRÉONS<br>QUELQUE<br><span class='gold'>CHOSE.</span>">
-      LET'S<br>MAKE<br><span class="gold">SOMETHING.</span>
-    </div>
-    <p class="contact-sub reveal reveal-delay-2" data-en="Summer dates fill fast. Reach out now to lock in your session on the Gulf of Saint-Tropez." data-fr="Les dates d'été partent vite. Contactez-moi maintenant pour réserver votre session dans le Golfe de Saint-Tropez.">Summer dates fill fast. Reach out now to lock in your session on the Gulf of Saint-Tropez.</p>
-    <a href="mailto:hello@romainmaulave.com" class="contact-email reveal reveal-delay-3">
-      HELLO@ROMAINMAULAVE.COM
-    </a>
-    <div class="contact-btns reveal reveal-delay-4">
-      <a href="mailto:hello@romainmaulave.com" class="btn-gold" data-en="Send a Message" data-fr="Envoyer un Message">Send a Message</a>
-      <a href="https://wa.me/33783716979" class="btn-gold btn-whatsapp">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-        WhatsApp
-      </a>
+  <!-- ═══ 8 — FAQ ═══ -->
+  <section class="hs faq">
+    <h2 class="reveal">FAQ</h2>
+    <div class="faq-list reveal reveal-delay-1">
+      <details class="faq-item">
+        <summary data-fr="Combien de temps dure l'engagement ?" data-en="How long is the commitment?">Combien de temps dure l'engagement ?</summary>
+        <p data-fr="Une saison (avril à septembre) ou une année complète. Les contrats annuels incluent une séance pré-saison pour préparer vos campagnes de réservation." data-en="One season (April to September) or a full year. Yearly contracts include a pre-season shoot to prepare your booking campaigns.">Une saison (avril à septembre) ou une année complète. Les contrats annuels incluent une séance pré-saison pour préparer vos campagnes de réservation.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-fr="Puis-je utiliser les images partout ?" data-en="Can I use the images everywhere?">Puis-je utiliser les images partout ?</summary>
+        <p data-fr="Oui, sur tous vos supports : réseaux sociaux, site, newsletter, print. Les conditions précises d'utilisation sont détaillées dans le contrat." data-en="Yes, on all your own channels: social media, website, newsletter, print. Exact usage terms are set out in the contract.">Oui, sur tous vos supports : réseaux sociaux, site, newsletter, print. Les conditions précises d'utilisation sont détaillées dans le contrat.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-fr="Et si un mois je n'ai pas besoin de tournage ?" data-en="What if I don't need a shoot one month?">Et si un mois je n'ai pas besoin de tournage ?</summary>
+        <p data-fr="On décale la journée sur le mois suivant ou sur un temps fort de votre saison. Rien n'est perdu." data-en="We move the day to the next month or to a key moment of your season. Nothing is lost.">On décale la journée sur le mois suivant ou sur un temps fort de votre saison. Rien n'est perdu.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-fr="Travaillez-vous en anglais ?" data-en="Do you work in English?">Travaillez-vous en anglais ?</summary>
+        <p data-fr="Oui. J'ai vécu et travaillé à New York, je travaille indifféremment en français et en anglais." data-en="Yes. I lived and worked in New York, and work equally in French and English.">Oui. J'ai vécu et travaillé à New York, je travaille indifféremment en français et en anglais.</p>
+      </details>
     </div>
   </section>
+
+  <!-- ═══ 9 — CONTACT ═══ -->
+  <section id="contact" class="h-contact">
+    <img src="images/hospitality/contact.webp" alt="" class="h-contact-img" loading="lazy" width="1920" height="1280" />
+    <div class="h-contact-inner">
+      <h2 class="contact-h reveal" data-fr="Parlons de<br><span class='gold'>votre saison.</span>" data-en="Let's talk about<br><span class='gold'>your season.</span>">Parlons de<br><span class="gold">votre saison.</span></h2>
+      <p class="contact-sub reveal reveal-delay-1" data-fr="Un café, une visite de votre établissement, et une proposition sur mesure sous 48 h." data-en="A coffee, a walk through your house, and a tailored proposal within 48 hours.">Un café, une visite de votre établissement, et une proposition sur mesure sous 48 h.</p>
+      <div class="contact-btns reveal reveal-delay-2">
+        <a href="mailto:hello@romainmaulave.com?subject=Abonnement%20contenu%20%E2%80%94%20Saison%202027" class="btn-gold" data-fr="Écrire un message" data-en="Send a message">Écrire un message</a>
+        <a href="https://wa.me/33783716979" target="_blank" rel="noopener" class="btn-gold btn-whatsapp">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+      <a href="mailto:hello@romainmaulave.com?subject=Abonnement%20contenu%20%E2%80%94%20Saison%202027" class="contact-email reveal reveal-delay-3">HELLO@ROMAINMAULAVE.COM</a>
+    </div>
+  </section>
+
+  </main>
 
   <!-- FOOTER -->
   <footer>
     <div class="footer-logo">R<span>M</span></div>
-    <div class="footer-copy" data-en="© 2026 Romain Maulavé — All rights reserved" data-fr="© 2026 Romain Maulavé — Tous droits réservés">© 2026 Romain Maulavé — All rights reserved</div>
+    <div class="footer-copy" data-fr="Golfe de Saint-Tropez · New York" data-en="Gulf of Saint-Tropez · New York">Golfe de Saint-Tropez · New York</div>
+    <div class="footer-copy" data-fr="© 2026 Romain Maulavé — Tous droits réservés" data-en="© 2026 Romain Maulavé — All rights reserved">© 2026 Romain Maulavé — Tous droits réservés</div>
   </footer>
-
-  <div class="lightbox" id="lightbox">
-    <div class="lb-top">
-      <span class="lb-counter" id="lbCounter">1 / 1</span>
-      <button class="lb-close" id="lbClose">&times;</button>
-    </div>
-    <button class="lb-nav lb-prev" id="lbPrev">&#8249;</button>
-    <div class="lb-image" id="lbImage"></div>
-    <button class="lb-nav lb-next" id="lbNext">&#8250;</button>
-    <div class="lb-bottom">
-      <div class="lb-caption" id="lbCaption"></div>
-    </div>
-  </div>
 
   <script src="js/main.js"></script>
 </body>

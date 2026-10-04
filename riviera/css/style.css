@@ -81,8 +81,6 @@ nav.scrolled {
   transition: color .2s;
 }
 .nav-links a:hover { color: var(--white); }
-.nav-links a.nav-business { color: rgba(201,169,110,.75); }
-.nav-links a.nav-business:hover { color: var(--gold); }
 .nav-cta {
   font-family: var(--dm);
   font-size: .72rem;
@@ -502,20 +500,6 @@ h2 .gold { color: var(--gold); }
   color: var(--muted);
   margin-top: .2rem;
 }
-
-.services-business {
-  display: inline-block;
-  margin-top: 2.5rem;
-  font-family: var(--dm);
-  font-size: .8rem;
-  letter-spacing: .08em;
-  color: var(--gold);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(201,169,110,.3);
-  padding-bottom: .2rem;
-  transition: border-color .2s;
-}
-.services-business:hover { border-color: var(--gold); }
 
 /* ── PORTFOLIO ── */
 #portfolio { background: var(--navy); padding-top: 2rem; }
@@ -983,7 +967,6 @@ footer {
 .menu-overlay.open .menu-link:nth-child(5){ transition-delay:.26s; }
 .menu-overlay.open .menu-link:nth-child(6){ transition-delay:.32s; }
 .menu-overlay .menu-link:hover{ color: var(--gold); }
-.menu-overlay .menu-link--business{ font-size: 26px; color: var(--gold); }
 
 body.no-scroll{ overflow:hidden; }
 

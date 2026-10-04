@@ -1,6 +1,6 @@
 /* ════════════════════════════════════════════════════════
-   HOSPITALITY & BRANDS
-   Chargé après ../riviera/css/style.css : on réutilise ses
+   RIVIERA — sections établissements (ex-Hospitality & Brands)
+   Chargé après style.css : on réutilise ses
    tokens, nav, boutons, reveal, process, contact et footer.
    Ce fichier ne contient que les composants propres à la page.
    ════════════════════════════════════════════════════════ */
@@ -36,32 +36,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   margin-bottom: 3.5rem;
 }
 h3 { font-weight: inherit; }
-
-/* ── 1. HERO ── */
-.h-hero {
-  position: relative;
-  min-height: 100vh;
-  min-height: 100svh;
-  display: flex;
-  align-items: center;
-  padding: 7rem var(--gutter) 4rem;
-  overflow: hidden;
-}
-.h-hero-img {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  object-position: center 60%;
-}
-.h-hero-grade {
-  position: absolute; inset: 0;
-  background:
-    linear-gradient(to right, rgba(13,17,23,.78) 0%, rgba(13,17,23,.35) 55%, rgba(13,17,23,.15) 100%),
-    linear-gradient(to bottom, rgba(13,17,23,.35) 0%, transparent 30%, rgba(13,17,23,.6) 100%);
-}
-.h-hero-content { position: relative; z-index: 1; max-width: 760px; }
-.h-hero h1 { font-size: clamp(3.4rem, 7.5vw, 8rem); }
-.h-hero .hero-sub { max-width: 480px; }
 
 /* ── 2. POUR QUI ── */
 .audience-grid {
@@ -388,15 +362,17 @@ footer { gap: 1.5rem; flex-wrap: wrap; }
    MOBILE — mêmes seuils que Riviera
    ════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
+  /* Hero Riviera : lisibilité du texte et du 2e bouton sur la photo claire */
+  #hero::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 25%, rgba(13,17,23,.6) 75%, rgba(13,17,23,.7) 100%);
+  }
+  #hero .hero-content { z-index: 2; }
+  #hero .btn-outline { background: rgba(13,17,23,.4); }
   .nav-logo { font-size: 1.6rem; white-space: nowrap; }
   .nav-cta { white-space: nowrap; }
   .menu-overlay .lang-switcher--menu { display: flex; }
-  .h-hero { padding: 6rem 24px 3rem; }
-  .h-hero .hero-label { line-height: 1.9; }
-  .h-hero h1 { font-size: clamp(3rem, 13vw, 4.6rem); }
-  .h-hero-grade {
-    background: linear-gradient(to bottom, rgba(13,17,23,.45) 0%, rgba(13,17,23,.35) 40%, rgba(13,17,23,.82) 100%);
-  }
   .hs { padding: 4.5rem 24px; }
   .hs-intro { font-size: .9rem; margin-bottom: 2.5rem; }
 
