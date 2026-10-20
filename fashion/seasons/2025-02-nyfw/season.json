@@ -1,0 +1,59 @@
+{
+  "slug": "2025-02-nyfw",
+  "title": { "fr": "New York Fashion Week", "en": "New York Fashion Week" },
+  "season": "AW25",
+  "city": "New York",
+  "date": "2025-02",
+  "draft": false,
+  "intro": {
+    "fr": "Ma première Fashion Week : FILIPINXT et les cinq défilés du Global Fashion Collective, en une semaine à New York.",
+    "en": "My first Fashion Week: FILIPINXT and the five Global Fashion Collective shows, in one week in New York."
+  },
+  "cover": "USA00093.jpg",
+  "cover_alt": {
+    "fr": "Mannequin en long manteau à capuche gris sur le podium, public de chaque côté",
+    "en": "Model in a long grey hooded coat on the runway, audience on both sides"
+  },
+  "series": [
+    {
+      "brand": "FILIPINXT",
+      "designer": "[à compléter]",
+      "show": { "fr": "Défilé automne-hiver 2025", "en": "Fall/Winter 2025 show" },
+      "images": [
+        { "file": "USA00043.webp", "alt": { "fr": "Mannequin dans une veste volumineuse en maille bleue à reliefs floraux", "en": "Model in a voluminous blue knit jacket with floral texture" }, "credit": "Mannequin : [à compléter]" },
+        { "file": "USA01108.webp", "alt": { "fr": "Mannequin en veste en jean portée sur l'épaule, couverte de roses rouges", "en": "Model in an off-shoulder denim jacket covered in red roses" }, "credit": "Mannequin : [à compléter]" },
+        { "file": "USA00618.webp", "alt": { "fr": "Mannequin en veste tissée à rayures rouges et bleues", "en": "Model in a woven jacket with red and blue stripes" }, "credit": "Mannequin : [à compléter]" },
+        { "file": "USA09476.webp", "alt": { "fr": "Robe blanche de dos, dentelle brodée et longs gants", "en": "White gown seen from the back, embroidered lace and long gloves" }, "credit": "Mannequin : [à compléter]" }
+      ]
+    },
+    {
+      "brand": "Global Fashion Collective",
+      "designer": "[à compléter] (défilé 1)",
+      "show": { "fr": "Défilé automne-hiver 2025", "en": "Fall/Winter 2025 show" },
+      "images": [
+        { "file": "USA02218.webp", "alt": { "fr": "Mannequin en robe drapée bleue et rouge aux manches déployées", "en": "Model in a draped blue and red dress with sweeping sleeves" }, "credit": "Mannequin : [à compléter]" },
+        { "file": "USA02414.webp", "alt": { "fr": "Mannequin en robe longue blanche à imprimé bleu", "en": "Model in a long white gown with a blue print" }, "credit": "Mannequin : [à compléter]" }
+      ]
+    },
+    {
+      "brand": "Global Fashion Collective",
+      "designer": "Kehang",
+      "show": { "fr": "Défilé automne-hiver 2025", "en": "Fall/Winter 2025 show" },
+      "images": [
+        { "file": "USA00769.jpg", "alt": { "fr": "Mannequin en robe à rayures caramel sur le podium Kehang", "en": "Model in a caramel striped dress on the Kehang runway" }, "credit": "Mannequin : [à compléter]" },
+        { "file": "USA00792.webp", "alt": { "fr": "Robe longue à larges rayures caramel et crème", "en": "Long dress with wide caramel and cream stripes" }, "credit": "Mannequin : [à compléter]" },
+        { "file": "USA00694.webp", "alt": { "fr": "Mannequin en robe beige transparente et capuche", "en": "Model in a sheer beige dress and hood" }, "credit": "Mannequin : [à compléter]" }
+      ]
+    },
+    {
+      "brand": "Global Fashion Collective",
+      "designer": "[à compléter] (défilé 4)",
+      "show": { "fr": "Défilé automne-hiver 2025", "en": "Fall/Winter 2025 show" },
+      "images": [
+        { "file": "USA01814.jpg", "alt": { "fr": "Final du défilé : les mannequins en noir alignés sur le podium", "en": "Show finale: models in black lined up on the runway" }, "credit": "" },
+        { "file": "USA01420.webp", "alt": { "fr": "Mannequin en blouson argenté à col de fourrure et pantalon large gris", "en": "Model in a silver jacket with fur collar and wide grey trousers" }, "credit": "Mannequin : [à compléter]" }
+      ]
+    }
+  ],
+  "backstage": []
+}
