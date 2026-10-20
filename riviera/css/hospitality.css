@@ -26,6 +26,22 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   .audience-card img, .faq-item summary::after { transition: none; }
 }
 
+/* ── Fil d'Ariane (sous la nav, posé sur le hero) ── */
+.breadcrumb {
+  position: absolute;
+  top: calc(5.5rem + env(safe-area-inset-top));
+  left: var(--gutter);
+  z-index: 10;
+  font-family: var(--dm);
+  font-size: .68rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(250,248,244,.7);
+}
+.breadcrumb a { color: var(--gold); text-decoration: none; }
+.breadcrumb a:hover { color: var(--gold2); }
+.breadcrumb-sep { margin: 0 .6em; color: rgba(250,248,244,.35); }
+
 /* ── Sections ── */
 .hs { padding: clamp(5rem, 11vw, 8rem) var(--gutter); }
 .hs-intro {
