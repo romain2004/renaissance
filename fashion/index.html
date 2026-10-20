@@ -1,164 +1,118 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- Page générée par tools/build-fashion.py — ne pas modifier à la main :
+     changez tools/templates/fashion-index.html ou les season.json, puis relancez le script. -->
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Romain MaulavÃ© — Filmmaker & Photographer. Fashion Weeks, Paris, Milan, New York, London.">
   <meta name="theme-color" content="#000000">
-  <title>Romain Maulavé — Fashion Week Coverage | Filmmaker &amp; Photographer</title>
-
-  <!-- Open Graph / social preview — shown when this link is shared by email, LinkedIn, iMessage, etc.
-       IMPORTANT: og:image and og:url must be ABSOLUTE URLs once this is live on romainmaulave.com,
-       e.g. https://romainmaulave.com/fashion/images/USA00093.jpg — relative paths below are placeholders. -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Romain Maulavé — Fashion Week Coverage">
-  <meta property="og:description" content="Filmmaker & Photographer documenting NYFW — FILIPINXT and Global Fashion Collective.">
-  <meta property="og:image" content="images/USA00093.jpg">
-  <meta property="og:url" content="https://romainmaulave.com/fashion/">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Romain Maulavé — Fashion Week Coverage">
-  <meta name="twitter:description" content="Filmmaker & Photographer documenting NYFW — FILIPINXT and Global Fashion Collective.">
-  <meta name="twitter:image" content="images/USA00093.jpg">
+  <title data-fr="Fashion — Romain Maulavé" data-en="Fashion — Romain Maulavé">Fashion — Romain Maulavé</title>
+  <meta name="description" content="Fashion Weeks photographiées par Romain Maulavé : une sélection par saison, défilé par défilé." data-desc-fr="Fashion Weeks photographiées par Romain Maulavé : une sélection par saison, défilé par défilé." data-desc-en="Fashion Weeks photographed by Romain Maulavé: a tight selection per season, show by show." />
+  <link rel="canonical" href="https://www.romainmaulave.com/fashion/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Fashion — Romain Maulavé" />
+  <meta property="og:description" content="Fashion Weeks photographiées par Romain Maulavé : une sélection par saison, défilé par défilé." />
+  <meta property="og:url" content="https://www.romainmaulave.com/fashion/" />
+  <meta property="og:image" content="https://www.romainmaulave.com/fashion/2025-02-nyfw/images/usa00093-2000.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
 
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-
-  <!-- Fonts moved out of CSS @import (render-blocking) into preconnect + link,
-       so the browser can fetch fonts and CSS in parallel instead of sequentially. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap">
-
-  <!-- Preload the hero image so it starts downloading immediately, before CSS/JS parse -->
-  <link rel="preload" as="image" href="images/USA00093.jpg" fetchpriority="high">
-
+  <link rel="preload" as="image" href="2025-02-nyfw/images/usa00093-1000.webp" imagesrcset="2025-02-nyfw/images/usa00093-1000.webp 1000w, 2025-02-nyfw/images/usa00093-2000.webp 2000w" imagesizes="100vw" />
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/seasons.css">
 </head>
-<body class="page-home">
+<body class="page-fashion">
 
-  <!-- ══ NAVIGATION ═══════════════════════════════════════════
-       Logo = "RM" in gold, links on the right.
-       Nav becomes solid (#000) after 48px of scroll.
-  ════════════════════════════════════════════════════════════ -->
   <nav class="nav" id="nav">
     <a href="../index.html" class="nav__logo"><span class="nav__logo-first">ROMAIN</span> MAULAVÉ</a>
     <ul class="nav__links">
-      <li><a href="fashion-weeks.html">Fashion Weeks</a></li>
-      <!-- <li><a href="book.html">Book</a></li> -->
+      <li><a href="#saisons" data-fr="Saisons" data-en="Seasons">Saisons</a></li>
+      <li><a href="#maisons" data-fr="Maisons" data-en="Houses">Maisons</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
-    <!-- Hamburger — visible only on mobile -->
-    <button class="nav__hamburger" aria-label="Toggle menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+    <div class="fx-lang">
+      <button class="fx-lang__btn" data-lang="en" type="button">EN</button>
+      <span class="fx-lang__sep">|</span>
+      <button class="fx-lang__btn is-active" data-lang="fr" type="button">FR</button>
+    </div>
+    <button class="nav__hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </nav>
 
-  <!-- Mobile fullscreen menu overlay -->
   <div class="nav__mobile" role="dialog" aria-label="Navigation">
-    <a href="fashion-weeks.html">Fashion Weeks</a>
-    <!-- <a href="book.html">Book</a> -->
+    <a href="#saisons" data-fr="Saisons" data-en="Seasons">Saisons</a>
+    <a href="#maisons" data-fr="Maisons" data-en="Houses">Maisons</a>
     <a href="contact.html">Contact</a>
+    <div class="fx-lang fx-lang--menu">
+      <button class="fx-lang__btn" data-lang="en" type="button">EN</button>
+      <span class="fx-lang__sep">|</span>
+      <button class="fx-lang__btn is-active" data-lang="fr" type="button">FR</button>
+    </div>
   </div>
 
-  <!-- ══ HERO ═════════════════════════════════════════════════
-       Background image = the <img class="hero__bg-img"> below.
-       To swap the image, just change its src="".
-  ════════════════════════════════════════════════════════════ -->
-  <section class="hero" role="banner">
-    <picture>
-      <source media="(max-width: 768px)" srcset="images/GFC3/USA00633.webp">
-      <img src="images/USA00093.jpg"
-           alt="Fashion Week"
-           class="hero__bg-img"
-           fetchpriority="high">
-    </picture>
-    <!-- Overlay (.hero::before pseudo-element handles this) -->
-    <div class="hero__content">
-      <!-- Edit the headline lines below. One word per line. -->
-      <!-- The <span class="gold"> wraps the word you want in amber. -->
-      <h1 class="hero__headline">
-        BETWEEN<br>
-        <span class="gold">THE</span><br>
-        LIGHTS.
-      </h1>
-      <div class="hero__cta">
-        <a href="#latest-work" class="btn-hero btn-hero--ghost">See my work</a>
-        <a href="contact.html" class="btn-hero btn-hero--gold">Book me</a>
+  <main>
+    <!-- Hero : la saison la plus récente -->
+    <section class="hero" role="banner">
+      <img class="hero__bg-img" src="2025-02-nyfw/images/usa00093-1000.webp" srcset="2025-02-nyfw/images/usa00093-1000.webp 1000w, 2025-02-nyfw/images/usa00093-2000.webp 2000w" sizes="100vw" width="1000" height="666" alt="Mannequin en long manteau à capuche gris sur le podium, public de chaque côté" data-alt-fr="Mannequin en long manteau à capuche gris sur le podium, public de chaque côté" data-alt-en="Model in a long grey hooded coat on the runway, audience on both sides" fetchpriority="high" />
+      <div class="hero__content">
+        <span class="label fx-hero__label" data-fr="Dernière saison · New York Fashion Week · AW25" data-en="Latest season · New York Fashion Week · AW25">Dernière saison · New York Fashion Week · AW25</span>
+        <h1 class="hero__headline">BETWEEN<br><span class="gold">THE</span><br>LIGHTS.</h1>
+        <div class="hero__cta">
+          <a href="2025-02-nyfw/" class="btn-hero btn-hero--ghost" data-fr="Voir la saison" data-en="See the season">Voir la saison</a>
+          <a href="contact.html" class="btn-hero btn-hero--gold" data-fr="Me contacter" data-en="Book me">Me contacter</a>
+        </div>
       </div>
-    </div>
-    <span class="hero__scroll" aria-hidden="true">Scroll</span>
-  </section>
+      <span class="hero__scroll" aria-hidden="true">Scroll</span>
+    </section>
 
-  <!-- ══ INTRO ════════════════════════════════════════════════
-       Short blurb under the hero. Edit freely.
-  ════════════════════════════════════════════════════════════ -->
-  <section class="intro">
-    <span class="label reveal">Filmmaker · Photographer</span>
-    <h2 class="display-title reveal d1">
-      Documenting<br>Fashion.
-    </h2>
-    <!-- Edit the blurb below -->
-    <div class="credentials reveal d3">
-      <div class="credentials__line"></div>
-      <p class="credentials__shows">NYFW · <a href="https://nyfw.com/designer/filipinxt/" target="_blank" rel="noopener noreferrer" class="credentials__link">FILIPINXT</a> · <a href="https://www.globalfashioncollective.com" target="_blank" rel="noopener noreferrer" class="credentials__link">GLOBAL FASHION COLLECTIVE</a></p>
-      <p class="credentials__location">NEW YORK · 2025</p>
-    </div>
-  </section>
+    <!-- Dernière saison : grande carte + 6 aperçus -->
+    <section class="section fx-latest" id="derniere-saison">
+      <div class="fx-section-head reveal">
+        <span class="label" data-fr="Dernière saison" data-en="Latest season">Dernière saison</span>
+      </div>
+      <div class="fx-latest__grid">
+        <a class="fx-latest__card reveal" href="2025-02-nyfw/"><img src="2025-02-nyfw/images/usa00093-1000.webp" srcset="2025-02-nyfw/images/usa00093-1000.webp 1000w, 2025-02-nyfw/images/usa00093-2000.webp 2000w" sizes="(max-width: 900px) 100vw, 60vw" width="1000" height="666" alt="Mannequin en long manteau à capuche gris sur le podium, public de chaque côté" data-alt-fr="Mannequin en long manteau à capuche gris sur le podium, public de chaque côté" data-alt-en="Model in a long grey hooded coat on the runway, audience on both sides" loading="lazy" decoding="async" /><span class="fx-latest__overlay"><span class="label" data-fr="New York · Février 2025" data-en="New York · February 2025">New York · Février 2025</span><span class="fx-latest__title" data-fr="New York Fashion Week<br>AW25" data-en="New York Fashion Week<br>AW25">New York Fashion Week<br>AW25</span><span class="fx-latest__houses">FILIPINXT · Global Fashion Collective</span><span class="fx-latest__cta" data-fr="Voir la saison →" data-en="View the season →">Voir la saison →</span></span></a>
+        <div class="fx-latest__thumbs reveal d1">
+          <a class="fx-latest__thumb" href="2025-02-nyfw/#filipinxt"><img src="2025-02-nyfw/images/usa00043-1000.webp" srcset="2025-02-nyfw/images/usa00043-1000.webp 1000w, 2025-02-nyfw/images/usa00043-2000.webp 2000w" sizes="(max-width: 700px) 50vw, 16vw" width="1000" height="1500" alt="Mannequin dans une veste volumineuse en maille bleue à reliefs floraux" data-alt-fr="Mannequin dans une veste volumineuse en maille bleue à reliefs floraux" data-alt-en="Model in a voluminous blue knit jacket with floral texture" loading="lazy" decoding="async" /></a><a class="fx-latest__thumb" href="2025-02-nyfw/#filipinxt"><img src="2025-02-nyfw/images/usa01108-1000.webp" srcset="2025-02-nyfw/images/usa01108-1000.webp 1000w, 2025-02-nyfw/images/usa01108-2000.webp 2000w" sizes="(max-width: 700px) 50vw, 16vw" width="1000" height="1500" alt="Mannequin en veste en jean portée sur l&#x27;épaule, couverte de roses rouges" data-alt-fr="Mannequin en veste en jean portée sur l&#x27;épaule, couverte de roses rouges" data-alt-en="Model in an off-shoulder denim jacket covered in red roses" loading="lazy" decoding="async" /></a><a class="fx-latest__thumb" href="2025-02-nyfw/#filipinxt"><img src="2025-02-nyfw/images/usa00618-1000.webp" srcset="2025-02-nyfw/images/usa00618-1000.webp 1000w, 2025-02-nyfw/images/usa00618-2000.webp 2000w" sizes="(max-width: 700px) 50vw, 16vw" width="1000" height="1500" alt="Mannequin en veste tissée à rayures rouges et bleues" data-alt-fr="Mannequin en veste tissée à rayures rouges et bleues" data-alt-en="Model in a woven jacket with red and blue stripes" loading="lazy" decoding="async" /></a><a class="fx-latest__thumb" href="2025-02-nyfw/#filipinxt"><img src="2025-02-nyfw/images/usa09476-1000.webp" srcset="2025-02-nyfw/images/usa09476-1000.webp 1000w, 2025-02-nyfw/images/usa09476-2000.webp 2000w" sizes="(max-width: 700px) 50vw, 16vw" width="1000" height="1500" alt="Robe blanche de dos, dentelle brodée et longs gants" data-alt-fr="Robe blanche de dos, dentelle brodée et longs gants" data-alt-en="White gown seen from the back, embroidered lace and long gloves" loading="lazy" decoding="async" /></a><a class="fx-latest__thumb" href="2025-02-nyfw/#global-fashion-collective"><img src="2025-02-nyfw/images/usa02218-1000.webp" srcset="2025-02-nyfw/images/usa02218-1000.webp 1000w, 2025-02-nyfw/images/usa02218-2000.webp 2000w" sizes="(max-width: 700px) 50vw, 16vw" width="1000" height="1500" alt="Mannequin en robe drapée bleue et rouge aux manches déployées" data-alt-fr="Mannequin en robe drapée bleue et rouge aux manches déployées" data-alt-en="Model in a draped blue and red dress with sweeping sleeves" loading="lazy" decoding="async" /></a><a class="fx-latest__thumb" href="2025-02-nyfw/#global-fashion-collective"><img src="2025-02-nyfw/images/usa02414-1000.webp" srcset="2025-02-nyfw/images/usa02414-1000.webp 1000w, 2025-02-nyfw/images/usa02414-2000.webp 2000w" sizes="(max-width: 700px) 50vw, 16vw" width="1000" height="1500" alt="Mannequin en robe longue blanche à imprimé bleu" data-alt-fr="Mannequin en robe longue blanche à imprimé bleu" data-alt-en="Model in a long white gown with a blue print" loading="lazy" decoding="async" /></a>
+        </div>
+      </div>
+    </section>
 
-  <!-- ══ LATEST WORK ══════════════════════════════════════════ -->
-  <section class="latest-work" id="latest-work">
-    <div class="latest-work__header reveal">
-      <div class="latest-work__header-main">
-        <span class="label">Latest Work</span>
-        <h2 class="display-title">New York<br>Fashion Week</h2>
-        <p class="subtitle">2025</p>
+    <!-- Saisons : la plus récente en premier -->
+    <section class="section fx-seasons" id="saisons">
+      <div class="fx-section-head reveal">
+        <span class="label" data-fr="Archives" data-en="Archive">Archives</span>
+        <h2 class="display-title" data-fr="Saisons" data-en="Seasons">Saisons</h2>
       </div>
-      <div class="latest-work__header-meta">
-        <div class="lw-header-line"></div>
-        <p class="lw-header-shows">FILIPINXT · GLOBAL FASHION COLLECTIVE</p>
-        <p class="lw-header-location">NEW YORK · 2025</p>
+      <div class="fx-seasons__grid">
+        <a class="fx-season reveal" href="2025-02-nyfw/"><img src="2025-02-nyfw/images/usa00093-1000.webp" srcset="2025-02-nyfw/images/usa00093-1000.webp 1000w, 2025-02-nyfw/images/usa00093-2000.webp 2000w" sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw" width="1000" height="666" alt="Mannequin en long manteau à capuche gris sur le podium, public de chaque côté" data-alt-fr="Mannequin en long manteau à capuche gris sur le podium, public de chaque côté" data-alt-en="Model in a long grey hooded coat on the runway, audience on both sides" loading="lazy" decoding="async" /><span class="fx-season__body"><span class="label" data-fr="New York" data-en="New York">New York</span><span class="fx-season__title" data-fr="New York Fashion Week" data-en="New York Fashion Week">New York Fashion Week</span><span class="fx-season__meta">AW25 · <span data-fr="Février 2025" data-en="February 2025">Février 2025</span></span></span></a>
       </div>
-    </div>
-    <div class="latest-work__grid reveal d1">
-      <div class="lw-item">
-        <img src="images/FILIPINXT/USA01162.webp" alt="FILIPINXT runway — NYFW 2025" style="object-position: center 30%;">
-        <span class="lw-item__caption">FILIPINXT</span>
-      </div>
-      <div class="lw-item">
-        <img src="images/GFC4/USA01814.webp" alt="Global Fashion Collective — NYFW 2025">
-        <span class="lw-item__caption">Global Fashion Collective</span>
-      </div>
-      <div class="lw-item">
-        <img src="images/GFC2/USA00337.webp" alt="Global Fashion Collective — NYFW 2025">
-        <span class="lw-item__caption">Global Fashion Collective</span>
-      </div>
-    </div>
-    <div class="latest-work__cta reveal d2">
-      <a href="fashion-weeks.html" class="btn-hero btn-hero--ghost">View full coverage →</a>
-    </div>
-  </section>
+    </section>
 
-  <!-- ══ FOOTER ═══════════════════════════════════════════════ -->
+    <!-- Maisons : chaque marque renvoie à sa série -->
+    <section class="section fx-houses" id="maisons">
+      <div class="fx-section-head reveal">
+        <span class="label" data-fr="Défilés photographiés" data-en="Shows photographed">Défilés photographiés</span>
+        <h2 class="display-title" data-fr="Maisons" data-en="Houses">Maisons</h2>
+      </div>
+      <ul class="fx-houses__list reveal d1">
+        <li><a class="fx-house" href="2025-02-nyfw/#filipinxt"><span class="fx-house__brand">FILIPINXT</span><span class="fx-house__designer"></span><span class="fx-house__season">AW25 · New York</span></a></li><li><a class="fx-house" href="2025-02-nyfw/#global-fashion-collective"><span class="fx-house__brand">Global Fashion Collective</span><span class="fx-house__designer">Kehang</span><span class="fx-house__season">AW25 · New York</span></a></li>
+      </ul>
+    </section>
+  </main>
+
   <footer>
-    <!-- Edit name and year below -->
-    <span>© Romain MaulavÃ© — All rights reserved</span>
+    <span data-fr="© Romain Maulavé — Tous droits réservés" data-en="© Romain Maulavé — All rights reserved">© Romain Maulavé — Tous droits réservés</span>
+    <a href="contact.html">hello@romainmaulave.com</a>
   </footer>
 
-  <!-- Film grain — cinematic texture (CSS animated, no JS) -->
   <div class="grain" aria-hidden="true"></div>
-
-  <!-- Intro loader — "RM" animates in then fades out (1.45s) -->
-  <div class="loader" id="loader" aria-hidden="true">
-    <span class="loader__logo">RM</span>
-  </div>
-
-  <!-- Custom cursor (hidden automatically on touch devices via CSS) -->
-  <div class="cursor-dot"  id="cursor-dot"  aria-hidden="true"></div>
-  <div class="cursor-ring" id="cursor-ring" aria-hidden="true">
-    <span class="cursor-label" id="cursor-label"></span>
-  </div>
+  <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true"><span class="cursor-label" id="cursor-label"></span></div>
 
   <script src="js/main.js"></script>
+  <script src="js/seasons.js"></script>
 </body>
 </html>
