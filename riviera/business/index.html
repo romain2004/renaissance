@@ -68,21 +68,21 @@
     </div>
   </div>
 
-  <nav class="breadcrumb" aria-label="Fil d'Ariane">
+  <div class="breadcrumb" role="navigation" aria-label="Fil d'Ariane">
     <a href="../">Riviera</a>
     <span class="breadcrumb-sep" aria-hidden="true">/</span>
     <span aria-current="page" data-fr="Établissements" data-en="Businesses">Établissements</span>
-  </nav>
+  </div>
 
   <main>
 
   <!-- HERO — bg: images/USA02706.jpeg -->
   <section id="hero">
     <div class="hero-content reveal">
-      <h1>YOUR<br>MOMENTS<br><span class="gold">ELEVATED.</span><br>IN THE SUN.</h1>
+      <h1 data-fr="VOTRE MAISON.<br><span class='gold'>SUBLIMÉE.</span><br>CHAQUE MOIS." data-en="YOUR HOUSE.<br><span class='gold'>ELEVATED.</span><br>EVERY MONTH.">VOTRE MAISON.<br><span class="gold">SUBLIMÉE.</span><br>CHAQUE MOIS.</h1>
       <div class="hero-btns">
-        <a href="#contact" class="btn-gold" data-fr="Réserver une séance" data-en="Book a Session">Réserver une séance</a>
-        <a href="#offres" class="btn-outline" data-fr="Voir les offres" data-en="See the offers">Voir les offres</a>
+        <a href="#contact" class="btn-gold" data-fr="Demander une proposition" data-en="Request a proposal">Demander une proposition</a>
+        <a href="#offres" class="btn-outline" data-fr="Voir les expériences" data-en="See the experiences">Voir les expériences</a>
       </div>
     </div>
     <div class="scroll-line"><span data-fr="Défiler" data-en="Scroll">Défiler</span></div>
@@ -125,9 +125,9 @@
     </div>
   </section>
 
-  <!-- ═══ 3 — POURQUOI UN ABONNEMENT ═══ -->
+  <!-- ═══ 3 — POURQUOI UNE EXPÉRIENCE MENSUELLE ═══ -->
   <section class="hs why">
-    <p class="section-label reveal" data-fr="Pourquoi un abonnement" data-en="Why a subscription">Pourquoi un abonnement</p>
+    <p class="section-label reveal" data-fr="Pourquoi une expérience mensuelle" data-en="Why a monthly experience">Pourquoi une expérience mensuelle</p>
     <h2 class="reveal reveal-delay-1" data-fr="Une image,<br><span class='gold'>pas des photos.</span>" data-en="An image,<br><span class='gold'>not just photos.</span>">Une image,<br><span class="gold">pas des photos.</span></h2>
     <p class="hs-intro reveal reveal-delay-2" data-fr="Un shooting ponctuel donne quelques belles images. Un regard régulier construit une identité que vos clients reconnaissent avant même de lire votre nom." data-en="A one-off shoot gives you a few beautiful images. A regular eye builds an identity your guests recognise before they read your name.">Un shooting ponctuel donne quelques belles images. Un regard régulier construit une identité que vos clients reconnaissent avant même de lire votre nom.</p>
     <div class="why-grid">
@@ -144,8 +144,23 @@
       <div class="why-item reveal reveal-delay-3">
         <span class="why-num">III</span>
         <h3 class="why-name" data-fr="Priorité" data-en="Priority">Priorité</h3>
-        <p class="why-text" data-fr="En plein été, les dates partent vite. Les abonnés passent en premier, et leurs livrables aussi." data-en="In high summer, dates go fast. Subscribers come first, and so do their deliverables.">En plein été, les dates partent vite. Les abonnés passent en premier, et leurs livrables aussi.</p>
+        <p class="why-text" data-fr="En plein été, les dates partent vite. Vos tournages passent en premier, et vos livrables aussi." data-en="In high summer, dates go fast. Your shoots come first, and so do your deliverables.">En plein été, les dates partent vite. Vos tournages passent en premier, et vos livrables aussi.</p>
       </div>
+    </div>
+  </section>
+
+  <!-- ═══ 3b — RÉALISATIONS ═══ -->
+  <!-- TODO: remplacer par des photos d'établissements -->
+  <section class="hs work" id="realisations">
+    <p class="section-label reveal" data-fr="Réalisations" data-en="Selected work">Réalisations</p>
+    <h2 class="reveal reveal-delay-1" data-fr="La lumière<br><span class='gold'>de la Riviera.</span>" data-en="The light<br><span class='gold'>of the Riviera.</span>">La lumière<br><span class="gold">de la Riviera.</span></h2>
+    <div class="work-grid reveal reveal-delay-2">
+      <figure class="work-item"><img src="../images/work/A7408583.webp" alt="Eau turquoise devant les maisons de la Ponche, Saint-Tropez" loading="lazy" /></figure>
+      <figure class="work-item"><img src="../images/work/USA02706.webp" alt="Super yacht à quai sur le port de Saint-Tropez" loading="lazy" /></figure>
+      <figure class="work-item"><img src="../images/work/A7408921.webp" alt="Peintre au travail sur le quai, voiliers en arrière-plan" loading="lazy" /></figure>
+      <figure class="work-item"><img src="../images/work/IMG_3349.webp" alt="Piscine d'une villa face aux collines du Golfe" loading="lazy" /></figure>
+      <figure class="work-item"><img src="../images/work/USA02708.webp" alt="Rue commerçante du port de Saint-Tropez en plein été" loading="lazy" /></figure>
+      <figure class="work-item"><img src="../images/work/A7408912.webp" alt="Le port de Saint-Tropez en fin de journée" loading="lazy" /></figure>
     </div>
   </section>
 
@@ -155,19 +170,21 @@
        │   ATELIER    data-price="900"    (€ / mois, HT)            │
        │   ESSENTIEL  data-price="1500"                             │
        │   SIGNATURE  data-price="3200"                             │
-       │   PRESTIGE   data-price="6500"                             │
+       │   PRESTIGE   data-price="on-request"  (« Sur demande »)    │
+       │              mettre un nombre (ex. "6500") pour un prix    │
        │   Journée yacht (section Ponctuel) data-price="4000"       │
        │ Le texte affiché est réécrit automatiquement à partir de   │
        │ data-price, au bon format (900 € en FR, €900 en EN).       │
        └──────────────────────────────────────────────────────────┘ -->
   <section class="hs cream" id="offres">
     <h2 class="reveal" data-fr="Chaque mois,<br><span class='gold'>sur mesure.</span>" data-en="Every month,<br><span class='gold'>made to measure.</span>">Chaque mois,<br><span class="gold">sur mesure.</span></h2>
-    <p class="hs-intro reveal reveal-delay-1" data-fr="Contrat à la saison (avril–septembre) ou à l'année. Chaque formule s'adapte à votre établissement." data-en="Seasonal contract (April–September) or yearly. Every plan adapts to your house.">Contrat à la saison (avril–septembre) ou à l'année. Chaque formule s'adapte à votre établissement.</p>
+    <p class="hs-intro reveal reveal-delay-1" data-fr="Contrat à la saison (avril–septembre) ou à l'année. Chaque expérience s'adapte à votre établissement." data-en="Seasonal contract (April–September) or yearly. Every experience adapts to your house.">Contrat à la saison (avril–septembre) ou à l'année. Chaque expérience s'adapte à votre établissement.</p>
 
     <div class="plans">
 
       <article class="plan reveal reveal-delay-1">
         <p class="plan-target" data-fr="Boutiques" data-en="Boutiques">Boutiques</p>
+        <p class="plan-kicker" data-fr="Expérience" data-en="Experience">Expérience</p>
         <h3 class="plan-name">Atelier</h3>
         <p class="plan-from" data-fr="À partir de" data-en="From">À partir de</p>
         <p class="plan-price" data-price="900">900 €</p>
@@ -183,6 +200,7 @@
 
       <article class="plan reveal reveal-delay-2">
         <p class="plan-target" data-fr="Restaurants · Petits hôtels" data-en="Restaurants · Boutique hotels">Restaurants · Petits hôtels</p>
+        <p class="plan-kicker" data-fr="Expérience" data-en="Experience">Expérience</p>
         <h3 class="plan-name">Essentiel</h3>
         <p class="plan-from" data-fr="À partir de" data-en="From">À partir de</p>
         <p class="plan-price" data-price="1500">1 500 €</p>
@@ -197,8 +215,9 @@
       </article>
 
       <article class="plan plan--featured reveal reveal-delay-3">
-        <span class="plan-badge" data-fr="Le plus choisi" data-en="Most chosen">Le plus choisi</span>
+        <span class="plan-badge" data-fr="Recommandé" data-en="Recommended">Recommandé</span>
         <p class="plan-target" data-fr="Beach clubs · Hôtels" data-en="Beach clubs · Hotels">Beach clubs · Hôtels</p>
+        <p class="plan-kicker" data-fr="Expérience" data-en="Experience">Expérience</p>
         <h3 class="plan-name">Signature</h3>
         <p class="plan-from" data-fr="À partir de" data-en="From">À partir de</p>
         <p class="plan-price" data-price="3200">3 200 €</p>
@@ -215,9 +234,10 @@
 
       <article class="plan reveal reveal-delay-4">
         <p class="plan-target" data-fr="Grands hôtels · Marques" data-en="Luxury hotels · Brands">Grands hôtels · Marques</p>
+        <p class="plan-kicker" data-fr="Expérience" data-en="Experience">Expérience</p>
         <h3 class="plan-name">Prestige</h3>
         <p class="plan-from" data-fr="À partir de" data-en="From">À partir de</p>
-        <p class="plan-price" data-price="6500">6 500 €</p>
+        <p class="plan-price" data-price="on-request">Sur demande</p>
         <p class="plan-per" data-fr="/ mois" data-en="/ month">/ mois</p>
         <ul class="plan-list">
           <li data-fr="Quatre journées de tournage par mois en saison" data-en="Four shoot days per month in season">Quatre journées de tournage par mois en saison</li>
@@ -227,7 +247,7 @@
           <li data-fr="Direction artistique de votre Instagram" data-en="Art direction of your Instagram">Direction artistique de votre Instagram</li>
           <li data-fr="Images drone à partir de la saison 2027" data-en="Drone footage from the 2027 season">Images drone à partir de la saison 2027</li>
         </ul>
-        <a href="#contact" class="btn-outline plan-btn" data-fr="Choisir Prestige" data-en="Choose Prestige">Choisir Prestige</a>
+        <a href="#contact" class="btn-outline plan-btn" data-fr="Demander une proposition" data-en="Request a proposal">Demander une proposition</a>
       </article>
 
     </div>
@@ -335,13 +355,13 @@
       <h2 class="contact-h reveal" data-fr="Parlons de<br><span class='gold'>votre saison.</span>" data-en="Let's talk about<br><span class='gold'>your season.</span>">Parlons de<br><span class="gold">votre saison.</span></h2>
       <p class="contact-sub reveal reveal-delay-1" data-fr="Un café, une visite de votre établissement, et une proposition sur mesure sous 48 h." data-en="A coffee, a walk through your house, and a tailored proposal within 48 hours.">Un café, une visite de votre établissement, et une proposition sur mesure sous 48 h.</p>
       <div class="contact-btns reveal reveal-delay-2">
-        <a href="mailto:hello@romainmaulave.com?subject=Abonnement%20contenu%20%E2%80%94%20Saison%202027" class="btn-gold" data-fr="Écrire un message" data-en="Send a message">Écrire un message</a>
+        <a href="mailto:hello@romainmaulave.com?subject=Exp%C3%A9rience%20sur%20mesure%20%E2%80%94%20Saison%202027" class="btn-gold" data-fr="Écrire un message" data-en="Send a message">Écrire un message</a>
         <a href="https://wa.me/33783716979" target="_blank" rel="noopener" class="btn-gold btn-whatsapp">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
           WhatsApp
         </a>
       </div>
-      <a href="mailto:hello@romainmaulave.com?subject=Abonnement%20contenu%20%E2%80%94%20Saison%202027" class="contact-email reveal reveal-delay-3">HELLO@ROMAINMAULAVE.COM</a>
+      <a href="mailto:hello@romainmaulave.com?subject=Exp%C3%A9rience%20sur%20mesure%20%E2%80%94%20Saison%202027" class="contact-email reveal reveal-delay-3">HELLO@ROMAINMAULAVE.COM</a>
     </div>
   </section>
 

@@ -153,6 +153,15 @@ h3 { font-weight: inherit; }
   margin-bottom: 1rem;
   min-height: 2.2em;
 }
+.plan-kicker {
+  font-size: .62rem;
+  font-weight: 500;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--gold-ink);
+  margin-bottom: .35rem;
+}
+.plan--featured .plan-kicker { color: var(--gold); }
 .plan-name {
   font-family: var(--bebas);
   font-size: clamp(2.4rem, 3vw, 3rem);
@@ -210,6 +219,23 @@ h3 { font-weight: inherit; }
   text-transform: uppercase;
   padding: .45rem .9rem;
 }
+/* ── 3b. RÉALISATIONS ── */
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  margin-top: 3rem;
+}
+.work-item { margin: 0; aspect-ratio: 4 / 3; overflow: hidden; }
+.work-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .65s ease;
+}
+.work-item:hover img { transform: scale(1.04); }
+
 .plans-note {
   margin-top: 2.5rem;
   font-size: .8rem;
@@ -378,6 +404,7 @@ footer { gap: 1.5rem; flex-wrap: wrap; }
    MOBILE — mêmes seuils que Riviera
    ════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
+  .work-grid { grid-template-columns: repeat(2, 1fr); margin-top: 2rem; }
   /* Hero Riviera : lisibilité du texte et du 2e bouton sur la photo claire */
   #hero::after {
     content: '';

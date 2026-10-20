@@ -23,6 +23,10 @@ function formatPrice(value, lang) {
 function renderPrices(lang) {
   document.querySelectorAll('[data-price]').forEach(el => {
     el.textContent = formatPrice(el.dataset.price, lang);
+    const plan = el.closest('.plan');
+    if (plan) plan.querySelectorAll('.plan-from, .plan-per').forEach(x => {
+      x.style.visibility = el.dataset.price === 'on-request' ? 'hidden' : '';
+    });
   });
 }
 
