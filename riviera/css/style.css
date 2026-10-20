@@ -365,46 +365,6 @@ h2 .gold { color: var(--gold); }
 .reveal-delay-3 { transition-delay: .35s; }
 .reveal-delay-4 { transition-delay: .5s; }
 
-/* ── MANIFESTO ── */
-#manifesto {
-  background-image:
-    linear-gradient(rgba(10,14,20,.72), rgba(10,14,20,.72)),
-    url('../images/USA02504.jpeg');
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center center;
-  text-align: center;
-  padding: 10rem 4rem;
-  position: relative;
-}
-#manifesto::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 40%;
-  background: linear-gradient(to bottom, transparent, #0D1117);
-  pointer-events: none;
-}
-.manifesto-quote {
-  font-family: var(--bebas);
-  font-size: clamp(3.5rem, 8vw, 8rem);
-  line-height: .95;
-  letter-spacing: .02em;
-  text-transform: uppercase;
-  color: #FFFFFF;
-  max-width: 1000px;
-  margin: 0 auto 2.5rem;
-}
-.manifesto-body {
-  font-family: var(--dm);
-  font-size: 1.05rem;
-  font-weight: 300;
-  color: rgba(250,248,244,.7);
-  max-width: 520px;
-  margin: 0 auto;
-  line-height: 1.8;
-}
-
 /* ── SERVICES ── */
 #services { background: var(--navy); padding: 0; }
 .services-split {
@@ -926,7 +886,6 @@ footer {
   .showreel-caption { padding: 0 24px; font-size: 0.78rem; }
 
   /* ── Manifesto ── */
-  #manifesto { display: none; }
 
   /* ── Services ── */
   #services { padding: 0; }
