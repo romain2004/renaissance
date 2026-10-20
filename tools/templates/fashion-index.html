@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!-- Page générée par tools/build-fashion.py — ne pas modifier à la main :
+     changez tools/templates/fashion-index.html ou les season.json, puis relancez le script. -->
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000000">
+  {{head_meta}}
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap">
+  {{preload}}
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/seasons.css">
+</head>
+<body class="page-fashion">
+
+  <nav class="nav" id="nav">
+    <a href="../index.html" class="nav__logo"><span class="nav__logo-first">ROMAIN</span> MAULAVÉ</a>
+    <ul class="nav__links">
+      <li><a href="#saisons" data-fr="Saisons" data-en="Seasons">Saisons</a></li>
+      <li><a href="#maisons" data-fr="Maisons" data-en="Houses">Maisons</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="fx-lang">
+      <button class="fx-lang__btn" data-lang="en" type="button">EN</button>
+      <span class="fx-lang__sep">|</span>
+      <button class="fx-lang__btn is-active" data-lang="fr" type="button">FR</button>
+    </div>
+    <button class="nav__hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="nav__mobile" role="dialog" aria-label="Navigation">
+    <a href="#saisons" data-fr="Saisons" data-en="Seasons">Saisons</a>
+    <a href="#maisons" data-fr="Maisons" data-en="Houses">Maisons</a>
+    <a href="contact.html">Contact</a>
+    <div class="fx-lang fx-lang--menu">
+      <button class="fx-lang__btn" data-lang="en" type="button">EN</button>
+      <span class="fx-lang__sep">|</span>
+      <button class="fx-lang__btn is-active" data-lang="fr" type="button">FR</button>
+    </div>
+  </div>
+
+  <main>
+    <!-- Hero : la saison la plus récente -->
+    <section class="hero" role="banner">
+      {{hero_img}}
+      <div class="hero__content">
+        {{hero_label}}
+        <h1 class="hero__headline">BETWEEN<br><span class="gold">THE</span><br>LIGHTS.</h1>
+        <div class="hero__cta">
+          <a href="{{latest_url}}" class="btn-hero btn-hero--ghost" data-fr="Voir la saison" data-en="See the season">Voir la saison</a>
+          <a href="contact.html" class="btn-hero btn-hero--gold" data-fr="Me contacter" data-en="Book me">Me contacter</a>
+        </div>
+      </div>
+      <span class="hero__scroll" aria-hidden="true">Scroll</span>
+    </section>
+
+    <!-- Dernière saison : grande carte + 6 aperçus -->
+    <section class="section fx-latest" id="derniere-saison">
+      <div class="fx-section-head reveal">
+        <span class="label" data-fr="Dernière saison" data-en="Latest season">Dernière saison</span>
+      </div>
+      <div class="fx-latest__grid">
+        {{latest_card}}
+        <div class="fx-latest__thumbs reveal d1">
+          {{latest_previews}}
+        </div>
+      </div>
+    </section>
+
+    <!-- Saisons : la plus récente en premier -->
+    <section class="section fx-seasons" id="saisons">
+      <div class="fx-section-head reveal">
+        <span class="label" data-fr="Archives" data-en="Archive">Archives</span>
+        <h2 class="display-title" data-fr="Saisons" data-en="Seasons">Saisons</h2>
+      </div>
+      <div class="fx-seasons__grid">
+        {{seasons}}
+      </div>
+    </section>
+
+    <!-- Maisons : chaque marque renvoie à sa série -->
+    <section class="section fx-houses" id="maisons">
+      <div class="fx-section-head reveal">
+        <span class="label" data-fr="Défilés photographiés" data-en="Shows photographed">Défilés photographiés</span>
+        <h2 class="display-title" data-fr="Maisons" data-en="Houses">Maisons</h2>
+      </div>
+      <ul class="fx-houses__list reveal d1">
+        {{houses}}
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <span data-fr="© Romain Maulavé — Tous droits réservés" data-en="© Romain Maulavé — All rights reserved">© Romain Maulavé — Tous droits réservés</span>
+    <a href="contact.html">hello@romainmaulave.com</a>
+  </footer>
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true"><span class="cursor-label" id="cursor-label"></span></div>
+
+  <script src="js/main.js"></script>
+  <script src="js/seasons.js"></script>
+</body>
+</html>

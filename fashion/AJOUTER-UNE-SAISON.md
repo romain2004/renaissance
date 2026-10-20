@@ -1,0 +1,109 @@
+# Ajouter une saison Fashion
+
+Compter moins d'une heure, sans écrire de HTML. Tout se passe dans un seul fichier, `season.json`, puis une commande génère les pages.
+
+Pour un futur Claude Code : lis ce fichier, puis `tools/build-fashion.py`. Ne modifie jamais à la main `fashion/index.html` ni `fashion/<saison>/index.html` : ce sont des fichiers générés.
+
+## 1. Créer le dossier de la saison
+
+Le nom du dossier, c'est l'année, le mois, puis la ville ou l'événement, par exemple `2027-02-nyfw` ou `2027-03-pfw`.
+
+```
+fashion/seasons/2027-02-nyfw/
+├── season.json      la description de la saison
+└── originals/       tes exports JPEG
+```
+
+Le plus simple : copie le dossier d'une saison existante, renomme-le, puis vide `originals/`.
+
+`originals/` n'est **jamais publié** : git l'ignore (voir `.gitignore`). Garde une copie de tes exports ailleurs, sur ton disque ou dans ton cloud.
+
+## 2. Déposer les photos
+
+- Exporte tes photos en JPEG, en pleine qualité. Le script réduit lui-même la taille et le poids.
+- Place-les dans `originals/`.
+- Les noms de fichiers sont libres, mais un nom par marque t'aidera : `ps-01.jpg`, `gfc-kehang-03.jpg`…
+
+## 3. Remplir `season.json`
+
+```json
+{
+  "slug": "2027-02-nyfw",
+  "title": { "fr": "New York Fashion Week", "en": "New York Fashion Week" },
+  "season": "AW27",
+  "city": "New York",
+  "date": "2027-02",
+  "draft": true,
+  "intro": { "fr": "Une phrase, pas plus.", "en": "One sentence, no more." },
+  "cover": "ouverture.jpg",
+  "cover_alt": { "fr": "Ce qu'on voit sur l'image", "en": "What the image shows" },
+  "series": [
+    {
+      "brand": "Public Service",
+      "designer": "[à compléter]",
+      "show": { "fr": "Défilé automne-hiver 2027", "en": "Fall/Winter 2027 show" },
+      "images": [
+        { "file": "ps-01.jpg",
+          "alt": { "fr": "Mannequin en manteau noir", "en": "Model in a black coat" },
+          "credit": "Mannequin : Prénom Nom" }
+      ]
+    }
+  ],
+  "backstage": []
+}
+```
+
+| Champ | À quoi il sert |
+| --- | --- |
+| `slug` | Le nom du dossier. L'adresse de la page sera `/fashion/<slug>/`. |
+| `title`, `season`, `city`, `date` | Le titre (« New York Fashion Week · AW27 »), la ville et le mois (`AAAA-MM`). Le mois s'affiche en toutes lettres en FR et en EN. |
+| `draft` | `true` : la saison reste cachée (pas sur l'accueil Fashion, pas dans le sitemap, jamais envoyée sur git). Passe à `false` pour la publier. |
+| `intro` | Une phrase d'introduction au maximum. Laisse `""` pour ne rien afficher. |
+| `cover`, `cover_alt` | L'image d'ouverture en plein écran, et sa description. |
+| `series` | Une entrée par marque, dans l'ordre d'affichage. |
+| `designer` | Le créateur. Utile pour GFC, qui présente plusieurs créateurs : fais une série par créateur, avec la même marque. `[à compléter]` le masque sur le site. |
+| `show` | Le nom du défilé, en FR et en EN. |
+| `images` | 3 à 8 images par série, dans l'ordre voulu. `alt` décrit l'image en FR et en EN. `credit` est facultatif (mannequin, stylisme…). |
+| `backstage` | Des images de coulisses, avec le même format que `images`. Laisse `[]` s'il n'y en a pas. |
+
+Tout ce qui contient `[à compléter]` reste caché sur le site, et le script te le rappelle à la fin.
+
+## 4. Générer
+
+À la racine du dépôt :
+
+```
+python3 tools/build-fashion.py --drafts
+```
+
+`--drafts` génère aussi les brouillons, pour les regarder en local. Pour ouvrir le site en local :
+
+```
+python3 -m http.server 8000
+```
+
+Puis ouvre http://localhost:8000/fashion/2027-02-nyfw/.
+
+Le script :
+- convertit chaque photo en WebP 1000 px et 2000 px (moins de 400 Ko environ en 2000 px), et ne reconvertit que les photos nouvelles ou modifiées ;
+- choisit la mise en page selon l'orientation de chaque photo : un paysage en pleine largeur, deux portraits côte à côte, un portrait seul en « détail » décalé ;
+- génère la page de la saison, l'accueil Fashion (dernière saison, liste des saisons, liste des maisons) et le `sitemap.xml` ;
+- affiche à la fin un résumé avec les avertissements : image manquante, `alt` vide, marque sans images, champs `[à compléter]`.
+
+Il faut `ffmpeg` et `cwebp`. S'ils manquent : `brew install ffmpeg webp`.
+
+## 5. Publier
+
+1. Dans `season.json`, passe `"draft": false`.
+2. Relance `python3 tools/build-fashion.py`.
+3. Vérifie la page à 375, 768 et 1440 px de large.
+4. Fais un commit, puis pousse.
+
+## Changer le design
+
+- Une page de saison : `tools/templates/season.html`.
+- L'accueil Fashion : `tools/templates/fashion-index.html`.
+- Les styles : `fashion/css/seasons.css`.
+- La langue et la lightbox : `fashion/js/seasons.js`.
+
+Après une modification, relance le script : toutes les pages sont régénérées.

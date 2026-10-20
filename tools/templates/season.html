@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!-- Page générée par tools/build-fashion.py — ne pas modifier à la main :
+     changez fashion/seasons/<saison>/season.json ou tools/templates/season.html, puis relancez le script. -->
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000000">
+  {{head_meta}}
+  {{robots}}
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap">
+  {{preload}}
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/seasons.css">
+</head>
+<body class="page-season">
+
+  <nav class="nav" id="nav">
+    <a href="../../index.html" class="nav__logo"><span class="nav__logo-first">ROMAIN</span> MAULAVÉ</a>
+    <ul class="nav__links">
+      <li><a href="../#saisons" data-fr="Saisons" data-en="Seasons">Saisons</a></li>
+      <li><a href="../#maisons" data-fr="Maisons" data-en="Houses">Maisons</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+    <div class="fx-lang">
+      <button class="fx-lang__btn" data-lang="en" type="button">EN</button>
+      <span class="fx-lang__sep">|</span>
+      <button class="fx-lang__btn is-active" data-lang="fr" type="button">FR</button>
+    </div>
+    <button class="nav__hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="nav__mobile" role="dialog" aria-label="Navigation">
+    <a href="../#saisons" data-fr="Saisons" data-en="Seasons">Saisons</a>
+    <a href="../#maisons" data-fr="Maisons" data-en="Houses">Maisons</a>
+    <a href="../contact.html">Contact</a>
+    <div class="fx-lang fx-lang--menu">
+      <button class="fx-lang__btn" data-lang="en" type="button">EN</button>
+      <span class="fx-lang__sep">|</span>
+      <button class="fx-lang__btn is-active" data-lang="fr" type="button">FR</button>
+    </div>
+  </div>
+
+  <main>
+    <!-- Ouverture : 1 image plein écran + titre -->
+    <section class="ss-opening">
+      {{cover}}
+      <div class="ss-opening__text">
+        {{eyebrow}}
+        <h1 class="ss-opening__title">{{title}} <span class="gold">{{season}}</span></h1>
+      </div>
+    </section>
+
+    {{intro}}
+
+    {{series}}
+
+    {{backstage}}
+
+    <nav class="ss-pager" aria-label="Saisons">
+      {{pager}}
+    </nav>
+  </main>
+
+  <footer>
+    <span data-fr="© Romain Maulavé — Tous droits réservés" data-en="© Romain Maulavé — All rights reserved">© Romain Maulavé — Tous droits réservés</span>
+    <a href="../contact.html">hello@romainmaulave.com</a>
+  </footer>
+
+  <!-- Lightbox : flèches, clavier, glisser ; légende = marque · créateur · crédit -->
+  <div class="lightbox ss-lightbox" id="season-lightbox" aria-hidden="true" role="dialog" aria-label="Photo">
+    <div class="lightbox__backdrop"></div>
+    <figure class="ss-lightbox__figure">
+      <img class="ss-lightbox__img" alt="">
+      <figcaption class="ss-lightbox__caption"></figcaption>
+    </figure>
+    <span class="ss-lightbox__counter"></span>
+    <button class="ss-lightbox__close" type="button" aria-label="Fermer">&times;</button>
+    <button class="ss-lightbox__nav ss-lightbox__nav--prev" type="button" aria-label="Photo précédente">&#8249;</button>
+    <button class="ss-lightbox__nav ss-lightbox__nav--next" type="button" aria-label="Photo suivante">&#8250;</button>
+  </div>
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true"><span class="cursor-label" id="cursor-label"></span></div>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/seasons.js"></script>
+</body>
+</html>
