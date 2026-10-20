@@ -97,7 +97,7 @@ a { color: inherit; text-decoration: none; }
 
 
 /* ════════════════════════════════════════════════════════
-   02. LOADER — durée réduite sur mobile
+   02. LOADER — moins d'1 s au total, supprimé si prefers-reduced-motion
    ════════════════════════════════════════════════════════ */
 .loader {
   position: fixed;
@@ -107,7 +107,7 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.65s var(--out), visibility 0.65s;
+  transition: opacity 0.3s var(--out), visibility 0.3s;
 }
 
 .loader.is-hidden {
@@ -121,14 +121,7 @@ a { color: inherit; text-decoration: none; }
   font-size: clamp(48px, 8vw, 76px);
   letter-spacing: 0.26em;
   color: var(--gold);
-  animation: monogram-in 1.65s var(--out) forwards;
-}
-
-/* OPTIMISATION: loader plus court sur mobile */
-@media (hover: none) {
-  .loader__monogram {
-    animation-duration: 0.9s;
-  }
+  animation: monogram-in 0.45s var(--out) forwards;
 }
 
 @keyframes monogram-in {
@@ -170,7 +163,7 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   padding: clamp(44px, 7vh, 84px) var(--gutter) clamp(20px, 3vh, 36px);
   flex-shrink: 0;
-  animation: identity-reveal 1s var(--expo) 1.4s both;
+  animation: identity-reveal 0.6s var(--expo) 0.2s both;
 }
 
 @keyframes identity-reveal {
@@ -234,10 +227,10 @@ a { color: inherit; text-decoration: none; }
   text-decoration: none;
   color: var(--white);
   transition: flex 0.9s var(--expo);
-  animation: world-reveal 0.85s var(--out) 1.55s both;
+  animation: world-reveal 0.5s var(--out) 0.3s both;
 }
 
-.world--riviera { animation-delay: 1.72s; }
+.world--riviera { animation-delay: 0.4s; }
 
 @keyframes world-reveal {
   from { opacity: 0; }
@@ -360,7 +353,7 @@ a { color: inherit; text-decoration: none; }
   );
   flex-shrink: 0;
   z-index: 10;
-  animation: sep-reveal 1s var(--out) 1.9s both;
+  animation: sep-reveal 0.5s var(--out) 0.4s both;
 }
 
 @keyframes sep-reveal {
@@ -383,7 +376,7 @@ a { color: inherit; text-decoration: none; }
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  animation: identity-reveal 1s var(--expo) 2.1s both;
+  animation: identity-reveal 0.5s var(--expo) 0.45s both;
 }
 
 .hero__scroll::before {
@@ -392,7 +385,7 @@ a { color: inherit; text-decoration: none; }
   width: 1px;
   height: 34px;
   background: linear-gradient(to bottom, rgba(200, 168, 107, 0.4), transparent);
-  animation: scroll-pulse 2.4s ease 2.4s infinite;
+  animation: scroll-pulse 2.4s ease 1.2s infinite;
 }
 
 @keyframes scroll-pulse {
@@ -521,9 +514,11 @@ a { color: inherit; text-decoration: none; }
   margin-top: 10px;
 }
 
+/* TODO: image provisoire (SoHo, vitrines Dior et Fendi). Autres candidates :
+   fashion/images/USA00769.webp, fashion/images/USA00630.webp */
 .campaign__bg--newyork {
-  background-position: center 30%;
-  background-image: url('../riviera/images/USA05801.jpg');
+  background-position: center 40%;
+  background-image: url('../fashion/images/USA05496.webp');
 }
 
 
@@ -861,4 +856,11 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 380px) {
   .hero__mobile-name span,
   .hero__mobile-name em { font-size: 48px; }
+}
+
+
+/* ── Mouvement réduit : pas d'intro, contenu affiché immédiatement ── */
+@media (prefers-reduced-motion: reduce) {
+  .loader { display: none; }
+  .hero__identity, .world, .worlds__sep, .hero__scroll { animation: none; }
 }
