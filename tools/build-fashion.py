@@ -303,9 +303,6 @@ def render_series(s, serie, info, index, sid):
     brand = serie.get('brand') or ''
     designer = serie.get('designer') or ''
     show_fr, show_en = bi(serie.get('show', ''))
-    if not serie.get('images'):
-        warn(slug, f'« {brand} » n\'a aucune image')
-        return ''
     caption_parts = [brand] + ([] if is_placeholder(designer) else [designer])
     rows_html, side = [], 'left'
     for kind, ims in layout_rows(serie['images'], info):
@@ -365,7 +362,7 @@ def render_backstage(s, info):
   <section class="ss-series ss-series--backstage" id="coulisses">
     <header class="ss-series__head reveal">
       <span class="ss-series__num">—</span>
-      <div>{t("Coulisses", "Backstage", "h2", "ss-series__brand")}</div>
+      <div>{t(*bi(s.get("backstage_title") or {"fr": "Coulisses", "en": "Backstage"}), "h2", "ss-series__brand")}</div>
     </header>
     {"".join(rows)}
   </section>'''
@@ -414,8 +411,14 @@ def build_season(s, prev_s, next_s, info, template):
     if cover:
         alt = bi(s.get('cover_alt') or {'fr': tf, 'en': te})
         cover_html = img_tag('images/', cover, alt, '100vw', lazy=False, cls='ss-opening__img')
-    series_html = ''.join(render_series(s, serie, info, i + 1, sid)
-                          for i, (serie, sid) in enumerate(zip(s.get('series', []), series_ids(s))))
+    # numérotation continue : une série sans photos est ignorée (et signalée)
+    series_html, n = '', 0
+    for serie, sid in zip(s.get('series', []), series_ids(s)):
+        if not serie.get('images'):
+            warn(slug, f'« {serie.get("brand", "")} » n\'a aucune image : série masquée')
+            continue
+        n += 1
+        series_html += render_series(s, serie, info, n, sid)
     tf_title, te_title = bi(s['title'])
     values = {
         'head_meta': head_meta(title_fr, title_en, desc_fr, desc_en, url,
@@ -458,24 +461,26 @@ def build_index(seasons, infos, template):
     hero_img = img_tag(f'{latest["slug"]}/images/', cover, bi(latest.get('cover_alt') or {'fr': tf, 'en': te}),
                        '100vw', lazy=False, cls='hero__bg-img') if cover else ''
 
-    # Dernière saison : grande carte + 6 aperçus
-    previews = []
+    # Dernière saison : grande carte + 6 aperçus. La carte prend la 1re photo de la
+    # 1re série (pas l'ouverture, déjà dans le hero) ; les aperçus prennent les suivantes.
+    pool = []
     for sid, serie in zip(series_ids(latest), latest.get('series', [])):
         for im in serie.get('images', []):
             if im['file'] in li and im['file'] != latest.get('cover'):
-                previews.append((sid, im))
-    previews = previews[:6]
+                pool.append((sid, im))
+    card_img = pool[0][1] if pool else None
+    previews = pool[1:7]
     prev_html = ''.join(
         f'<a class="fx-latest__thumb" href="{latest["slug"]}/#{sid}">'
         f'{img_tag(latest["slug"] + "/images/", li[im["file"]], bi(im.get("alt", "")), "(max-width: 700px) 50vw, 16vw")}</a>'
         for sid, im in previews)
     meta_fr = f'{latest.get("city", "")} · {month_label(latest["date"], "fr")}'
     meta_en = f'{latest.get("city", "")} · {month_label(latest["date"], "en")}'
-    houses_latest = ' · '.join(dict.fromkeys(x.get('brand', '') for x in latest.get('series', [])))
+    houses_latest = ' · '.join(dict.fromkeys(x.get('brand', '') for x in latest.get('series', []) if x.get('images')))
     latest_card = (
         f'<a class="fx-latest__card reveal" href="{latest["slug"]}/">'
-        + (img_tag(f'{latest["slug"]}/images/', cover, bi(latest.get('cover_alt') or {'fr': tf, 'en': te}),
-                   '(max-width: 900px) 100vw, 60vw') if cover else '')
+        + (img_tag(f'{latest["slug"]}/images/', li[card_img['file']], bi(card_img.get('alt', '')),
+                   '(max-width: 900px) 100vw, 60vw') if card_img else '')
         + f'<span class="fx-latest__overlay">{t(meta_fr, meta_en, "span", "label")}'
         f'<span class="fx-latest__title" data-fr="{esc(lf)}<br>{esc(latest["season"])}" data-en="{esc(le)}<br>{esc(latest["season"])}">{esc(lf)}<br>{esc(latest["season"])}</span>'
         f'<span class="fx-latest__houses">{esc(houses_latest)}</span>'
@@ -492,8 +497,9 @@ def build_index(seasons, infos, template):
             + (img_tag(f'{s["slug"]}/images/', c, bi(s.get('cover_alt') or {'fr': sf, 'en': se}),
                        '(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw') if c else '<span class="fx-season__empty"></span>')
             + f'<span class="fx-season__body">{t(s.get("city", ""), s.get("city", ""), "span", "label")}'
-            f'<span class="fx-season__title" data-fr="{esc(sf)}" data-en="{esc(se)}">{esc(sf)}</span>'
-            f'<span class="fx-season__meta">{esc(s["season"])} · {t(month_label(s["date"], "fr"), month_label(s["date"], "en"))}</span>'
+            f'<span class="fx-season__title" data-fr="{esc(sf)} <span class=\'gold\'>{esc(s["season"])}</span>" '
+            f'data-en="{esc(se)} <span class=\'gold\'>{esc(s["season"])}</span>">{esc(sf)} <span class="gold">{esc(s["season"])}</span></span>'
+            f'<span class="fx-season__meta">{t(month_label(s["date"], "fr"), month_label(s["date"], "en"))}</span>'
             f'</span></a>')
 
     # Maisons : une ligne par marque et par saison (lien vers sa première série),

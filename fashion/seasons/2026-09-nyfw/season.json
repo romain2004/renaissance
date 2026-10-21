@@ -4,26 +4,46 @@
   "season": "SS27",
   "city": "New York",
   "date": "2026-09",
-  "draft": true,
+  "draft": false,
   "intro": {
-    "fr": "",
-    "en": ""
+    "fr": "Le 13 septembre, à l'Arte Museum de Chelsea, PUBLIC SERV-CE présentait « The Rest Is Noise » : tailoring précis, streetwear futuriste et musique électronique.",
+    "en": "On September 13, at the Arte Museum in Chelsea, PUBLIC SERV-CE presented “The Rest Is Noise”: precise tailoring, futuristic streetwear and electronic music."
   },
-  "cover": "",
-  "cover_alt": { "fr": "[à compléter]", "en": "[à compléter]" },
+  "cover": "public-serv-ce/USA01439-Enhanced-NR.jpg",
+  "cover_alt": {
+    "fr": "Mannequin en perruque blonde et sweat noir PUBLIC SERV-CE, face à l'objectif dans la pénombre bleue du podium",
+    "en": "Model in a blonde wig and black PUBLIC SERV-CE sweatshirt, facing the camera in the blue half-light of the runway"
+  },
   "series": [
+    {
+      "brand": "PUBLIC SERV-CE",
+      "designer": "Raphael Young",
+      "show": { "fr": "« The Rest Is Noise » · printemps-été 2027", "en": "“The Rest Is Noise” · Spring/Summer 2027" },
+      "images": [
+        { "file": "public-serv-ce/USA01263-Enhanced-NR.jpg", "alt": { "fr": "Mannequin en veste noire et perruque blanche sur le podium, des vestes « DREAMER » au premier plan", "en": "Model in a black jacket and white wig on the runway, “DREAMER” jackets in the foreground" }, "credit": "Mannequin : [à compléter]" },
+        { "file": "public-serv-ce/USA01322-Enhanced-NR.jpg", "alt": { "fr": "Mannequin en veste de costume argentée ouverte et pantalon noir, la tête baissée", "en": "Model in an open silver suit jacket and black trousers, head lowered" }, "credit": "Mannequin : [à compléter]" },
+        { "file": "public-serv-ce/USA01364-Enhanced-NR.jpg", "alt": { "fr": "Mannequin en bandana turquoise et veste à motif bandana, sandales blanches", "en": "Model in a turquoise bandana and bandana-print jacket, white sandals" }, "credit": "Mannequin : [à compléter]" },
+        { "file": "public-serv-ce/USA01413-Enhanced-NR.jpg", "alt": { "fr": "Mannequin en lunettes noires, blouson bicolore clair et pantalon cargo argenté", "en": "Model in black sunglasses, a light two-tone jacket and silver cargo trousers" }, "credit": "Mannequin : [à compléter]" },
+        { "file": "public-serv-ce/USA01248-Enhanced-NR.jpg", "alt": { "fr": "Mannequin en bandana et sweat noir délavé de blanc, lunettes noires", "en": "Model in a bandana and black bleach-washed sweatshirt, black sunglasses" }, "credit": "Mannequin : [à compléter]" },
+        { "file": "public-serv-ce/USA01451-Enhanced-NR.jpg", "alt": { "fr": "Mannequin en veste de cuir grise et bermuda noir, baskets rouges", "en": "Model in a grey leather jacket and black shorts, red sneakers" }, "credit": "Mannequin : [à compléter]" },
+        { "file": "public-serv-ce/USA01493-Enhanced-NR.jpg", "alt": { "fr": "Mannequin en lunettes rouges, veste noire et pantalon blanc", "en": "Model in red glasses, a black jacket and white trousers" }, "credit": "Mannequin : [à compléter]" },
+        { "file": "public-serv-ce/USA01579.jpg", "alt": { "fr": "Deux mannequins en perruques blanches, l'une en veste noire, l'autre en veste rose pâle, face au public", "en": "Two models in white wigs, one in a black jacket, the other in pale pink, facing the audience" }, "credit": "Mannequins : [à compléter]" }
+      ]
+    },
     {
       "brand": "Global Fashion Collective",
       "designer": "[à compléter]",
       "show": { "fr": "Défilé printemps-été 2027", "en": "Spring/Summer 2027 show" },
       "images": []
-    },
-    {
-      "brand": "Public Service",
-      "designer": "[à compléter]",
-      "show": { "fr": "Défilé printemps-été 2027", "en": "Spring/Summer 2027 show" },
-      "images": []
     }
   ],
-  "backstage": []
+  "backstage_title": { "fr": "Dans la salle", "en": "In the room" },
+  "backstage": [
+    { "file": "public-serv-ce/USA01167-Enhanced-NR.jpg", "alt": { "fr": "Le mur « HOUSE OF PUBLIC SERV-CE » au-dessus du public", "en": "The “HOUSE OF PUBLIC SERV-CE” wall above the audience" }, "credit": "" },
+    { "file": "public-serv-ce/USA01152-Enhanced-NR.jpg", "alt": { "fr": "Invité de dos, t-shirt crème « Seeking Sun » et bonnet en fausse fourrure", "en": "Guest seen from behind, cream “Seeking Sun” T-shirt and faux-fur hat" }, "credit": "" },
+    { "file": "public-serv-ce/USA01103-Enhanced-NR.jpg", "alt": { "fr": "Deux invités en blousons et casquettes au bord du podium", "en": "Two guests in jackets and caps at the edge of the runway" }, "credit": "" },
+    { "file": "public-serv-ce/USA01433-Enhanced-NR.jpg", "alt": { "fr": "Invitées au premier rang, jupes à carreaux et lunettes de soleil", "en": "Front-row guests in plaid skirts and sunglasses" }, "credit": "" },
+    { "file": "public-serv-ce/USA01610-Enhanced-NR.jpg", "alt": { "fr": "Deux invités en pleine conversation, chemise à motif cachemire", "en": "Two guests deep in conversation, paisley shirt" }, "credit": "" },
+    { "file": "public-serv-ce/USA01738-Enhanced-NR.jpg", "alt": { "fr": "Invités posant au bord du podium, veste en cuir et polo rayé « Saint Valley »", "en": "Guests posing at the edge of the runway, leather jacket and striped “Saint Valley” polo" }, "credit": "" }
+  ]
 }

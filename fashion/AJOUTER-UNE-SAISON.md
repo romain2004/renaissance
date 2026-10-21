@@ -22,7 +22,7 @@ Le plus simple : copie le dossier d'une saison existante, renomme-le, puis vide 
 
 - Exporte tes photos en JPEG, en pleine qualité. Le script réduit lui-même la taille et le poids.
 - Place-les dans `originals/`.
-- Les noms de fichiers sont libres, mais un nom par marque t'aidera : `ps-01.jpg`, `gfc-kehang-03.jpg`…
+- Range-les dans un sous-dossier par marque, par exemple `originals/public-serv-ce/`, puis écris le chemin dans `season.json` : `"file": "public-serv-ce/USA01263.jpg"`. Les noms de fichiers sont libres.
 
 ## 3. Remplir `season.json`
 
@@ -64,7 +64,8 @@ Le plus simple : copie le dossier d'une saison existante, renomme-le, puis vide 
 | `designer` | Le créateur. Utile pour GFC, qui présente plusieurs créateurs : fais une série par créateur, avec la même marque. `[à compléter]` le masque sur le site. |
 | `show` | Le nom du défilé, en FR et en EN. |
 | `images` | 3 à 8 images par série, dans l'ordre voulu. `alt` décrit l'image en FR et en EN. `credit` est facultatif (mannequin, stylisme…). |
-| `backstage` | Des images de coulisses, avec le même format que `images`. Laisse `[]` s'il n'y en a pas. |
+| `backstage` | Des images hors podium (coulisses, public, ambiance), avec le même format que `images`. Laisse `[]` s'il n'y en a pas. |
+| `backstage_title` | Le titre de cette section, par exemple `{ "fr": "Dans la salle", "en": "In the room" }`. Par défaut : « Coulisses / Backstage ». |
 
 Tout ce qui contient `[à compléter]` reste caché sur le site, et le script te le rappelle à la fin.
 
@@ -87,6 +88,7 @@ Puis ouvre http://localhost:8000/fashion/2027-02-nyfw/.
 Le script :
 - convertit chaque photo en WebP 1000 px et 2000 px (moins de 400 Ko environ en 2000 px), et ne reconvertit que les photos nouvelles ou modifiées ;
 - choisit la mise en page selon l'orientation de chaque photo : un paysage en pleine largeur, deux portraits côte à côte, un portrait seul en « détail » décalé ;
+- masque une série qui n'a pas encore de photos (elle réapparaît dès que tu en ajoutes) ;
 - génère la page de la saison, l'accueil Fashion (dernière saison, liste des saisons, liste des maisons) et le `sitemap.xml` ;
 - affiche à la fin un résumé avec les avertissements : image manquante, `alt` vide, marque sans images, champs `[à compléter]`.
 
