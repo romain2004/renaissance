@@ -87,7 +87,16 @@ def is_placeholder(s):
     return not s or '[à compléter]' in s or s.strip() in ('...', '…')
 
 
+def asset_version(path):
+    """Empreinte courte du fichier : le navigateur recharge le CSS/JS dès qu'il change."""
+    import hashlib
+    return hashlib.md5(path.read_bytes()).hexdigest()[:8]
+
+
 def fill(template, values):
+    values = {**values,
+              'v_css': asset_version(FASHION / 'css' / 'seasons.css'),
+              'v_js': asset_version(FASHION / 'js' / 'seasons.js')}
     out = template
     for k, v in values.items():
         out = out.replace('{{' + k + '}}', v)
@@ -276,10 +285,10 @@ def img_tag(slug_path, meta, alt, sizes, lazy=True, cls='', extra=''):
 
 
 def layout_rows(images, info):
-    """Rythme magazine : paysage = pleine largeur ; deux portraits = paire ; portrait isolé = détail.
-    Jamais deux paires de suite, pour garder de l'alternance."""
+    """Rythme magazine : paysage = pleine largeur ; deux portraits qui se suivent = paire ;
+    portrait isolé = seul, centré. Pour changer le rythme, change l'ordre des images."""
     imgs = [im for im in images if im['file'] in info]
-    rows, i, last = [], 0, None
+    rows, i = [], 0
     while i < len(imgs):
         m = info[imgs[i]['file']]
         portrait = m['h'] > m['w']
@@ -287,24 +296,22 @@ def layout_rows(images, info):
         nxt_portrait = nxt and info[nxt['file']]['h'] > info[nxt['file']]['w']
         if not portrait:
             rows.append(('full', [imgs[i]])); i += 1
-        elif nxt_portrait and last != 'pair':
+        elif nxt_portrait:
             rows.append(('pair', [imgs[i], nxt])); i += 2
         else:
             rows.append(('detail', [imgs[i]])); i += 1
-        last = rows[-1][0]
     return rows
 
 
 SIZES = {'full': '100vw', 'pair': '(max-width: 700px) 100vw, 50vw', 'detail': '(max-width: 700px) 100vw, 46vw'}
 
 
-def render_series(s, serie, info, index, sid):
+def render_rows(s, serie, info):
     slug = s['slug']
     brand = serie.get('brand') or ''
     designer = serie.get('designer') or ''
-    show_fr, show_en = bi(serie.get('show', ''))
     caption_parts = [brand] + ([] if is_placeholder(designer) else [designer])
-    rows_html, side = [], 'left'
+    rows_html = []
     for kind, ims in layout_rows(serie['images'], info):
         figs = []
         for im in ims:
@@ -316,29 +323,68 @@ def render_series(s, serie, info, index, sid):
             meta = info[im['file']]
             extra = (f' data-full="images/{meta["stem"]}-2000.webp" data-caption="{esc(caption)}"')
             figs.append(f'<figure class="ss-item">{img_tag("images/", meta, alt, SIZES[kind], extra=extra)}</figure>')
-        cls = f'ss-row ss-row--{kind}' + (f' ss-row--{side}' if kind == 'detail' else '')
-        if kind == 'detail':
-            side = 'right' if side == 'left' else 'left'
-        rows_html.append(f'<div class="{cls} reveal">{"".join(figs)}</div>')
+        rows_html.append(f'<div class="ss-row ss-row--{kind} reveal">{"".join(figs)}</div>')
+    return ''.join(rows_html)
+
+
+def serie_meta(s, serie):
+    show_fr, show_en = bi(serie.get('show', ''))
     city = s.get('city', '')
-    credits = [brand] + ([] if is_placeholder(designer) else [designer])
-    cred_fr = ' · '.join(credits + [x for x in (show_fr, city, s['season']) if x])
-    cred_en = ' · '.join(credits + [x for x in (show_en, city, s['season']) if x])
-    designer_html = '' if is_placeholder(designer) else f'<p class="ss-series__designer">{esc(designer)}</p>'
-    meta_fr = ' · '.join(x for x in (show_fr, city, month_label(s['date'], 'fr')) if x)
-    meta_en = ' · '.join(x for x in (show_en, city, month_label(s['date'], 'en')) if x)
-    return f'''
-  <section class="ss-series" id="{sid}">
+    return (' · '.join(x for x in (show_fr, city, month_label(s['date'], 'fr')) if x),
+            ' · '.join(x for x in (show_en, city, month_label(s['date'], 'en')) if x))
+
+
+def serie_credits(s, serie):
+    show_fr, show_en = bi(serie.get('show', ''))
+    designer = serie.get('designer') or ''
+    who = [serie.get('brand') or ''] + ([] if is_placeholder(designer) else [designer])
+    city = s.get('city', '')
+    return (' · '.join(who + [x for x in (show_fr, city, s['season']) if x]),
+            ' · '.join(who + [x for x in (show_en, city, s['season']) if x]))
+
+
+def render_brand(s, brand, items, info, index):
+    """Un bloc par marque. Une marque qui présente plusieurs créateurs (GFC) a un
+    chapitre par créateur, sous un seul titre. items = [(serie, sid), ...]"""
+    bid = slugify(brand) or items[0][1]
+    if len(items) == 1:
+        serie, sid = items[0]
+        designer = serie.get('designer') or ''
+        designer_html = '' if is_placeholder(designer) else f'<p class="ss-series__designer">{esc(designer)}</p>'
+        anchor = f'<span id="{sid}" class="ss-anchor"></span>' if sid != bid else ''
+        return f'''
+  <section class="ss-series" id="{bid}">{anchor}
     <header class="ss-series__head reveal">
       <span class="ss-series__num">{index:02d}</span>
       <div>
         <h2 class="ss-series__brand">{esc(brand)}</h2>
         {designer_html}
-        {t(meta_fr, meta_en, 'p', 'ss-series__meta')}
+        {t(*serie_meta(s, serie), 'p', 'ss-series__meta')}
       </div>
     </header>
-    {"".join(rows_html)}
-    {t(cred_fr, cred_en, 'p', 'ss-credits')}
+    {render_rows(s, serie, info)}
+    {t(*serie_credits(s, serie), 'p', 'ss-credits')}
+  </section>'''
+    chapters = []
+    for serie, sid in items:
+        designer = serie.get('designer') or ''
+        title = '' if is_placeholder(designer) else f'<h3 class="ss-chapter__title">{esc(designer)}</h3>'
+        chapters.append(f'''
+    <div class="ss-chapter"{'' if sid == bid else f' id="{sid}"'}>
+      <header class="ss-chapter__head reveal">
+        {title}
+        {t(*serie_meta(s, serie), 'p', 'ss-series__meta')}
+      </header>
+      {render_rows(s, serie, info)}
+      {t(*serie_credits(s, serie), 'p', 'ss-credits')}
+    </div>''')
+    return f'''
+  <section class="ss-series ss-series--multi" id="{bid}">
+    <header class="ss-series__head reveal">
+      <span class="ss-series__num">{index:02d}</span>
+      <div><h2 class="ss-series__brand">{esc(brand)}</h2></div>
+    </header>
+    {"".join(chapters)}
   </section>'''
 
 
@@ -411,14 +457,15 @@ def build_season(s, prev_s, next_s, info, template):
     if cover:
         alt = bi(s.get('cover_alt') or {'fr': tf, 'en': te})
         cover_html = img_tag('images/', cover, alt, '100vw', lazy=False, cls='ss-opening__img')
-    # numérotation continue : une série sans photos est ignorée (et signalée)
-    series_html, n = '', 0
+    # Un bloc par marque (dans l'ordre de première apparition), numérotation continue ;
+    # une série sans photos est ignorée (et signalée).
+    brands = {}
     for serie, sid in zip(s.get('series', []), series_ids(s)):
         if not serie.get('images'):
             warn(slug, f'« {serie.get("brand", "")} » n\'a aucune image : série masquée')
             continue
-        n += 1
-        series_html += render_series(s, serie, info, n, sid)
+        brands.setdefault(serie.get('brand', ''), []).append((serie, sid))
+    series_html = ''.join(render_brand(s, b, items, info, i + 1) for i, (b, items) in enumerate(brands.items()))
     tf_title, te_title = bi(s['title'])
     values = {
         'head_meta': head_meta(title_fr, title_en, desc_fr, desc_en, url,
@@ -515,7 +562,7 @@ def build_index(seasons, infos, template):
                 g['designers'].append(d)
     rows = sorted(groups.items(), key=lambda kv: (kv[0][0].lower(), kv[1]['season']['date']))
     house_items = ''.join(
-        f'<li><a class="fx-house" href="{g["season"]["slug"]}/#{g["sid"]}">'
+        f'<li><a class="fx-house" href="{g["season"]["slug"]}/#{slugify(brand) or g["sid"]}">'
         f'<span class="fx-house__brand">{esc(brand)}</span>'
         f'<span class="fx-house__designer">{esc(" · ".join(g["designers"]))}</span>'
         f'<span class="fx-house__season">{esc(g["season"]["season"])} · {esc(g["season"].get("city", ""))}</span></a></li>'
