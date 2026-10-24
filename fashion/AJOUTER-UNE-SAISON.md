@@ -56,13 +56,13 @@ Le plus simple : copie le dossier d'une saison existante, renomme-le, puis vide 
 | Champ | À quoi il sert |
 | --- | --- |
 | `slug` | Le nom du dossier. L'adresse de la page sera `/fashion/<slug>/`. |
-| `title`, `season`, `city`, `date` | Le titre (« New York Fashion Week · AW27 »), la ville et le mois (`AAAA-MM`). Le mois s'affiche en toutes lettres en FR et en EN. |
+| `title`, `season`, `city`, `date` | Le titre affiché est « `title` · mois » (« New York Fashion Week · Février 2027 »), le mois venant de `date` (`AAAA-MM`). `season` (AW27, SS28…) sert de repère interne : la collection s'écrit dans le `show` de chaque série (« Printemps-été 2027 »). |
 | `draft` | `true` : la saison reste cachée (pas sur l'accueil Fashion, pas dans le sitemap, jamais envoyée sur git). Passe à `false` pour la publier. |
 | `intro` | Une phrase d'introduction au maximum. Laisse `""` pour ne rien afficher. |
 | `cover`, `cover_alt` | L'image d'ouverture en plein écran, et sa description. |
 | `series` | Une entrée par marque, dans l'ordre d'affichage. |
 | `designer` | Le créateur. Utile pour GFC, qui présente plusieurs créateurs : fais une série par créateur, avec la même marque. `[à compléter]` le masque sur le site. |
-| `show` | Le nom du défilé, en FR et en EN. |
+| `show` | La collection (et le nom du défilé s'il en a un), en FR et en EN : « Printemps-été 2027 · « The Rest Is Noise » ». |
 | `images` | 3 à 8 images par série, dans l'ordre voulu. `alt` décrit l'image en FR et en EN. `credit` est facultatif (mannequin, stylisme…). |
 | `backstage` | Des images hors podium (coulisses, public, ambiance), avec le même format que `images`. Laisse `[]` s'il n'y en a pas. |
 | `backstage_title` | Le titre de cette section, par exemple `{ "fr": "Dans la salle", "en": "In the room" }`. Par défaut : « Coulisses / Backstage ». |

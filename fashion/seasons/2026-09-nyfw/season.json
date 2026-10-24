@@ -18,7 +18,7 @@
     {
       "brand": "PUBLIC SERV-CE",
       "designer": "Raphael Young",
-      "show": { "fr": "« The Rest Is Noise » · printemps-été 2027", "en": "“The Rest Is Noise” · Spring/Summer 2027" },
+      "show": { "fr": "Printemps-été 2027 · « The Rest Is Noise »", "en": "Spring/Summer 2027 · “The Rest Is Noise”" },
       "images": [
         { "file": "public-serv-ce/USA01263-Enhanced-NR.jpg", "alt": { "fr": "Mannequin en veste noire et perruque blanche sur le podium, des vestes « DREAMER » au premier plan", "en": "Model in a black jacket and white wig on the runway, “DREAMER” jackets in the foreground" }, "credit": "Mannequin : [à compléter]" },
         { "file": "public-serv-ce/USA01322-Enhanced-NR.jpg", "alt": { "fr": "Mannequin en veste de costume argentée ouverte et pantalon noir, la tête baissée", "en": "Model in an open silver suit jacket and black trousers, head lowered" }, "credit": "Mannequin : [à compléter]" },
@@ -33,7 +33,7 @@
     {
       "brand": "Global Fashion Collective",
       "designer": "[à compléter]",
-      "show": { "fr": "Défilé printemps-été 2027", "en": "Spring/Summer 2027 show" },
+      "show": { "fr": "Automne-hiver 2027", "en": "Fall/Winter 2027" },
       "images": []
     }
   ],

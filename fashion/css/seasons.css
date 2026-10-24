@@ -208,6 +208,7 @@ a:focus-visible, button:focus-visible {
   text-transform: uppercase;
 }
 .ss-opening__name { display: block; }
+.ss-opening__title .gold, .fx-season__title .gold { color: var(--gold); }
 
 .ss-intro {
   max-width: 620px;

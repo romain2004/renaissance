@@ -241,7 +241,8 @@ def season_files(s):
 
 def season_title(s):
     fr, en = bi(s['title'])
-    return f'{fr} · {s["season"]}', f'{en} · {s["season"]}'
+    # « New York Fashion Week · Septembre 2026 » : la collection (SS27…) est dans le sous-titre de chaque série
+    return f'{fr} · {month_label(s["date"], "fr")}', f'{en} · {month_label(s["date"], "en")}'
 
 
 def series_id(serie):
@@ -339,8 +340,8 @@ def serie_credits(s, serie):
     designer = serie.get('designer') or ''
     who = [serie.get('brand') or ''] + ([] if is_placeholder(designer) else [designer])
     city = s.get('city', '')
-    return (' · '.join(who + [x for x in (show_fr, city, s['season']) if x]),
-            ' · '.join(who + [x for x in (show_en, city, s['season']) if x]))
+    return (' · '.join(who + [x for x in (show_fr, city, month_label(s['date'], 'fr')) if x]),
+            ' · '.join(who + [x for x in (show_en, city, month_label(s['date'], 'en')) if x]))
 
 
 def render_brand(s, brand, items, info, index):
@@ -451,8 +452,8 @@ def build_season(s, prev_s, next_s, info, template):
     title_fr = f'{tf} — Romain Maulavé'
     title_en = f'{te} — Romain Maulavé'
     brands = ', '.join(dict.fromkeys(x.get('brand', '') for x in s.get('series', [])))
-    desc_fr = f'{tf}, {month_label(s["date"], "fr").lower()}. Photographies de Romain Maulavé : {brands}.'
-    desc_en = f'{te}, {month_label(s["date"], "en")}. Photographs by Romain Maulavé: {brands}.'
+    desc_fr = f'{tf}. Photographies de Romain Maulavé : {brands}.'
+    desc_en = f'{te}. Photographs by Romain Maulavé: {brands}.'
     cover_html = ''
     if cover:
         alt = bi(s.get('cover_alt') or {'fr': tf, 'en': te})
@@ -474,9 +475,9 @@ def build_season(s, prev_s, next_s, info, template):
         'preload': (f'<link rel="preload" as="image" href="images/{cover["stem"]}-1000.webp" '
                     f'imagesrcset="images/{cover["stem"]}-1000.webp 1000w, images/{cover["stem"]}-2000.webp 2000w" imagesizes="100vw" />') if cover else '',
         'cover': cover_html,
-        'eyebrow': t(f'{s.get("city", "")} · {month_label(s["date"], "fr")}', f'{s.get("city", "")} · {month_label(s["date"], "en")}', 'span', 'label'),
+        'eyebrow': t(s.get('city', ''), s.get('city', ''), 'span', 'label'),
         'title': t(tf_title, te_title, 'span', 'ss-opening__name'),
-        'season': esc(s['season']),
+        'season': t(month_label(s['date'], 'fr'), month_label(s['date'], 'en')),
         'intro': t(intro_fr, intro_en, 'p', 'ss-intro reveal') if intro_fr else '',
         'series': series_html,
         'backstage': render_backstage(s, info),
@@ -529,7 +530,7 @@ def build_index(seasons, infos, template):
         + (img_tag(f'{latest["slug"]}/images/', li[card_img['file']], bi(card_img.get('alt', '')),
                    '(max-width: 900px) 100vw, 60vw') if card_img else '')
         + f'<span class="fx-latest__overlay">{t(meta_fr, meta_en, "span", "label")}'
-        f'<span class="fx-latest__title" data-fr="{esc(lf)}<br>{esc(latest["season"])}" data-en="{esc(le)}<br>{esc(latest["season"])}">{esc(lf)}<br>{esc(latest["season"])}</span>'
+        f'<span class="fx-latest__title" data-fr="{esc(lf)}<br>{esc(month_label(latest["date"], "fr"))}" data-en="{esc(le)}<br>{esc(month_label(latest["date"], "en"))}">{esc(lf)}<br>{esc(month_label(latest["date"], "fr"))}</span>'
         f'<span class="fx-latest__houses">{esc(houses_latest)}</span>'
         f'{t("Voir la saison →", "View the season →", "span", "fx-latest__cta")}</span></a>')
 
@@ -544,9 +545,9 @@ def build_index(seasons, infos, template):
             + (img_tag(f'{s["slug"]}/images/', c, bi(s.get('cover_alt') or {'fr': sf, 'en': se}),
                        '(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw') if c else '<span class="fx-season__empty"></span>')
             + f'<span class="fx-season__body">{t(s.get("city", ""), s.get("city", ""), "span", "label")}'
-            f'<span class="fx-season__title" data-fr="{esc(sf)} <span class=\'gold\'>{esc(s["season"])}</span>" '
-            f'data-en="{esc(se)} <span class=\'gold\'>{esc(s["season"])}</span>">{esc(sf)} <span class="gold">{esc(s["season"])}</span></span>'
-            f'<span class="fx-season__meta">{t(month_label(s["date"], "fr"), month_label(s["date"], "en"))}</span>'
+            f'<span class="fx-season__title" data-fr="{esc(sf)} <span class=\'gold\'>{esc(month_label(s["date"], "fr"))}</span>" '
+            f'data-en="{esc(se)} <span class=\'gold\'>{esc(month_label(s["date"], "en"))}</span>">{esc(sf)} <span class="gold">{esc(month_label(s["date"], "fr"))}</span></span>'
+            f'<span class="fx-season__meta">{esc(" · ".join(dict.fromkeys(x.get("brand", "") for x in s.get("series", []) if x.get("images"))))}</span>'
             f'</span></a>')
 
     # Maisons : une ligne par marque et par saison (lien vers sa première série),
@@ -565,7 +566,7 @@ def build_index(seasons, infos, template):
         f'<li><a class="fx-house" href="{g["season"]["slug"]}/#{slugify(brand) or g["sid"]}">'
         f'<span class="fx-house__brand">{esc(brand)}</span>'
         f'<span class="fx-house__designer">{esc(" · ".join(g["designers"]))}</span>'
-        f'<span class="fx-house__season">{esc(g["season"]["season"])} · {esc(g["season"].get("city", ""))}</span></a></li>'
+        f'<span class="fx-house__season">{t(month_label(g["season"]["date"], "fr"), month_label(g["season"]["date"], "en"))} · {esc(g["season"].get("city", ""))}</span></a></li>'
         for (brand, _), g in rows)
 
     url = f'{SITE_URL}/fashion/'
