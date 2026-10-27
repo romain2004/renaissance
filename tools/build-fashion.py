@@ -30,6 +30,8 @@ FASHION = ROOT / 'fashion'
 SEASONS_DIR = FASHION / 'seasons'
 TEMPLATES = ROOT / 'tools' / 'templates'
 SITEMAP = ROOT / 'sitemap.xml'
+SHARE = ROOT / 'images' / 'share'     # images de partage (LinkedIn, WhatsApp…) : JPEG 1200 × 630
+SHARE_W, SHARE_H, SHARE_MAX = 1200, 630, 300_000
 SITE_URL = 'https://www.romainmaulave.com'
 
 WIDTHS = (1000, 2000)              # tailles générées (jamais d'agrandissement)
@@ -206,6 +208,39 @@ def process_images(slug, season_dir, out_dir, files):
         stats['converted'] += 1
     manifest_path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + '\n')
     return info
+
+
+def share_image(s, info):
+    """Image de partage de la saison : la couverture recadrée en JPEG 1200 × 630 (< 300 Ko).
+    Un portrait est cadré vers le haut (visage) ; "share_position" (0 = haut, 1 = bas) l'ajuste.
+    Renvoie le nom du fichier dans images/share/, ou '' sans couverture."""
+    name = s.get('cover')
+    if not name or name not in info:
+        return ''
+    out = SHARE / f'fashion-{s["slug"]}.jpg'
+    src = s['_dir'] / 'originals' / name
+    meta = info[name]
+    y = float(s.get('share_position', 0.2 if meta['h'] > meta['w'] else 0.5))
+    key = f'{meta.get("key")}-{y}'
+    manifest_path = FASHION / s['slug'] / 'images' / 'manifest.json'
+    manifest = json.loads(manifest_path.read_text()) if manifest_path.exists() else {}
+    if out.exists() and (not src.exists() or manifest.get('_share') == key):
+        return out.name
+    if not src.exists():
+        warn(s['slug'], f'image de partage impossible : originals/{name} manquant')
+        return ''
+    SHARE.mkdir(parents=True, exist_ok=True)
+    vf = ','.join(filter(None, [ROTATE.get(exif_orientation(src)),
+                                f'scale={SHARE_W}:{SHARE_H}:force_original_aspect_ratio=increase:flags=lanczos',
+                                f'crop={SHARE_W}:{SHARE_H}:(iw-{SHARE_W})/2:(ih-{SHARE_H})*{y}']))
+    for q in (3, 4, 5, 6, 8):
+        subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', str(src), '-vf', vf, '-frames:v', '1',
+                        '-q:v', str(q), str(out)], check=True)
+        if out.stat().st_size <= SHARE_MAX:
+            break
+    manifest['_share'] = key
+    manifest_path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + '\n')
+    return out.name
 
 
 # ── Données ─────────────────────────────────────────────────────────────────
@@ -450,16 +485,26 @@ def season_nav(prev_s, next_s):
             + link(next_s, 'next', 'Saison suivante →', 'Next season →'))
 
 
-def head_meta(title_fr, title_en, desc_fr, desc_en, url, image):
+def head_meta(title_fr, title_en, desc_fr, desc_en, url, image, share_title, share_desc, image_alt):
+    """<title>, description, et l'aperçu au partage (LinkedIn, WhatsApp…) : image JPEG absolue."""
     return (f'<title data-fr="{esc(title_fr)}" data-en="{esc(title_en)}">{esc(title_fr)}</title>\n'
             f'  <meta name="description" content="{esc(desc_fr)}" data-desc-fr="{esc(desc_fr)}" data-desc-en="{esc(desc_en)}" />\n'
             f'  <link rel="canonical" href="{url}" />\n'
             f'  <meta property="og:type" content="website" />\n'
-            f'  <meta property="og:title" content="{esc(title_fr)}" />\n'
-            f'  <meta property="og:description" content="{esc(desc_fr)}" />\n'
+            f'  <meta property="og:locale" content="fr_FR" />\n'
+            f'  <meta property="og:site_name" content="Romain Maulavé" />\n'
+            f'  <meta property="og:title" content="{esc(share_title)}" />\n'
+            f'  <meta property="og:description" content="{esc(share_desc)}" />\n'
             f'  <meta property="og:url" content="{url}" />\n'
             + (f'  <meta property="og:image" content="{image}" />\n'
-               f'  <meta name="twitter:card" content="summary_large_image" />\n' if image else ''))
+               f'  <meta property="og:image:type" content="image/jpeg" />\n'
+               f'  <meta property="og:image:width" content="{SHARE_W}" />\n'
+               f'  <meta property="og:image:height" content="{SHARE_H}" />\n'
+               f'  <meta property="og:image:alt" content="{esc(image_alt)}" />\n' if image else '')
+            + f'  <meta name="twitter:card" content="summary_large_image" />\n'
+            f'  <meta name="twitter:title" content="{esc(share_title)}" />\n'
+            f'  <meta name="twitter:description" content="{esc(share_desc)}" />\n'
+            + (f'  <meta name="twitter:image" content="{image}" />\n' if image else ''))
 
 
 def build_season(s, prev_s, next_s, info, template):
@@ -492,9 +537,15 @@ def build_season(s, prev_s, next_s, info, template):
         brands.setdefault(serie.get('brand', ''), []).append((serie, sid))
     series_html = ''.join(render_brand(s, b, items, info, i + 1) for i, (b, items) in enumerate(brands.items()))
     tf_title, te_title = bi(s['title'])
+    share = share_image(s, info)
+    brand_list = [b for b in dict.fromkeys(x.get('brand', '') for x in s.get('series', []) if x.get('images')) if b]
+    houses = ' et '.join([', '.join(brand_list[:-1]), brand_list[-1]] if len(brand_list) > 1 else brand_list)
     values = {
         'head_meta': head_meta(title_fr, title_en, desc_fr, desc_en, url,
-                               f'{SITE_URL}/fashion/{slug}/images/{cover["stem"]}-2000.webp' if cover else ''),
+                               f'{SITE_URL}/images/share/{share}' if share else '',
+                               f'{tf} · Romain Maulavé',
+                               f'{houses}, photographiés au bord du podium par Romain Maulavé.',
+                               bi(s.get('cover_alt') or {'fr': tf})[0]),
         'robots': '<meta name="robots" content="noindex" />' if s.get('draft') else '',
         'preload': (f'<link rel="preload" as="image" href="images/{cover["stem"]}-1000.webp" '
                     f'imagesrcset="images/{cover["stem"]}-1000.webp 1000w, images/{cover["stem"]}-2000.webp 2000w" imagesizes="100vw" />') if cover else '',
@@ -598,7 +649,10 @@ def build_index(seasons, infos, template):
         'head_meta': head_meta('Fashion — Romain Maulavé', 'Fashion — Romain Maulavé',
                                'Fashion Weeks photographiées par Romain Maulavé : une sélection par saison, défilé par défilé.',
                                'Fashion Weeks photographed by Romain Maulavé: a tight selection per season, show by show.',
-                               url, f'{SITE_URL}/fashion/{latest["slug"]}/images/{cover["stem"]}-2000.webp' if cover else ''),
+                               url, f'{SITE_URL}/images/share/fashion.jpg' if (SHARE / 'fashion.jpg').exists() else '',
+                               'Romain Maulavé · Fashion Week, au bord du podium',
+                               'Les défilés de la New York Fashion Week photographiés par Romain Maulavé, saison par saison.',
+                               'Trois silhouettes du défilé GFC à la New York Fashion Week : cape rouge, robe blanche brodée, robe noire pailletée'),
         'preload': (f'<link rel="preload" as="image" href="{latest["slug"]}/images/{cover["stem"]}-1000.webp" '
                     f'imagesrcset="{latest["slug"]}/images/{cover["stem"]}-1000.webp 1000w, {latest["slug"]}/images/{cover["stem"]}-2000.webp 2000w" imagesizes="100vw" />') if cover else '',
         'hero_img': hero_img,
