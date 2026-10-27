@@ -73,8 +73,14 @@ def bi(value):
     return value or '', value or ''
 
 
+def nbsp(s):
+    """Guillemets français : jamais seuls en début ou fin de ligne."""
+    return str(s).replace('« ', '«\u00a0').replace(' »', '\u00a0»')
+
+
 def t(fr, en, tag='span', cls='', extra=''):
     """Élément bilingue au format du site : data-fr / data-en, texte FR par défaut."""
+    fr, en = nbsp(fr), nbsp(en)
     c = f' class="{cls}"' if cls else ''
     return f'<{tag}{c}{extra} data-fr="{esc(fr)}" data-en="{esc(en)}">{esc(fr)}</{tag}>'
 
@@ -333,10 +339,10 @@ def cover_sizes(meta, box_ratio, slots):
 
 
 def layout_rows(images, info):
-    """Rythme magazine : paysage = pleine largeur ; deux portraits qui se suivent = paire ;
-    portrait isolé = seul, centré, en grand. Pour changer le rythme, change l'ordre des images,
-    ou force la mise en page d'un portrait avec "layout" : "solo" (seul, en grand) ou
-    "detail" (plus petit, avec de l'air autour)."""
+    """Trois gabarits seulement, choisis selon l'orientation : horizontale = pleine largeur ;
+    deux verticales qui se suivent = paire de même hauteur ; verticale isolée = seule, centrée.
+    Pour changer le rythme, change l'ordre des images, ou garde une verticale seule avec
+    "layout" : "solo"."""
     imgs = [im for im in images if im['file'] in info]
 
     def portrait(im):
@@ -347,11 +353,11 @@ def layout_rows(images, info):
     while i < len(imgs):
         im = imgs[i]
         nxt = imgs[i + 1] if i + 1 < len(imgs) else None
-        forced = im.get('layout') in ('solo', 'detail')
+        forced = im.get('layout') in ('solo', 'detail')   # "detail" (ancien) = "solo"
         if not portrait(im):
             rows.append(('full', [im])); i += 1
         elif forced:
-            rows.append((im['layout'], [im])); i += 1
+            rows.append(('solo', [im])); i += 1
         elif nxt and portrait(nxt) and nxt.get('layout') not in ('solo', 'detail'):
             rows.append(('pair', [im, nxt])); i += 2
         else:
@@ -359,8 +365,17 @@ def layout_rows(images, info):
     return rows
 
 
-SIZES = {'full': '100vw', 'pair': '(max-width: 700px) 100vw, 50vw',
-         'solo': '(max-width: 700px) 100vw, 60vw', 'detail': '(max-width: 700px) 80vw, 34vw'}
+SIZES = {'full': '100vw', 'pair': '(max-width: 700px) 100vw, 42vw', 'solo': '(max-width: 700px) 100vw, 60vw'}
+
+
+def row_html(kind, ims, info, figs):
+    """Une paire porte la somme des proportions de ses deux photos (--ar) : le CSS en tire une
+    hauteur commune, les deux verticales ont donc exactement la même hauteur."""
+    style = ''
+    if kind == 'pair':
+        ar = sum(info[im['file']]['w'] / info[im['file']]['h'] for im in ims)
+        style = f' style="--ar: {ar:.4f}"'
+    return f'<div class="ss-row ss-row--{kind} reveal"{style}>{"".join(figs)}</div>'
 
 
 def render_rows(s, serie, info):
@@ -368,7 +383,7 @@ def render_rows(s, serie, info):
     brand = serie.get('brand') or ''
     designer = serie.get('designer') or ''
     caption_parts = [brand] + ([] if is_placeholder(designer) else [designer])
-    rows_html, n_detail = [], 0
+    rows_html = []
     for kind, ims in layout_rows(serie['images'], info):
         figs = []
         for im in ims:
@@ -380,11 +395,7 @@ def render_rows(s, serie, info):
             meta = info[im['file']]
             extra = (f' data-full="images/{meta["stem"]}-2000.webp" data-caption="{esc(caption)}"')
             figs.append(f'<figure class="ss-item">{img_tag("images/", meta, alt, SIZES[kind], extra=extra)}</figure>')
-        side = ''
-        if kind == 'detail':
-            side = ' ss-row--left' if n_detail % 2 == 0 else ' ss-row--right'
-            n_detail += 1
-        rows_html.append(f'<div class="ss-row ss-row--{kind}{side} reveal">{"".join(figs)}</div>')
+        rows_html.append(row_html(kind, ims, info, figs))
     return ''.join(rows_html)
 
 
@@ -425,7 +436,6 @@ def render_brand(s, brand, items, info, index):
         return f'''
   <section class="ss-series{' ss-series--next' if index > 1 else ''}" id="{bid}">{anchor}
     <header class="ss-series__head reveal">
-      <span class="ss-series__num">{index:02d}</span>
       <div>
         <h2 class="ss-series__brand">{esc(brand)}</h2>
         {designer_html}
@@ -451,7 +461,6 @@ def render_brand(s, brand, items, info, index):
     return f'''
   <section class="ss-series ss-series--multi{' ss-series--next' if index > 1 else ''}" id="{bid}">
     <header class="ss-series__head reveal">
-      <span class="ss-series__num">{index:02d}</span>
       <div><h2 class="ss-series__brand">{esc(brand)}</h2></div>
     </header>
     {"".join(chapters)}
@@ -473,11 +482,10 @@ def render_backstage(s, info):
             cap = im.get('credit', '')
             extra = f' data-full="images/{meta["stem"]}-2000.webp" data-caption="{esc("" if is_placeholder(cap) else cap)}"'
             figs.append(f'<figure class="ss-item">{img_tag("images/", meta, alt, SIZES[kind], extra=extra)}</figure>')
-        rows.append(f'<div class="ss-row ss-row--{kind} reveal">{"".join(figs)}</div>')
+        rows.append(row_html(kind, group, info, figs))
     return f'''
   <section class="ss-series ss-series--backstage" id="coulisses">
     <header class="ss-series__head reveal">
-      <span class="ss-series__num">—</span>
       <div>{t(*bi(s.get("backstage_title") or {"fr": "Coulisses", "en": "Backstage"}), "h2", "ss-series__brand")}</div>
     </header>
     {"".join(rows)}
@@ -566,7 +574,8 @@ def build_season(s, prev_s, next_s, info, template):
         'cover': cover_html,
         'eyebrow': t(s.get('city', ''), s.get('city', ''), 'span', 'label'),
         'title': t(tf_title, te_title, 'span', 'ss-opening__name'),
-        'season': t(month_label(s['date'], 'fr'), month_label(s['date'], 'en')),
+        'season': t(' · '.join(x for x in (month_label(s['date'], 'fr'), s.get('city', '')) if x),
+                    ' · '.join(x for x in (month_label(s['date'], 'en'), s.get('city', '')) if x), 'p', 'ss-opening__tag'),
         'intro': t(intro_fr, intro_en, 'p', 'ss-intro reveal') if intro_fr else '',
         'series': series_html,
         'backstage': render_backstage(s, info),
@@ -651,9 +660,8 @@ def build_index(seasons, infos, template):
             f'<a class="fx-season reveal" href="{s["slug"]}/">'
             + (img_tag(f'{s["slug"]}/images/', c, bi(c_alt or {'fr': sf, 'en': se}),
                        cover_sizes(c, 4 / 5, [('(max-width: 700px)', 100), ('(max-width: 960px)', 50), ('', 33)])) if c else '<span class="fx-season__empty"></span>')
-            + f'<span class="fx-season__body">{t(s.get("city", ""), s.get("city", ""), "span", "label")}'
-            f'<span class="fx-season__title" data-fr="{esc(sf)} <span class=\'gold\'>{esc(month_label(s["date"], "fr"))}</span>" '
-            f'data-en="{esc(se)} <span class=\'gold\'>{esc(month_label(s["date"], "en"))}</span>">{esc(sf)} <span class="gold">{esc(month_label(s["date"], "fr"))}</span></span>'
+            + f'<span class="fx-season__body">{t(sf, se, "span", "fx-season__title")}'
+            f'{t(month_label(s["date"], "fr") + " · " + s.get("city", ""), month_label(s["date"], "en") + " · " + s.get("city", ""), "span", "fx-season__tag")}'
             f'<span class="fx-season__meta">{esc(" · ".join(dict.fromkeys(x.get("brand", "") for x in s.get("series", []) if x.get("images"))))}</span>'
             f'</span></a>')
 
@@ -697,7 +705,9 @@ def build_index(seasons, infos, template):
         'preload': (f'<link rel="preload" as="image" href="{latest["slug"]}/images/{hero["stem"]}-1000.webp" '
                     f'imagesrcset="{latest["slug"]}/images/{hero["stem"]}-1000.webp 1000w, {latest["slug"]}/images/{hero["stem"]}-2000.webp 2000w" imagesizes="100vw" />') if hero else '',
         'hero_img': hero_img,
-        'hero_label': t(f'Dernière saison · {tf}', f'Latest season · {te}', 'span', 'label fx-hero__label'),
+        'hero_title': t(lf, le, 'span', 'fx-hero__title'),
+        'hero_tag': t(f'{month_label(latest["date"], "fr")} · {latest.get("city", "")}',
+                      f'{month_label(latest["date"], "en")} · {latest.get("city", "")}', 'span', 'fx-hero__tag'),
         'latest_url': f'{latest["slug"]}/',
         'latest_card': latest_card,
         'latest_previews': prev_html,
