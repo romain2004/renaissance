@@ -1,14 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Contact — Romain MaulavÃ©. Collaborations, press, and inquiries.">
-  <title>Contact — Romain MaulavÃ©</title>
+  <title data-fr="Contact — Romain Maulavé" data-en="Contact — Romain Maulavé">Contact — Romain Maulavé</title>
+  <meta name="description" content="Fashion Week, éditorial, campagne, Riviera : parlons de votre projet. Réponse sous 24 h."
+        data-desc-fr="Fashion Week, éditorial, campagne, Riviera : parlons de votre projet. Réponse sous 24 h."
+        data-desc-en="Fashion Week, editorial, campaign, Riviera: let's talk about your project. Reply within 24 h.">
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500&display=swap">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/contact.css">
 </head>
-<body>
+<body class="page-contact">
 
   <!-- ══ NAVIGATION ═══════════════════════════════════════════ -->
   <nav class="nav scrolled" id="nav">
@@ -31,85 +37,101 @@
     <a href="contact.html">Contact</a>
   </div>
 
-  <!-- ══ CONTACT ══════════════════════════════════════════════ -->
-  <main class="contact-wrap">
+  <!-- ══ CONTACT : photos en fondu à gauche, formulaire à droite ═══════════ -->
+  <main class="ct">
 
-    <!-- ── Left column: info & socials ───────────────────────── -->
-    <div class="contact-info">
-      <!-- Edit headline below -->
-      <h1 class="contact-info__title reveal">
-        Let's<br>Talk.
+    <!-- 4 photos en fondu lent (2 Fashion, 2 Riviera) ; sur mobile, une seule photo horizontale -->
+    <section class="ct-visual" aria-label="Photographies">
+      <div class="ct-slides" aria-hidden="true">
+        <img src="images/contact/fashion-cape.webp" alt="" width="1400" height="2100" fetchpriority="high">
+        <img src="images/contact/riviera-ponche.webp" alt="" width="1400" height="2100" loading="lazy">
+        <img src="images/contact/fashion-manteau.webp" alt="" width="1400" height="2100" loading="lazy">
+        <img src="images/contact/riviera-port.webp" alt="" width="1400" height="2100" loading="lazy">
+      </div>
+      <img class="ct-mobile-img" src="images/contact/riviera-ponche-large.webp" alt="" width="1200" height="800" aria-hidden="true">
+      <h1 class="ct-title">
+        <span data-fr="Parlons-" data-en="Let's ">Parlons-</span><span class="ct-title__accent" data-fr="en." data-en="talk.">en.</span>
       </h1>
+    </section>
 
-      <!-- Edit email address below -->
-      <a href="mailto:hello@romainmaulave.com" class="contact-info__email reveal d1">
-        hello@romainmaulave.com
-      </a>
+    <section class="ct-panel">
+      <!--
+        Envoi : l'adresse du service est dans data-endpoint (aujourd'hui FormSubmit, qui demande
+        d'avoir validé une fois son e-mail d'activation). Pour passer à Web3Forms ou Formspree,
+        on change seulement data-endpoint (et la clé d'accès), voir js/contact.js.
+      -->
+      <form class="ct-form" id="contact-form" novalidate
+            data-endpoint="https://formsubmit.co/ajax/hello@romainmaulave.com">
 
-    </div>
+        <!-- Champ piège anti-spam : invisible pour un humain, rempli par les robots -->
+        <div class="ct-trap" aria-hidden="true">
+          <label for="ct-website">Ne pas remplir</label>
+          <input type="text" id="ct-website" name="_honey" tabindex="-1" autocomplete="off">
+        </div>
 
-    <!-- ── Right column: contact form ────────────────────────── -->
-    <!--
-      FORMSPREE SETUP (à faire une seule fois) :
-      1. Va sur https://formspree.io et crée un compte gratuit
-      2. Crée un nouveau form → copie ton endpoint (ex: https://formspree.io/f/xpwzabcd)
-      3. Remplace l'URL ci-dessous par ton endpoint
-      → Formspree enverra chaque message directement sur hello@romainmaulave.com
-    -->
-    <form class="contact-form reveal d1" action="https://formsubmit.co/hello@romainmaulave.com" method="POST" novalidate>
+        <div class="ct-field">
+          <label for="ct-name" data-fr="Nom" data-en="Name">Nom</label>
+          <input type="text" id="ct-name" name="name" required autocomplete="name">
+        </div>
 
-      <!-- FormSubmit config -->
-      <input type="hidden" name="_captcha"  value="false">
-      <input type="hidden" name="_subject"  value="Nouveau message — Portfolio RM">
-      <input type="hidden" name="_template" value="table">
+        <div class="ct-field">
+          <label for="ct-email" data-fr="E-mail" data-en="Email">E-mail</label>
+          <input type="email" id="ct-email" name="email" required autocomplete="email">
+        </div>
 
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" placeholder="Your name" required autocomplete="name">
+        <fieldset class="ct-field ct-choices">
+          <legend data-fr="Projet" data-en="Project">Projet</legend>
+          <div class="ct-chips">
+            <label class="ct-chip"><input type="radio" name="project" value="Fashion Week" required><span>Fashion Week</span></label>
+            <label class="ct-chip"><input type="radio" name="project" value="Éditorial"><span data-fr="Éditorial" data-en="Editorial">Éditorial</span></label>
+            <label class="ct-chip"><input type="radio" name="project" value="Campagne de marque"><span data-fr="Campagne de marque" data-en="Brand campaign">Campagne de marque</span></label>
+            <label class="ct-chip"><input type="radio" name="project" value="Particulier"><span data-fr="Particulier" data-en="Private client">Particulier</span></label>
+            <label class="ct-chip"><input type="radio" name="project" value="Établissement"><span data-fr="Établissement" data-en="Business">Établissement</span></label>
+          </div>
+        </fieldset>
+
+        <div class="ct-field">
+          <label for="ct-date"><span data-fr="Date ou période" data-en="Date or period">Date ou période</span> <span class="ct-optional" data-fr="(facultatif)" data-en="(optional)">(facultatif)</span></label>
+          <input type="text" id="ct-date" name="date" autocomplete="off"
+                 data-ph-fr="Ex. : 14 septembre, ou l'été 2027" data-ph-en="E.g. September 14, or summer 2027" placeholder="Ex. : 14 septembre, ou l'été 2027">
+        </div>
+
+        <div class="ct-field">
+          <label for="ct-message" data-fr="Message" data-en="Message">Message</label>
+          <textarea id="ct-message" name="message" rows="5" required></textarea>
+        </div>
+
+        <button type="submit" class="ct-submit" data-fr="Envoyer" data-en="Send">Envoyer</button>
+
+        <p class="ct-status" role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="ct-info">
+        <p data-fr="Basé sur la Côte d'Azur · Disponible dans le monde entier" data-en="Based on the French Riviera · Available worldwide">Basé sur la Côte d'Azur · Disponible dans le monde entier</p>
+        <p data-fr="Réponse sous 24 h" data-en="Reply within 24 h">Réponse sous 24 h</p>
+        <p class="ct-links">
+          <a href="mailto:hello@romainmaulave.com">hello@romainmaulave.com</a>
+          <!-- Instagram : lien à ajouter quand Romain l'aura donné -->
+          <a href="https://wa.me/33783716979">WhatsApp</a>
+        </p>
       </div>
-
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="your@email.com" required autocomplete="email">
-      </div>
-
-      <div class="form-group">
-        <label for="subject">Subject</label>
-        <select id="subject" name="subject" required>
-          <option value="" disabled selected>Select a subject</option>
-          <option value="fashion-week">Fashion Week Coverage</option>
-          <option value="editorial">Editorial Shoot</option>
-          <option value="film-video">Film / Video Project</option>
-          <option value="collaboration">Collaboration</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" placeholder="Your message…" required></textarea>
-      </div>
-
-      <button type="submit" class="btn-submit">Send Message</button>
-
-    </form>
+    </section>
 
   </main>
 
   <!-- ══ FOOTER ═══════════════════════════════════════════════ -->
-  <footer>
-    <span>© Romain MaulavÃ© — All rights reserved</span>
+  <footer class="ct-footer">
+    <span data-fr="© Romain Maulavé — Tous droits réservés" data-en="© Romain Maulavé — All rights reserved">© Romain Maulavé — Tous droits réservés</span>
+    <a href="mailto:hello@romainmaulave.com">hello@romainmaulave.com</a>
   </footer>
 
   <div class="grain" aria-hidden="true"></div>
   <div class="loader" id="loader" aria-hidden="true">
     <span class="loader__logo">RM</span>
   </div>
-  <div class="cursor-dot"  id="cursor-dot"  aria-hidden="true"></div>
-  <div class="cursor-ring" id="cursor-ring" aria-hidden="true">
-    <span class="cursor-label" id="cursor-label"></span>
-  </div>
 
   <script src="js/main.js"></script>
+  <script src="js/seasons.js"></script>
+  <script src="js/contact.js"></script>
 </body>
 </html>
