@@ -2,13 +2,7 @@
    ROMAIN MAULAVÉ — Master Homepage
    ───────────────────────────────────────────────────────── */
 
-// ── Loader ────────────────────────────────────────────────
-// Moins d'1 s au total (0,45 s + fondu de 0,3 s), sans attendre le chargement des images ;
-// supprimé si prefers-reduced-motion.
-const loader = document.getElementById('loader');
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if (reduceMotion) loader.classList.add('is-hidden');
-else setTimeout(() => loader.classList.add('is-hidden'), 450);
+// L'écran de chargement et l'en-tête sont communs à tout le site : css/site.css, js/site.js.
 
 
 // ── Scroll reveal ──────────────────────────────────────────

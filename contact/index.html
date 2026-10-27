@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact — Romain Maulavé. Collaborations, press, and inquiries.">
+  <title>Contact — Romain Maulavé</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="canonical" href="https://www.romainmaulave.com/contact/">
+  <!-- site:head -->
+  <!-- Commun à tout le site (tools/build-site.py) : police du logo, en-tête, écran de chargement -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500&display=swap">
+  <link rel="stylesheet" href="/css/site.css?v=e0480b6a">
+  <script>
+    /* Écran de chargement : une fois par session, jamais si l'utilisateur réduit les animations.
+       Il s'efface tout seul en CSS : même si le JavaScript échoue, il ne bloque rien. */
+    try {
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches && !sessionStorage.getItem('rm-loader')) {
+        document.documentElement.classList.add('rm-loading');
+        sessionStorage.setItem('rm-loader', '1');
+      }
+    } catch (e) {}
+  </script>
+  <!-- /site:head -->
+  <link rel="stylesheet" href="/fashion/css/style.css">
+</head>
+<body>
+
+  <!-- site:header -->
+  <div class="site-loader" aria-hidden="true"><span class="site-loader__name">Romain Maulavé</span></div>
+
+  <header class="site-header" id="site-header">
+    <a class="site-header__logo" href="/">Romain Maulavé</a>
+    <nav class="site-header__nav" aria-label="Navigation">
+      <a href="/fashion/" data-site-section="fashion">Fashion</a>
+      <a href="/riviera/" data-site-section="riviera">Riviera</a>
+      <a href="/contact/" data-site-section="contact">Contact</a>
+    </nav>
+    <div class="site-lang" role="group" aria-label="Langue / Language">
+      <button type="button" class="site-lang__btn" data-site-lang="en">EN</button>
+      <span class="site-lang__sep" aria-hidden="true">|</span>
+      <button type="button" class="site-lang__btn" data-site-lang="fr">FR</button>
+    </div>
+    <button type="button" class="site-header__burger" aria-label="Menu" aria-expanded="false" aria-controls="site-menu"><span></span><span></span></button>
+  </header>
+
+  <div class="site-menu" id="site-menu">
+    <a href="/fashion/">Fashion</a>
+    <a href="/riviera/">Riviera</a>
+    <a href="/contact/">Contact</a>
+    <div class="site-lang" role="group" aria-label="Langue / Language">
+      <button type="button" class="site-lang__btn" data-site-lang="en">EN</button>
+      <span class="site-lang__sep" aria-hidden="true">|</span>
+      <button type="button" class="site-lang__btn" data-site-lang="fr">FR</button>
+    </div>
+  </div>
+  <!-- /site:header -->
+
+  <!-- ══ CONTACT ══════════════════════════════════════════════ -->
+  <main class="contact-wrap">
+
+    <!-- ── Left column: info & socials ───────────────────────── -->
+    <div class="contact-info">
+      <!-- Edit headline below -->
+      <h1 class="contact-info__title reveal">
+        Let's<br>Talk.
+      </h1>
+
+      <!-- Edit email address below -->
+      <a href="mailto:hello@romainmaulave.com" class="contact-info__email reveal d1">
+        hello@romainmaulave.com
+      </a>
+
+    </div>
+
+    <!-- ── Right column: contact form ────────────────────────── -->
+    <!--
+      FORMSPREE SETUP (à faire une seule fois) :
+      1. Va sur https://formspree.io et crée un compte gratuit
+      2. Crée un nouveau form → copie ton endpoint (ex: https://formspree.io/f/xpwzabcd)
+      3. Remplace l'URL ci-dessous par ton endpoint
+      → Formspree enverra chaque message directement sur hello@romainmaulave.com
+    -->
+    <form class="contact-form reveal d1" action="https://formsubmit.co/hello@romainmaulave.com" method="POST" novalidate>
+
+      <!-- FormSubmit config -->
+      <input type="hidden" name="_captcha"  value="false">
+      <input type="hidden" name="_subject"  value="Nouveau message — Portfolio RM">
+      <input type="hidden" name="_template" value="table">
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Your name" required autocomplete="name">
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="your@email.com" required autocomplete="email">
+      </div>
+
+      <div class="form-group">
+        <label for="subject">Subject</label>
+        <select id="subject" name="subject" required>
+          <option value="" disabled selected>Select a subject</option>
+          <option value="fashion-week">Fashion Week Coverage</option>
+          <option value="editorial">Editorial Shoot</option>
+          <option value="film-video">Film / Video Project</option>
+          <option value="collaboration">Collaboration</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Your message…" required></textarea>
+      </div>
+
+      <button type="submit" class="btn-submit">Send Message</button>
+
+    </form>
+
+  </main>
+
+  <!-- ══ FOOTER ═══════════════════════════════════════════════ -->
+  <footer>
+    <span>© Romain Maulavé — All rights reserved</span>
+  </footer>
+
+  <div class="grain" aria-hidden="true"></div>
+  <script src="/fashion/js/main.js"></script>
+  <!-- site:scripts -->
+  <script src="/js/site.js?v=1a05799a" defer></script>
+  <!-- /site:scripts -->
+</body>
+</html>

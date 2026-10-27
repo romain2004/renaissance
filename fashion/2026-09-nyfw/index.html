@@ -27,41 +27,58 @@
 
   
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <!-- site:head -->
+  <!-- Commun à tout le site (tools/build-site.py) : police du logo, en-tête, écran de chargement -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Deux familles : Bebas Neue (logo et titres), Inter (étiquettes et texte) -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500&display=swap">
+  <link rel="stylesheet" href="/css/site.css?v=e0480b6a">
+  <script>
+    /* Écran de chargement : une fois par session, jamais si l'utilisateur réduit les animations.
+       Il s'efface tout seul en CSS : même si le JavaScript échoue, il ne bloque rien. */
+    try {
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches && !sessionStorage.getItem('rm-loader')) {
+        document.documentElement.classList.add('rm-loading');
+        sessionStorage.setItem('rm-loader', '1');
+      }
+    } catch (e) {}
+  </script>
+  <!-- /site:head -->
   <link rel="preload" as="image" href="images/usa00726-1000.webp" imagesrcset="images/usa00726-1000.webp 1000w, images/usa00726-2000.webp 2000w" imagesizes="100vw" />
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/seasons.css?v=e525a563">
 </head>
 <body class="page-season">
 
-  <nav class="nav" id="nav">
-    <a href="../../index.html" class="nav__logo"><span class="nav__logo-first">ROMAIN</span> MAULAVÉ</a>
-    <ul class="nav__links">
-      <li><a href="../#saisons" data-fr="Saisons" data-en="Seasons">Saisons</a></li>
-      <li><a href="../#maisons" data-fr="Maisons" data-en="Houses">Maisons</a></li>
-      <li><a href="../contact.html">Contact</a></li>
-    </ul>
-    <div class="fx-lang">
-      <button class="fx-lang__btn" data-lang="en" type="button">EN</button>
-      <span class="fx-lang__sep">|</span>
-      <button class="fx-lang__btn is-active" data-lang="fr" type="button">FR</button>
-    </div>
-    <button class="nav__hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
-  </nav>
+  <!-- site:header -->
+  <div class="site-loader" aria-hidden="true"><span class="site-loader__name">Romain Maulavé</span></div>
 
-  <div class="nav__mobile" role="dialog" aria-label="Navigation">
-    <a href="../#saisons" data-fr="Saisons" data-en="Seasons">Saisons</a>
-    <a href="../#maisons" data-fr="Maisons" data-en="Houses">Maisons</a>
-    <a href="../contact.html">Contact</a>
-    <div class="fx-lang fx-lang--menu">
-      <button class="fx-lang__btn" data-lang="en" type="button">EN</button>
-      <span class="fx-lang__sep">|</span>
-      <button class="fx-lang__btn is-active" data-lang="fr" type="button">FR</button>
+  <header class="site-header" id="site-header">
+    <a class="site-header__logo" href="/">Romain Maulavé</a>
+    <nav class="site-header__nav" aria-label="Navigation">
+      <a href="/fashion/" data-site-section="fashion">Fashion</a>
+      <a href="/riviera/" data-site-section="riviera">Riviera</a>
+      <a href="/contact/" data-site-section="contact">Contact</a>
+    </nav>
+    <div class="site-lang" role="group" aria-label="Langue / Language">
+      <button type="button" class="site-lang__btn" data-site-lang="en">EN</button>
+      <span class="site-lang__sep" aria-hidden="true">|</span>
+      <button type="button" class="site-lang__btn" data-site-lang="fr">FR</button>
+    </div>
+    <button type="button" class="site-header__burger" aria-label="Menu" aria-expanded="false" aria-controls="site-menu"><span></span><span></span></button>
+  </header>
+
+  <div class="site-menu" id="site-menu">
+    <a href="/fashion/">Fashion</a>
+    <a href="/riviera/">Riviera</a>
+    <a href="/contact/">Contact</a>
+    <div class="site-lang" role="group" aria-label="Langue / Language">
+      <button type="button" class="site-lang__btn" data-site-lang="en">EN</button>
+      <span class="site-lang__sep" aria-hidden="true">|</span>
+      <button type="button" class="site-lang__btn" data-site-lang="fr">FR</button>
     </div>
   </div>
+  <!-- /site:header -->
 
   <main>
     <!-- Ouverture : 1 image plein écran + titre -->
@@ -114,7 +131,7 @@
 
   <footer>
     <span data-fr="© Romain Maulavé — Tous droits réservés" data-en="© Romain Maulavé — All rights reserved">© Romain Maulavé — Tous droits réservés</span>
-    <a href="../contact.html">hello@romainmaulave.com</a>
+    <a href="/contact/">hello@romainmaulave.com</a>
   </footer>
 
   <!-- Lightbox : flèches, clavier, glisser ; légende = marque · créateur · crédit -->
@@ -134,5 +151,8 @@
 
   <script src="../js/main.js"></script>
   <script src="../js/seasons.js?v=98a400b7"></script>
+  <!-- site:scripts -->
+  <script src="/js/site.js?v=1a05799a" defer></script>
+  <!-- /site:scripts -->
 </body>
 </html>

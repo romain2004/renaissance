@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,20 +41,58 @@
   <link rel="preload" as="image" href="../fashion/images/USA00093.jpg" fetchpriority="high">
   <link rel="preload" as="image" href="../riviera/images/USA02706.jpeg" fetchpriority="high">
 
+  <!-- site:head -->
+  <!-- Commun à tout le site (tools/build-site.py) : police du logo, en-tête, écran de chargement -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500&display=swap">
+  <link rel="stylesheet" href="/css/site.css?v=e0480b6a">
+  <script>
+    /* Écran de chargement : une fois par session, jamais si l'utilisateur réduit les animations.
+       Il s'efface tout seul en CSS : même si le JavaScript échoue, il ne bloque rien. */
+    try {
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches && !sessionStorage.getItem('rm-loader')) {
+        document.documentElement.classList.add('rm-loading');
+        sessionStorage.setItem('rm-loader', '1');
+      }
+    } catch (e) {}
+  </script>
+  <!-- /site:head -->
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="is-home">
 
   <div class="grain" aria-hidden="true"></div>
 
-  <div class="loader" id="loader" aria-hidden="true">
-    <span class="loader__monogram">RM</span>
-  </div>
+  <!-- site:header -->
+  <div class="site-loader" aria-hidden="true"><span class="site-loader__name">Romain Maulavé</span></div>
 
-  <div class="cursor-dot"  id="cursor-dot"  aria-hidden="true"></div>
-  <div class="cursor-ring" id="cursor-ring" aria-hidden="true">
-    <span class="cursor-label" id="cursor-label"></span>
+  <header class="site-header" id="site-header">
+    <a class="site-header__logo" href="/">Romain Maulavé</a>
+    <nav class="site-header__nav" aria-label="Navigation">
+      <a href="/fashion/" data-site-section="fashion">Fashion</a>
+      <a href="/riviera/" data-site-section="riviera">Riviera</a>
+      <a href="/contact/" data-site-section="contact">Contact</a>
+    </nav>
+    <div class="site-lang" role="group" aria-label="Langue / Language">
+      <button type="button" class="site-lang__btn" data-site-lang="en">EN</button>
+      <span class="site-lang__sep" aria-hidden="true">|</span>
+      <button type="button" class="site-lang__btn" data-site-lang="fr">FR</button>
+    </div>
+    <button type="button" class="site-header__burger" aria-label="Menu" aria-expanded="false" aria-controls="site-menu"><span></span><span></span></button>
+  </header>
+
+  <div class="site-menu" id="site-menu">
+    <a href="/fashion/">Fashion</a>
+    <a href="/riviera/">Riviera</a>
+    <a href="/contact/">Contact</a>
+    <div class="site-lang" role="group" aria-label="Langue / Language">
+      <button type="button" class="site-lang__btn" data-site-lang="en">EN</button>
+      <span class="site-lang__sep" aria-hidden="true">|</span>
+      <button type="button" class="site-lang__btn" data-site-lang="fr">FR</button>
+    </div>
   </div>
+  <!-- /site:header -->
 
   <!-- ═══════════════════════════════════════════
        SECTION 1 — HERO
@@ -67,7 +105,7 @@
         <span>Romain</span>
         <em>Maulavé</em>
       </h1>
-      <p class="hero__tag">Authentic Moments. Extraordinary Places.</p>
+      <p class="hero__tag" data-fr="Des moments vrais. Des lieux d’exception." data-en="Authentic Moments. Extraordinary Places.">Des moments vrais. Des lieux d’exception.</p>
     </div>
 
     <!-- HERO MOBILE UNIQUEMENT -->
@@ -76,7 +114,7 @@
         <span>ROMAIN</span>
         <em>MAULAVÉ</em>
       </div>
-      <p class="hero__mobile-tag">Photographer · Filmmaker</p>
+      <p class="hero__mobile-tag" data-fr="Photographe · Vidéaste" data-en="Photographer · Filmmaker">Photographe · Vidéaste</p>
       <div class="hero__mobile-ctas">
         <div class="hero__mobile-nav">
           <a href="./fashion/index.html" class="hero__mobile-card">
@@ -84,7 +122,7 @@
             <div class="hero__mobile-card-overlay"></div>
             <div class="hero__mobile-card-content">
               <span class="hero__mobile-card-title">Fashion</span>
-              <span class="hero__mobile-card-sub">Weeks · Editorial · Runway</span>
+              <span class="hero__mobile-card-sub" data-fr="Défilés · Éditorial" data-en="Weeks · Editorial · Runway">Défilés · Éditorial</span>
             </div>
             <span class="hero__mobile-card-arrow">→</span>
           </a>
@@ -93,12 +131,12 @@
             <div class="hero__mobile-card-overlay"></div>
             <div class="hero__mobile-card-content">
               <span class="hero__mobile-card-title">Riviera</span>
-              <span class="hero__mobile-card-sub">Yachts · Villas · Hotels · Boutiques</span>
+              <span class="hero__mobile-card-sub" data-fr="Yachts · Villas · Hôtels · Boutiques" data-en="Yachts · Villas · Hotels · Boutiques">Yachts · Villas · Hôtels · Boutiques</span>
             </div>
             <span class="hero__mobile-card-arrow">→</span>
           </a>
         </div>
-        <a href="mailto:hello@romainmaulave.com" class="hero__mobile-book">Book a Session</a>
+        <a href="/contact/" class="hero__mobile-book" data-fr="Me contacter" data-en="Book a Session">Me contacter</a>
       </div>
     </div>
 
@@ -111,9 +149,9 @@
         <div class="world__vignette"></div>
         <div class="world__content">
           <h2 class="world__title">Fashion</h2>
-          <p class="world__location">Fashion Weeks / Editorial / Runway</p>
+          <p class="world__location" data-fr="Fashion Weeks / Éditorial / Défilés" data-en="Fashion Weeks / Editorial / Runway">Fashion Weeks / Éditorial / Défilés</p>
         </div>
-        <span class="world__cta" aria-hidden="true">Enter →</span>
+        <span class="world__cta" aria-hidden="true" data-fr="Entrer →" data-en="Enter →">Entrer →</span>
       </a>
 
       <div class="worlds__sep" aria-hidden="true"></div>
@@ -125,9 +163,9 @@
         <div class="world__vignette"></div>
         <div class="world__content">
           <h2 class="world__title">Riviera</h2>
-          <p class="world__location">Yachts / Villas / Hotels / Boutiques</p>
+          <p class="world__location" data-fr="Yachts / Villas / Hôtels / Boutiques" data-en="Yachts / Villas / Hotels / Boutiques">Yachts / Villas / Hôtels / Boutiques</p>
         </div>
-        <span class="world__cta" aria-hidden="true">Enter →</span>
+        <span class="world__cta" aria-hidden="true" data-fr="Entrer →" data-en="Enter →">Entrer →</span>
       </a>
 
     </div>
@@ -139,9 +177,9 @@
   ════════════════════════════════════════════ -->
   <section class="manifesto" id="manifesto">
     <div class="manifesto__inner">
-      <p class="manifesto__line reveal">Two Worlds.</p>
+      <p class="manifesto__line reveal" data-fr="Deux mondes." data-en="Two Worlds.">Deux mondes.</p>
       <div class="manifesto__rule reveal d1" aria-hidden="true"></div>
-      <p class="manifesto__line manifesto__line--accent reveal d2">One Signature.</p>
+      <p class="manifesto__line manifesto__line--accent reveal d2" data-fr="Une signature." data-en="One Signature.">Une signature.</p>
     </div>
   </section>
 
@@ -178,25 +216,28 @@
 
     <div class="footer__upper">
       <p class="footer__name">Romain Maulavé</p>
-      <p class="footer__tagline">
-        Authentic Moments.<br>Extraordinary Places.
+      <p class="footer__tagline" data-fr="Des moments vrais.&lt;br&gt;Des lieux d’exception." data-en="Authentic Moments.&lt;br&gt;Extraordinary Places.">
+        Des moments vrais.<br>Des lieux d’exception.
       </p>
     </div>
 
     <div class="footer__cta">
-      <a href="mailto:hello@romainmaulave.com" class="footer__contact-link">hello@romainmaulave.com</a>
+      <a href="/contact/" class="footer__contact-link">hello@romainmaulave.com</a>
       <a href="https://wa.me/33783716979" class="footer__whatsapp">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
         WhatsApp
       </a>
     </div>
 
-    <p class="footer__territory">Worldwide</p>
+    <p class="footer__territory" data-fr="Dans le monde entier" data-en="Worldwide">Dans le monde entier</p>
     <p class="footer__copy">© 2026 Romain Maulavé</p>
 
   </footer>
 
   <!-- JS différé — ne bloque plus le rendu -->
   <script src="js/main.js" defer></script>
+  <!-- site:scripts -->
+  <script src="/js/site.js?v=1a05799a" defer></script>
+  <!-- /site:scripts -->
 </body>
 </html>

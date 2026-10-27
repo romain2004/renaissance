@@ -1,0 +1,15 @@
+<!-- Commun à tout le site (tools/build-site.py) : police du logo, en-tête, écran de chargement -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500&display=swap">
+  <link rel="stylesheet" href="/css/site.css?v={{v_site_css}}">
+  <script>
+    /* Écran de chargement : une fois par session, jamais si l'utilisateur réduit les animations.
+       Il s'efface tout seul en CSS : même si le JavaScript échoue, il ne bloque rien. */
+    try {
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches && !sessionStorage.getItem('rm-loader')) {
+        document.documentElement.classList.add('rm-loading');
+        sessionStorage.setItem('rm-loader', '1');
+      }
+    } catch (e) {}
+  </script>
