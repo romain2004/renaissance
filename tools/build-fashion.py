@@ -212,6 +212,14 @@ def process_images(slug, season_dir, out_dir, files):
             warn(slug, f'{name} : {outs[1].stat().st_size // 1000} Ko en 2000 px (objectif 400 Ko)')
         info[name] = manifest[name] = {'key': key, 'w': w, 'h': h, 'stem': stem}
         stats['converted'] += 1
+    # Les versions web d'une photo retirée de season.json ne sont plus publiées
+    # (l'original reste dans originals/, il suffit de la remettre dans season.json).
+    used = {m['stem'] for m in info.values()}
+    for f in out_dir.glob('*.webp'):
+        if re.sub(r'-(\d+)$', '', f.stem) not in used:
+            f.unlink()
+    for name in [k for k in manifest if not k.startswith('_') and k not in info]:
+        del manifest[name]
     manifest_path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + '\n')
     return info
 
