@@ -4,7 +4,8 @@
     "fr": "New York Fashion Week",
     "en": "New York Fashion Week"
   },
-  "season": "SS27",
+  "seasonCode": "SS27",
+  "showHousesOnCard": false,
   "city": "New York",
   "date": "2026-09",
   "draft": false,

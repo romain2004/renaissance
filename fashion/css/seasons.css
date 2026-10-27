@@ -1,10 +1,12 @@
 /* ============================================================
    FASHION — accueil et pages de saison (générées par tools/build-fashion.py)
    Chargé après style.css (nav, footer, reveal, lightbox de base).
-   Direction artistique « maison » : les images dominent, le texte se fait discret.
-   · Titres : Bodoni Moda, casse normale, tailles modestes
-   · Étiquettes : Inter 12 px, petites capitales espacées
-   · Noir profond, texte ivoire, gris chaud ; l'or seulement en filet ou au survol
+   Direction artistique : les images dominent, deux familles seulement.
+   · Titres : la condensée du logo (Bebas Neue) ; en grand seulement dans le hero,
+     l'ouverture de saison et le nom de chaque maison, en taille moyenne ailleurs
+   · Étiquettes et texte : Inter, petites capitales espacées, 12 px minimum
+   · Noir profond, texte ivoire, gris chaud ; l'orange de la marque en accent unique :
+     une ligne du hero, le survol des liens, un filet sous les titres de chapitre
    · Trois gabarits d'images : verticale seule, paire de même hauteur, horizontale
    ============================================================ */
 
@@ -14,9 +16,9 @@
   --white: #e8e6e1;
   --grey-text: #9a968f;
   --grey-dark: #141414;
-  --gold: #C9A96E;
+  --accent: #F5A623;            /* orange de la marque */
   --line: #262420;
-  --serif: 'Bodoni Moda', 'Didot', 'Bodoni 72', Georgia, serif;
+  --display: 'Bebas Neue', Impact, 'Arial Narrow', sans-serif;
   --sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
   --gutter: clamp(16px, 7vw, 128px);
   --gap: 28px;
@@ -29,11 +31,15 @@
 
 img { max-width: 100%; }
 
-/* Bodoni Moda : une seule taille optique, assez robuste pour garder les déliés visibles à l'écran */
-.fx-hero__title, .fx-section-title, .fx-season__title, .fx-house__brand,
+/* Titres : la condensée du logo, toujours en capitales */
+.fx-hero__title, .fx-hero__accent, .fx-section-title, .fx-season__title, .fx-house__brand,
 .ss-opening__title, .ss-series__brand, .ss-series__designer, .ss-chapter__title, .ss-pager__title {
-  font-optical-sizing: none;
-  font-variation-settings: 'opsz' 28;
+  font-family: var(--display);
+  font-weight: 400;
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 0.92;
 }
 
 /* pas de curseur personnalisé ni de grain dans Fashion : la photo telle qu'elle est */
@@ -41,7 +47,8 @@ img { max-width: 100%; }
 
 /* ── Petites capitales : villes, dates, étiquettes, crédits ─── */
 .label,
-.fx-hero__tag, .fx-season__tag, .fx-season__meta, .fx-house__season, .fx-house__designer,
+.fx-hero__tag, .fx-season__latest, .fx-season__kicker, .fx-season__houses, .fx-house__season,
+.ss-opening__kicker,
 .ss-opening__tag, .ss-series__meta, .ss-series__place, .ss-credits,
 .ss-pager__link .label, .ss-pager__back, .ss-lightbox__caption, .ss-lightbox__counter {
   font-family: var(--sans);
@@ -78,7 +85,7 @@ img { max-width: 100%; }
 .fx-lang--menu { margin: 16px 0 0; }
 .fx-lang--menu .fx-lang__btn { font-size: 13px; }
 
-a:focus-visible, button:focus-visible { outline: 1px solid var(--gold); outline-offset: 4px; }
+a:focus-visible, button:focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; }
 
 /* ── Accueil Fashion : hero ──────────────────────────────── */
 .fx-hero { height: 100vh; height: 100svh; min-height: min(560px, 100svh); padding: 0; display: block; }
@@ -98,24 +105,15 @@ a:focus-visible, button:focus-visible { outline: 1px solid var(--gold); outline-
   flex-direction: column;
   gap: 14px;
 }
-.fx-hero__title {
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(30px, 4.6vw, 68px);
-  line-height: 1.05;
-  color: var(--white);
-}
+/* gros lettrage condensé ; la seule ligne orange de la page : la saison */
+.fx-hero__title { font-size: clamp(56px, 8vw, 132px); color: var(--white); }
+.fx-hero__accent { font-size: clamp(26px, 3vw, 48px); color: var(--accent); }
 .fx-hero__tag { color: var(--white); }
 
 /* ── Accueil Fashion : sections ──────────────────────────── */
 .page-fashion .section { padding: 18vh var(--gutter) 0; }
 .fx-section-head { margin-bottom: 48px; }
-.fx-section-title {
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(28px, 2.8vw, 40px);
-  line-height: 1.1;
-}
+.fx-section-title { font-size: clamp(32px, 3vw, 44px); }
 
 /* Saisons : une carte par saison, la grille occupe toute la largeur */
 .fx-seasons__grid {
@@ -123,7 +121,8 @@ a:focus-visible, button:focus-visible { outline: 1px solid var(--gold); outline-
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 48px var(--gap);
 }
-.fx-season { display: block; color: inherit; }
+/* les dates des cartes restent alignées, même quand l'une porte « Dernière saison » */
+.fx-season { display: flex; flex-direction: column; color: inherit; }
 .fx-season img, .fx-season__empty {
   display: block;
   width: 100%;
@@ -135,18 +134,17 @@ a:focus-visible, button:focus-visible { outline: 1px solid var(--gold); outline-
   transition: opacity 0.5s ease;
 }
 .fx-season:hover img { opacity: 0.86; }
-.fx-season__body { display: flex; flex-direction: column; gap: 6px; padding-top: 22px; }
-.fx-season__title {
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(22px, 2vw, 28px);
-  line-height: 1.2;
-  color: var(--white);
-  transition: color 0.3s ease;
-}
-.fx-season:hover .fx-season__title { color: var(--gold); }
+/* Carte : la date en gros, l'année en orange ; au-dessus, « New York Fashion Week · SS27 » */
+.fx-season__body { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 10px; padding-top: 24px; }
+.fx-season__latest { color: var(--accent); }
+.fx-season__latest + .fx-season__kicker { margin-top: -6px; }
+.fx-season__title { font-size: clamp(48px, 5vw, 84px); color: var(--white); white-space: nowrap; transition: color 0.3s ease; }
+.fx-season__title .year, .ss-opening__name .year { color: var(--accent); }
+.fx-season:hover .fx-season__title { color: var(--accent); }
 
-/* Maisons : nom, puis saisons et ville, alignés */
+/* Maisons : titre de section et noms en grand dans la condensée du logo ;
+   à droite, saisons et ville en petites capitales ; un filet fin entre les lignes */
+.fx-houses .display-title { font-family: var(--display); color: var(--white); }
 .fx-houses { padding-bottom: 18vh; }
 .fx-houses__list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
 .fx-house {
@@ -154,21 +152,13 @@ a:focus-visible, button:focus-visible { outline: 1px solid var(--gold); outline-
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: baseline;
   gap: 8px 32px;
-  padding: 24px 0;
+  padding: 26px 0 22px;
   border-bottom: 1px solid var(--line);
   color: inherit;
 }
-.fx-house__brand {
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(22px, 2.2vw, 30px);
-  line-height: 1.2;
-  transition: color 0.3s ease;
-}
-.fx-house:hover .fx-house__brand { color: var(--gold); }
-.fx-house__designer:empty { display: none; }
-.fx-house__designer { grid-column: 1; grid-row: 2; }
-.fx-house__season { grid-column: 2; grid-row: 1; text-align: right; }
+.fx-house__brand { font-size: clamp(44px, 6vw, 104px); line-height: 0.9; transition: color 0.3s ease; }
+.fx-house:hover .fx-house__brand { color: var(--accent); }
+.fx-house__season { text-align: right; }
 
 /* ── Page de saison : ouverture ──────────────────────────── */
 .ss-opening {
@@ -196,13 +186,8 @@ a:focus-visible, button:focus-visible { outline: 1px solid var(--gold); outline-
   flex-direction: column;
   gap: 14px;
 }
-.ss-opening__title {
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(30px, 4.6vw, 68px);
-  line-height: 1.05;
-}
-.ss-opening__tag { color: var(--white); }
+.ss-opening__title { font-size: clamp(56px, 8vw, 132px); }
+.ss-opening__kicker { color: var(--white); }
 
 .ss-intro {
   max-width: 640px;
@@ -228,34 +213,23 @@ a:focus-visible, button:focus-visible { outline: 1px solid var(--gold); outline-
   text-align: center;
   padding: 12vh 0;
 }
-.ss-series__brand {
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(30px, 3.6vw, 52px);
-  line-height: 1.1;
+/* gros lettrage condensé sur le nom de la maison, un filet orange dessous */
+.ss-series__brand { font-size: clamp(48px, 7vw, 116px); }
+.ss-series__brand::after {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 1px;
+  margin: 28px auto 0;
+  background: var(--accent);
 }
-.ss-series__designer {
-  margin-top: 10px;
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: clamp(18px, 1.6vw, 22px);
-  color: var(--white);
-}
+.ss-series__designer { margin-top: 20px; font-size: clamp(24px, 2vw, 30px); color: var(--white); }
 .ss-series__meta { margin-top: 22px; }
 .ss-series__place { margin-top: 2px; }
-/* un filet d'or entre deux maisons, seul accent de couleur */
-.ss-series + .ss-series .ss-series__head::before,
-.ss-series--backstage .ss-series__head::before {
-  content: '';
-  width: 48px;
-  height: 1px;
-  margin-bottom: 40px;
-  background: var(--gold);
-}
 
 /* Marque à plusieurs créateurs (GFC) : un sous-titre par créateur */
 .ss-chapter__head { text-align: center; padding: 6vh 0 8vh; }
-.ss-chapter__title { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: clamp(20px, 1.8vw, 26px); }
+.ss-chapter__title { font-size: clamp(26px, 2.2vw, 34px); }
 .ss-anchor { display: block; }
 .ss-series, .ss-chapter, .ss-anchor { scroll-margin-top: calc(var(--nav-height) + 32px); }
 
@@ -297,10 +271,10 @@ a:focus-visible, button:focus-visible { outline: 1px solid var(--gold); outline-
 .ss-pager__link { display: flex; flex-direction: column; gap: 8px; color: inherit; }
 .ss-pager__link .label { margin: 0; }
 .ss-pager__link--next { text-align: right; align-items: flex-end; }
-.ss-pager__title { font-family: var(--serif); font-size: clamp(18px, 1.8vw, 24px); line-height: 1.2; transition: color 0.3s ease; }
-.ss-pager__link:hover .ss-pager__title { color: var(--gold); }
-.ss-pager__back { color: var(--white); border-bottom: 1px solid transparent; padding-bottom: 2px; transition: border-color 0.3s ease; }
-.ss-pager__back:hover { border-color: var(--gold); }
+.ss-pager__title { font-size: clamp(24px, 2.2vw, 32px); transition: color 0.3s ease; }
+.ss-pager__link:hover .ss-pager__title { color: var(--accent); }
+.ss-pager__back { color: var(--white); transition: color 0.3s ease; }
+.ss-pager__back:hover { color: var(--accent); }
 
 /* ── Pied de page : une ligne ────────────────────────────── */
 .page-fashion footer, .page-season footer {
@@ -310,7 +284,7 @@ a:focus-visible, button:focus-visible { outline: 1px solid var(--gold); outline-
   border-top: 1px solid var(--line);
 }
 .page-fashion footer a, .page-season footer a { color: var(--white); }
-.page-fashion footer a:hover, .page-season footer a:hover { color: var(--gold); }
+.page-fashion footer a:hover, .page-season footer a:hover { color: var(--accent); }
 
 /* ── Lightbox : flèches, clavier, glisser, légende ──────── */
 .ss-lightbox .lightbox__backdrop { background: var(--black); }
@@ -345,7 +319,7 @@ a:focus-visible, button:focus-visible { outline: 1px solid var(--gold); outline-
 .ss-lightbox__nav { top: 50%; width: 56px; height: 56px; margin-top: -28px; font-size: 36px; line-height: 1; }
 .ss-lightbox__nav--prev { left: 12px; }
 .ss-lightbox__nav--next { right: 12px; }
-.ss-lightbox__close:hover, .ss-lightbox__nav:hover { color: var(--gold); }
+.ss-lightbox__close:hover, .ss-lightbox__nav:hover { color: var(--accent); }
 
 /* ── Responsive ───────────────────────────────────────────── */
 @media (max-width: 960px) {
@@ -358,10 +332,13 @@ a:focus-visible, button:focus-visible { outline: 1px solid var(--gold); outline-
 /* Mobile : une colonne, images en pleine largeur avec 16 px de marge, paires empilées */
 @media (max-width: 700px) {
   .page-fashion, .page-season { --gutter: 16px; }
-  .fx-house { grid-template-columns: 1fr; }
-  .fx-house__season { grid-column: 1; grid-row: auto; text-align: left; }
-  .fx-house__designer { grid-row: auto; }
-  .ss-series__brand { font-size: min(7vw, 30px); }
+  /* le nom en grand, coupé seulement entre deux mots ; les infos dessous */
+  .fx-house { grid-template-columns: 1fr; gap: 10px; }
+  .fx-house__brand { font-size: min(13vw, 60px); overflow-wrap: normal; word-break: normal; hyphens: none; }
+  .fx-house__season { text-align: left; }
+  .ss-series__brand { font-size: min(8.4vw, 48px); }   /* « Global Fashion Collective » sur une ligne */
+  .fx-hero__title, .ss-opening__title { font-size: min(14vw, 64px); }
+  .fx-season__title { font-size: min(15vw, 64px); }   /* « Septembre 2026 » sur une ligne */
   .ss-series__head { min-height: 0; padding: 14vh 0 10vh; }
   .ss-row { flex-direction: column; align-items: center; gap: 16px; margin-bottom: 9vh; }
   .ss-row .ss-item, .ss-row--pair .ss-item { width: 100%; }

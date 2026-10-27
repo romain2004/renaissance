@@ -581,7 +581,8 @@ def build_season(s, prev_s, next_s, info, template):
                     f'imagesrcset="images/{cover["stem"]}-1000.webp 1000w, images/{cover["stem"]}-2000.webp 2000w" imagesizes="100vw" />') if cover else '',
         'cover': cover_html,
         'eyebrow': t(s.get('city', ''), s.get('city', ''), 'span', 'label'),
-        'title': t(tf_title, te_title, 'span', 'ss-opening__name'),
+        'title': date_title(s, 'ss-opening__name'),
+        'kicker': t(kicker(s, 'fr'), kicker(s, 'en'), 'p', 'ss-opening__kicker'),
         'season': t(' · '.join(x for x in (month_label(s['date'], 'fr'), s.get('city', '')) if x),
                     ' · '.join(x for x in (month_label(s['date'], 'en'), s.get('city', '')) if x), 'p', 'ss-opening__tag'),
         'intro': t(intro_fr, intro_en, 'p', 'ss-intro reveal') if intro_fr else '',
@@ -598,6 +599,25 @@ def build_season(s, prev_s, next_s, info, template):
         guard.write_text('# Brouillon : aperçu local uniquement (voir season.json, "draft")\n*\n')
     elif guard.exists():
         guard.unlink()
+
+
+def season_code(s):
+    """Code de la saison (SS27, FW25…) : "seasonCode", sinon l'ancien champ "season"."""
+    return s.get('seasonCode') or s.get('season') or ''
+
+
+def kicker(s, lang):
+    """Petite ligne au-dessus des titres de saison : « New York Fashion Week · SS27 »."""
+    return ' · '.join(x for x in (bi(s['title'])[0 if lang == 'fr' else 1], season_code(s)) if x)
+
+
+def date_title(s, cls):
+    """Mois + année en gros, l'année en orange : « Septembre 2026 »."""
+    def html_for(lang):
+        month, year = month_label(s['date'], lang).rsplit(' ', 1)
+        return f'{esc(month)} <span class="year">{esc(year)}</span>'
+    fr, en = html_for('fr'), html_for('en')
+    return f'<span class="{cls}" data-fr="{esc(fr)}" data-en="{esc(en)}">{fr}</span>'
 
 
 def season_card(s, info):
@@ -660,23 +680,29 @@ def build_index(seasons, infos, template):
 
     # Saisons, la plus récente en premier
     cards = []
+    # Carte = image + « New York Fashion Week · SS27 » + mois et année en gros. La plus récente
+    # porte « Dernière saison » ; les maisons n'apparaissent que si "showHousesOnCard" vaut true.
     for s in reversed(published):
         si = infos[s['slug']]
         c, c_alt = season_card(s, si)
         sf, se = bi(s['title'])
+        houses = ' · '.join(dict.fromkeys(x.get('brand', '') for x in s.get('series', []) if x.get('images')))
         cards.append(
             f'<a class="fx-season reveal" href="{s["slug"]}/">'
             + (img_tag(f'{s["slug"]}/images/', c, bi(c_alt or {'fr': sf, 'en': se}),
                        cover_sizes(c, 4 / 5, [('(max-width: 700px)', 100), ('(max-width: 960px)', 50), ('', 33)])) if c else '<span class="fx-season__empty"></span>')
-            + f'<span class="fx-season__body">{t(sf, se, "span", "fx-season__title")}'
-            f'{t(month_label(s["date"], "fr") + " · " + s.get("city", ""), month_label(s["date"], "en") + " · " + s.get("city", ""), "span", "fx-season__tag")}'
-            f'<span class="fx-season__meta">{esc(" · ".join(dict.fromkeys(x.get("brand", "") for x in s.get("series", []) if x.get("images"))))}</span>'
-            f'</span></a>')
+            + '<span class="fx-season__body">'
+            + (t('Dernière saison', 'Latest season', 'span', 'fx-season__latest') if s is latest else '')
+            + t(kicker(s, 'fr'), kicker(s, 'en'), 'span', 'fx-season__kicker')
+            + date_title(s, 'fx-season__title')
+            + (f'<span class="fx-season__houses">{esc(houses)}</span>' if s.get('showHousesOnCard') else '')
+            + '</span></a>')
 
     # Maisons : une ligne par marque et par saison (lien vers sa première série),
     # avec les créateurs connus quand une marque présente plusieurs créateurs (GFC)
     # Une seule ligne par marque, même si elle revient à plusieurs saisons (GFC) : le lien
-    # mène à la saison la plus récente, la ligne liste toutes les saisons.
+    # mène à la saison la plus récente, la ligne liste toutes les saisons. Pas de créateur
+    # ici : "designer" sert aux légendes des pages de saison.
     groups = {}
     for s in reversed(published):
         for sid, serie in zip(series_ids(s), s.get('series', [])):
@@ -692,12 +718,13 @@ def build_index(seasons, infos, template):
     rows = sorted(groups.values(), key=lambda g: g['brand'].lower())
 
     def when(g, lang):
-        cities = ' · '.join(dict.fromkeys(x.get('city', '') for x in g['seasons'] if x.get('city')))
-        return ' · '.join([month_label(x['date'], lang) for x in g['seasons']] + ([cities] if cities else []))
+        # « Septembre 2026 · New York » : on ne coupe jamais à l'intérieur d'un mois ou d'une ville
+        keep = lambda x: x.replace(' ', ' ')
+        cities = [keep(c) for c in dict.fromkeys(x.get('city', '') for x in g['seasons'] if x.get('city'))]
+        return ' · '.join([keep(month_label(x['date'], lang)) for x in g['seasons']] + cities)
     house_items = ''.join(
         f'<li><a class="fx-house" href="{g["season"]["slug"]}/#{slugify(g["brand"]) or g["sid"]}">'
         f'<span class="fx-house__brand">{esc(g["brand"])}</span>'
-        f'<span class="fx-house__designer">{esc(" · ".join(g["designers"]))}</span>'
         f'{t(when(g, "fr"), when(g, "en"), "span", "fx-house__season")}</a></li>'
         for g in rows)
 
@@ -714,8 +741,7 @@ def build_index(seasons, infos, template):
                     f'imagesrcset="{latest["slug"]}/images/{hero["stem"]}-1000.webp 1000w, {latest["slug"]}/images/{hero["stem"]}-2000.webp 2000w" imagesizes="100vw" />') if hero else '',
         'hero_img': hero_img,
         'hero_title': t(lf, le, 'span', 'fx-hero__title'),
-        'hero_tag': t(f'{month_label(latest["date"], "fr")} · {latest.get("city", "")}',
-                      f'{month_label(latest["date"], "en")} · {latest.get("city", "")}', 'span', 'fx-hero__tag'),
+        'hero_tag': t(month_label(latest['date'], 'fr'), month_label(latest['date'], 'en'), 'span', 'fx-hero__accent'),
         'latest_url': f'{latest["slug"]}/',
         'latest_card': latest_card,
         'latest_previews': prev_html,

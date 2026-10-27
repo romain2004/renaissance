@@ -30,7 +30,8 @@ Le plus simple : copie le dossier d'une saison existante, renomme-le, puis vide 
 {
   "slug": "2027-02-nyfw",
   "title": { "fr": "New York Fashion Week", "en": "New York Fashion Week" },
-  "season": "AW27",
+  "seasonCode": "FW27",
+  "showHousesOnCard": false,
   "city": "New York",
   "date": "2027-02",
   "draft": true,
@@ -56,7 +57,8 @@ Le plus simple : copie le dossier d'une saison existante, renomme-le, puis vide 
 | Champ | À quoi il sert |
 | --- | --- |
 | `slug` | Le nom du dossier. L'adresse de la page sera `/fashion/<slug>/`. |
-| `title`, `season`, `city`, `date` | Le titre affiché est « `title` · mois » (« New York Fashion Week · Février 2027 »), le mois venant de `date` (`AAAA-MM`). `season` (AW27, SS28…) sert de repère interne : la collection s'écrit dans le `show` de chaque série (« Printemps-été 2027 »). |
+| `title`, `seasonCode`, `city`, `date` | La carte de la saison (accueil Fashion) et l'ouverture de sa page affichent en petit « `title` · `seasonCode` » (« New York Fashion Week · FW27 »), puis en gros le mois et l'année venant de `date` (`AAAA-MM`) : « Février 2027 », l'année en orange. La collection en toutes lettres s'écrit dans le `show` de chaque série (« Automne-hiver 2027 »). La saison la plus récente porte automatiquement l'étiquette « Dernière saison ». |
+| `showHousesOnCard` | Facultatif, `false` par défaut. `true` affiche la liste des maisons de la saison sous la date, sur sa carte de l'accueil Fashion. Sinon la carte ne montre que l'image, la ligne « New York Fashion Week · code » et la date. |
 | `draft` | `true` : la saison reste cachée (pas sur l'accueil Fashion, pas dans le sitemap, jamais envoyée sur git). Passe à `false` pour la publier. |
 | `intro` | Une phrase d'introduction au maximum. Laisse `""` pour ne rien afficher. |
 | `cover`, `cover_alt` | L'image d'ouverture en plein écran (une bannière : **toujours une photo horizontale**), et sa description. |
