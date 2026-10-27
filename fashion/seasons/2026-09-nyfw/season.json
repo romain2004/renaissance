@@ -1,49 +1,354 @@
 {
   "slug": "2026-09-nyfw",
-  "title": { "fr": "New York Fashion Week", "en": "New York Fashion Week" },
+  "title": {
+    "fr": "New York Fashion Week",
+    "en": "New York Fashion Week"
+  },
   "season": "SS27",
   "city": "New York",
   "date": "2026-09",
   "draft": false,
   "intro": {
-    "fr": "Le 13 septembre, à l'Arte Museum de Chelsea, PUBLIC SERV-CE présentait « The Rest Is Noise » : tailoring précis, streetwear futuriste et musique électronique.",
-    "en": "On September 13, at the Arte Museum in Chelsea, PUBLIC SERV-CE presented “The Rest Is Noise”: precise tailoring, futuristic streetwear and electronic music."
+    "fr": "Septembre 2026 à New York : le défilé collectif de Global Fashion Collective, puis PUBLIC SERV-CE, qui présentait « The Rest Is Noise » le 13 septembre à l'Arte Museum de Chelsea.",
+    "en": "September 2026 in New York: the Global Fashion Collective group show, then PUBLIC SERV-CE presenting “The Rest Is Noise” on September 13 at the Arte Museum in Chelsea."
   },
-  "cover": "public-serv-ce/USA01439-Enhanced-NR.jpg",
+  "cover": "gfc/USA08767.jpg",
   "cover_alt": {
-    "fr": "Mannequin en perruque blonde et sweat noir PUBLIC SERV-CE, face à l'objectif dans la pénombre bleue du podium",
-    "en": "Model in a blonde wig and black PUBLIC SERV-CE sweatshirt, facing the camera in the blue half-light of the runway"
+    "fr": "Mannequin en robe longue blanche transparente et brodée, en pleine marche sur le podium GFC",
+    "en": "Model mid-stride in a sheer, embroidered white gown on the GFC runway"
   },
   "series": [
     {
-      "brand": "PUBLIC SERV-CE",
-      "designer": "Raphael Young",
-      "show": { "fr": "Printemps-été 2027 · « The Rest Is Noise »", "en": "Spring/Summer 2027 · “The Rest Is Noise”" },
-      "images": [
-        { "file": "public-serv-ce/USA01263-Enhanced-NR.jpg", "alt": { "fr": "Mannequin en veste noire et perruque blanche sur le podium, des vestes « DREAMER » au premier plan", "en": "Model in a black jacket and white wig on the runway, “DREAMER” jackets in the foreground" }, "credit": "Mannequin : [à compléter]" },
-        { "file": "public-serv-ce/USA01322-Enhanced-NR.jpg", "alt": { "fr": "Mannequin en veste de costume argentée ouverte et pantalon noir, la tête baissée", "en": "Model in an open silver suit jacket and black trousers, head lowered" }, "credit": "Mannequin : [à compléter]" },
-        { "file": "public-serv-ce/USA01364-Enhanced-NR.jpg", "alt": { "fr": "Mannequin en bandana turquoise et veste à motif bandana, sandales blanches", "en": "Model in a turquoise bandana and bandana-print jacket, white sandals" }, "credit": "Mannequin : [à compléter]" },
-        { "file": "public-serv-ce/USA01413-Enhanced-NR.jpg", "alt": { "fr": "Mannequin en lunettes noires, blouson bicolore clair et pantalon cargo argenté", "en": "Model in black sunglasses, a light two-tone jacket and silver cargo trousers" }, "credit": "Mannequin : [à compléter]" },
-        { "file": "public-serv-ce/USA01248-Enhanced-NR.jpg", "alt": { "fr": "Mannequin en bandana et sweat noir délavé de blanc, lunettes noires", "en": "Model in a bandana and black bleach-washed sweatshirt, black sunglasses" }, "credit": "Mannequin : [à compléter]" },
-        { "file": "public-serv-ce/USA01451-Enhanced-NR.jpg", "alt": { "fr": "Mannequin en veste de cuir grise et bermuda noir, baskets rouges", "en": "Model in a grey leather jacket and black shorts, red sneakers" }, "credit": "Mannequin : [à compléter]" },
-        { "file": "public-serv-ce/USA01493-Enhanced-NR.jpg", "alt": { "fr": "Mannequin en lunettes rouges, veste noire et pantalon blanc", "en": "Model in red glasses, a black jacket and white trousers" }, "credit": "Mannequin : [à compléter]" },
-        { "file": "public-serv-ce/USA01579.jpg", "alt": { "fr": "Deux mannequins en perruques blanches, l'une en veste noire, l'autre en veste rose pâle, face au public", "en": "Two models in white wigs, one in a black jacket, the other in pale pink, facing the audience" }, "credit": "Mannequins : [à compléter]" }
-      ]
-    },
-    {
       "brand": "Global Fashion Collective",
       "designer": "[à compléter]",
-      "show": { "fr": "Automne-hiver 2027", "en": "Fall/Winter 2027" },
-      "images": []
+      "show": {
+        "fr": "Printemps-été 2027",
+        "en": "SS27"
+      },
+      "images": [
+        {
+          "file": "gfc/USA08678.jpg",
+          "alt": {
+            "fr": "Mannequin en longue cape de mousseline rouge qui s'envole derrière elle, au bord du podium",
+            "en": "Model in a long red chiffon cape billowing behind her at the edge of the runway"
+          },
+          "layout": "solo"
+        },
+        {
+          "file": "gfc/USA00310-Enhanced-NR.jpg",
+          "alt": {
+            "fr": "Plusieurs mannequins sur le podium plongé dans l'ombre : robe à carreaux orange, chemise bleu glacier, robe verte dos nu",
+            "en": "Several models on the darkened runway: orange check dress, ice-blue blouse, backless green gown"
+          }
+        },
+        {
+          "file": "gfc/USA08792.jpg",
+          "alt": {
+            "fr": "Mannequin rousse en robe noire pailletée asymétrique, fendue, sculptée par la lumière latérale",
+            "en": "Red-haired model in an asymmetric, slit black sequin gown, sculpted by side light"
+          }
+        },
+        {
+          "file": "gfc/USA09211.jpg",
+          "alt": {
+            "fr": "Mannequin rousse de profil en long manteau blanc brodé et pantalon vert sapin",
+            "en": "Red-haired model in profile, long embroidered white coat and forest-green trousers"
+          }
+        },
+        {
+          "file": "gfc/USA08719.jpg",
+          "alt": {
+            "fr": "Mannequin en ensemble orange vif à volants, de profil sur le podium",
+            "en": "Model in a bright orange ruffled two-piece, in profile on the runway"
+          }
+        },
+        {
+          "file": "gfc/USA08767.jpg",
+          "alt": {
+            "fr": "Mannequin en robe longue blanche transparente et brodée, en pleine marche",
+            "en": "Model mid-stride in a sheer, embroidered white gown"
+          }
+        },
+        {
+          "file": "gfc/USA00697.jpg",
+          "alt": {
+            "fr": "Mannequin aux cheveux décolorés en veste de brocart noir et argent devant le premier rang",
+            "en": "Bleached-hair model in a black and silver brocade jacket in front of the front row"
+          }
+        },
+        {
+          "file": "gfc/USA09138.jpg",
+          "alt": {
+            "fr": "Mannequin de profil en combinaison de lin écru et lunettes orange, panier en cuir à la main",
+            "en": "Model in profile in an ecru linen jumpsuit and orange glasses, leather basket in hand"
+          }
+        },
+        {
+          "file": "gfc/USA09240.jpg",
+          "alt": {
+            "fr": "Mannequin de profil en gilet bicolore écru et bleu nuit sur chemise blanche",
+            "en": "Model in profile in a two-tone ecru and navy waistcoat over a white shirt"
+          }
+        },
+        {
+          "file": "gfc/USA09122.jpg",
+          "alt": {
+            "fr": "Mannequin blond en t-shirt camouflage et lunettes orange, sacoche en bandoulière",
+            "en": "Blond model in a camouflage T-shirt and orange glasses, crossbody bag"
+          },
+          "layout": "detail"
+        },
+        {
+          "file": "gfc/USA00460.jpg",
+          "alt": {
+            "fr": "Mannequin en tailleur blanc à galons noirs et grand nœud noir, entre deux rangs d'invités",
+            "en": "Model in a white suit with black braid trim and a large black bow, between two rows of guests"
+          }
+        },
+        {
+          "file": "gfc/USA00564.jpg",
+          "alt": {
+            "fr": "Mannequin en veste satinée à volants, de profil devant le premier rang",
+            "en": "Model in a ruffled satin jacket, in profile in front of the front row"
+          },
+          "layout": "detail"
+        },
+        {
+          "file": "gfc/USA00408.jpg",
+          "alt": {
+            "fr": "Mannequin en veste rouge vue de dos, remontant le podium vers le logo doré de la marque",
+            "en": "Model in a red jacket seen from behind, walking up the runway towards the brand's gold logo"
+          }
+        },
+        {
+          "file": "gfc/USA00387.jpg",
+          "alt": {
+            "fr": "Mannequin en veste de satin rouge cloutée jouant d'une guitare noire, une caméra derrière elle",
+            "en": "Model in a studded red satin jacket playing a black guitar, a camera behind her"
+          }
+        },
+        {
+          "file": "gfc/USA00789.jpg",
+          "alt": {
+            "fr": "Mannequin en veste de velours rouge de profil, un clavier Roland rouge en bandoulière",
+            "en": "Model in profile in a red velvet jacket, a red Roland keytar slung across her"
+          }
+        },
+        {
+          "file": "gfc/USA09115.jpg",
+          "alt": {
+            "fr": "Mannequin en costume noir à longues franges blanches, de profil sur le podium",
+            "en": "Model in a black suit with long white fringe, in profile on the runway"
+          }
+        },
+        {
+          "file": "gfc/USA08854.jpg",
+          "alt": {
+            "fr": "Mannequin en robe bustier de velours noir fendue, croisant une silhouette blonde vue de dos",
+            "en": "Model in a slit black velvet strapless gown, passing a blonde figure seen from behind"
+          }
+        },
+        {
+          "file": "gfc/USA00726.jpg",
+          "alt": {
+            "fr": "Mannequin au crâne rasé en manteau à imprimé multicolore, seule dans la lumière",
+            "en": "Shaved-head model in a multicolour print coat, alone in the light"
+          }
+        },
+        {
+          "file": "gfc/USA00028.jpg",
+          "alt": {
+            "fr": "Trois mannequins en canotiers et robes à rayures dans la pénombre, le public assis autour",
+            "en": "Three models in boater hats and striped dresses in the half-light, the audience seated around them"
+          }
+        },
+        {
+          "file": "gfc/USA00119.jpg",
+          "alt": {
+            "fr": "Sur le toit, une mannequin en redingote rayée grise et canotier mène la file des silhouettes",
+            "en": "On the rooftop, a model in a grey striped frock coat and boater leads the line of looks"
+          }
+        },
+        {
+          "file": "gfc/USA00135.jpg",
+          "alt": {
+            "fr": "Deux mannequins en canotiers, robe à fines rayures et veste militaire, devant l'Hudson",
+            "en": "Two models in boater hats, pinstripe dress and military jacket, in front of the Hudson"
+          }
+        },
+        {
+          "file": "gfc/USA00166.jpg",
+          "alt": {
+            "fr": "Trois mannequins en canotiers qui dansent sur le toit-terrasse, paquebot et Hudson en arrière-plan",
+            "en": "Three models in boater hats dancing on the rooftop terrace, a cruise ship and the Hudson behind"
+          },
+          "layout": "solo"
+        },
+        {
+          "file": "gfc/USA08610.jpg",
+          "alt": {
+            "fr": "Répétition : une mannequin en noir marche devant l'équipe assise au bord du podium",
+            "en": "Rehearsal: a model in black walks past the crew seated at the edge of the runway"
+          }
+        },
+        {
+          "file": "gfc/USA08736.jpg",
+          "alt": {
+            "fr": "Invitées du premier rang en rose, vert et jaune, téléphone à la main",
+            "en": "Front-row guests in pink, green and yellow, phones in hand"
+          }
+        },
+        {
+          "file": "gfc/USA08825.jpg",
+          "alt": {
+            "fr": "Invités du premier rang : veste blanche à lavallière, robe brodée, lunettes noires",
+            "en": "Front-row guests: white pussy-bow jacket, embroidered dress, dark glasses"
+          },
+          "layout": "detail"
+        },
+        {
+          "file": "gfc/USA08885.jpg",
+          "alt": {
+            "fr": "Salut final : les mannequins réunis devant le logo « R », robes rouges et tailleur blanc",
+            "en": "Final bow: the models gathered in front of the “R” logo, red gowns and a white suit"
+          }
+        }
+      ],
+      "venue": "[à compléter]",
+      "day": "[à compléter]"
+    },
+    {
+      "brand": "PUBLIC SERV-CE",
+      "designer": "Raphael Young",
+      "show": {
+        "fr": "Printemps-été 2027 · « The Rest Is Noise »",
+        "en": "SS27 · “The Rest Is Noise”"
+      },
+      "images": [
+        {
+          "file": "public-serv-ce/USA01263-Enhanced-NR.jpg",
+          "alt": {
+            "fr": "Mannequin en veste noire et perruque blanche sur le podium, des vestes « DREAMER » au premier plan",
+            "en": "Model in a black jacket and white wig on the runway, “DREAMER” jackets in the foreground"
+          },
+          "credit": "Mannequin : [à compléter]"
+        },
+        {
+          "file": "public-serv-ce/USA01322-Enhanced-NR.jpg",
+          "alt": {
+            "fr": "Mannequin en veste de costume argentée ouverte et pantalon noir, la tête baissée",
+            "en": "Model in an open silver suit jacket and black trousers, head lowered"
+          },
+          "credit": "Mannequin : [à compléter]"
+        },
+        {
+          "file": "public-serv-ce/USA01364-Enhanced-NR.jpg",
+          "alt": {
+            "fr": "Mannequin en bandana turquoise et veste à motif bandana, sandales blanches",
+            "en": "Model in a turquoise bandana and bandana-print jacket, white sandals"
+          },
+          "credit": "Mannequin : [à compléter]"
+        },
+        {
+          "file": "public-serv-ce/USA01413-Enhanced-NR.jpg",
+          "alt": {
+            "fr": "Mannequin en lunettes noires, blouson bicolore clair et pantalon cargo argenté",
+            "en": "Model in black sunglasses, a light two-tone jacket and silver cargo trousers"
+          },
+          "credit": "Mannequin : [à compléter]"
+        },
+        {
+          "file": "public-serv-ce/USA01248-Enhanced-NR.jpg",
+          "alt": {
+            "fr": "Mannequin en bandana et sweat noir délavé de blanc, lunettes noires",
+            "en": "Model in a bandana and black bleach-washed sweatshirt, black sunglasses"
+          },
+          "credit": "Mannequin : [à compléter]"
+        },
+        {
+          "file": "public-serv-ce/USA01451-Enhanced-NR.jpg",
+          "alt": {
+            "fr": "Mannequin en veste de cuir grise et bermuda noir, baskets rouges",
+            "en": "Model in a grey leather jacket and black shorts, red sneakers"
+          },
+          "credit": "Mannequin : [à compléter]"
+        },
+        {
+          "file": "public-serv-ce/USA01493-Enhanced-NR.jpg",
+          "alt": {
+            "fr": "Mannequin en lunettes rouges, veste noire et pantalon blanc",
+            "en": "Model in red glasses, a black jacket and white trousers"
+          },
+          "credit": "Mannequin : [à compléter]"
+        },
+        {
+          "file": "public-serv-ce/USA01579.jpg",
+          "alt": {
+            "fr": "Deux mannequins en perruques blanches, l'une en veste noire, l'autre en veste rose pâle, face au public",
+            "en": "Two models in white wigs, one in a black jacket, the other in pale pink, facing the audience"
+          },
+          "credit": "Mannequins : [à compléter]"
+        }
+      ],
+      "venue": {
+        "fr": "Arte Museum, Chelsea",
+        "en": "Arte Museum, Chelsea"
+      },
+      "day": 13
     }
   ],
-  "backstage_title": { "fr": "Dans la salle", "en": "In the room" },
+  "backstage_title": {
+    "fr": "Dans la salle",
+    "en": "In the room"
+  },
   "backstage": [
-    { "file": "public-serv-ce/USA01167-Enhanced-NR.jpg", "alt": { "fr": "Le mur « HOUSE OF PUBLIC SERV-CE » au-dessus du public", "en": "The “HOUSE OF PUBLIC SERV-CE” wall above the audience" }, "credit": "" },
-    { "file": "public-serv-ce/USA01152-Enhanced-NR.jpg", "alt": { "fr": "Invité de dos, t-shirt crème « Seeking Sun » et bonnet en fausse fourrure", "en": "Guest seen from behind, cream “Seeking Sun” T-shirt and faux-fur hat" }, "credit": "" },
-    { "file": "public-serv-ce/USA01103-Enhanced-NR.jpg", "alt": { "fr": "Deux invités en blousons et casquettes au bord du podium", "en": "Two guests in jackets and caps at the edge of the runway" }, "credit": "" },
-    { "file": "public-serv-ce/USA01433-Enhanced-NR.jpg", "alt": { "fr": "Invitées au premier rang, jupes à carreaux et lunettes de soleil", "en": "Front-row guests in plaid skirts and sunglasses" }, "credit": "" },
-    { "file": "public-serv-ce/USA01610-Enhanced-NR.jpg", "alt": { "fr": "Deux invités en pleine conversation, chemise à motif cachemire", "en": "Two guests deep in conversation, paisley shirt" }, "credit": "" },
-    { "file": "public-serv-ce/USA01738-Enhanced-NR.jpg", "alt": { "fr": "Invités posant au bord du podium, veste en cuir et polo rayé « Saint Valley »", "en": "Guests posing at the edge of the runway, leather jacket and striped “Saint Valley” polo" }, "credit": "" }
+    {
+      "file": "public-serv-ce/USA01167-Enhanced-NR.jpg",
+      "alt": {
+        "fr": "Le mur « HOUSE OF PUBLIC SERV-CE » au-dessus du public",
+        "en": "The “HOUSE OF PUBLIC SERV-CE” wall above the audience"
+      },
+      "credit": ""
+    },
+    {
+      "file": "public-serv-ce/USA01152-Enhanced-NR.jpg",
+      "alt": {
+        "fr": "Invité de dos, t-shirt crème « Seeking Sun » et bonnet en fausse fourrure",
+        "en": "Guest seen from behind, cream “Seeking Sun” T-shirt and faux-fur hat"
+      },
+      "credit": ""
+    },
+    {
+      "file": "public-serv-ce/USA01103-Enhanced-NR.jpg",
+      "alt": {
+        "fr": "Deux invités en blousons et casquettes au bord du podium",
+        "en": "Two guests in jackets and caps at the edge of the runway"
+      },
+      "credit": ""
+    },
+    {
+      "file": "public-serv-ce/USA01433-Enhanced-NR.jpg",
+      "alt": {
+        "fr": "Invitées au premier rang, jupes à carreaux et lunettes de soleil",
+        "en": "Front-row guests in plaid skirts and sunglasses"
+      },
+      "credit": ""
+    },
+    {
+      "file": "public-serv-ce/USA01610-Enhanced-NR.jpg",
+      "alt": {
+        "fr": "Deux invités en pleine conversation, chemise à motif cachemire",
+        "en": "Two guests deep in conversation, paisley shirt"
+      },
+      "credit": ""
+    },
+    {
+      "file": "public-serv-ce/USA01738-Enhanced-NR.jpg",
+      "alt": {
+        "fr": "Invités posant au bord du podium, veste en cuir et polo rayé « Saint Valley »",
+        "en": "Guests posing at the edge of the runway, leather jacket and striped “Saint Valley” polo"
+      },
+      "credit": ""
+    }
   ]
 }
