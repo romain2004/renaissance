@@ -1,6 +1,9 @@
 {
   "slug": "2025-02-nyfw",
-  "title": { "fr": "New York Fashion Week", "en": "New York Fashion Week" },
+  "title": {
+    "fr": "New York Fashion Week",
+    "en": "New York Fashion Week"
+  },
   "season": "FW25",
   "city": "New York",
   "date": "2025-02",
@@ -15,45 +18,229 @@
     "en": "Model in a long grey hooded coat on the runway, audience on both sides"
   },
   "card": "USA02414.jpg",
-  "card_alt": { "fr": "Mannequin en robe longue blanche à imprimé bleu, en pied sur le podium", "en": "Model in a long white gown with a blue print, full length on the runway" },
+  "card_alt": {
+    "fr": "Mannequin en robe longue blanche à imprimé bleu, en pied sur le podium",
+    "en": "Model in a long white gown with a blue print, full length on the runway"
+  },
   "series": [
     {
       "brand": "FILIPINXT",
       "designer": "[à compléter]",
-      "show": { "fr": "Automne-hiver 2025", "en": "Fall/Winter 2025" },
+      "show": {
+        "fr": "Automne-hiver 2025",
+        "en": "Fall/Winter 2025"
+      },
       "images": [
-        { "file": "USA00043.webp", "alt": { "fr": "Mannequin dans une veste volumineuse en maille bleue à reliefs floraux", "en": "Model in a voluminous blue knit jacket with floral texture" }, "credit": "Mannequin : [à compléter]" },
-        { "file": "USA01108.webp", "alt": { "fr": "Mannequin en veste en jean portée sur l'épaule, couverte de roses rouges", "en": "Model in an off-shoulder denim jacket covered in red roses" }, "credit": "Mannequin : [à compléter]" },
-        { "file": "USA00618.webp", "alt": { "fr": "Mannequin en veste tissée à rayures rouges et bleues", "en": "Model in a woven jacket with red and blue stripes" }, "credit": "Mannequin : [à compléter]" },
-        { "file": "USA09476.webp", "alt": { "fr": "Robe blanche de dos, dentelle brodée et longs gants", "en": "White gown seen from the back, embroidered lace and long gloves" }, "credit": "Mannequin : [à compléter]" }
+        {
+          "file": "USA00043.webp",
+          "alt": {
+            "fr": "Mannequin dans une veste volumineuse en maille bleue à reliefs floraux",
+            "en": "Model in a voluminous blue knit jacket with floral texture"
+          },
+          "credit": "Mannequin : [à compléter]"
+        },
+        {
+          "file": "USA01108.webp",
+          "alt": {
+            "fr": "Mannequin en veste en jean portée sur l'épaule, couverte de roses rouges",
+            "en": "Model in an off-shoulder denim jacket covered in red roses"
+          },
+          "credit": "Mannequin : [à compléter]"
+        },
+        {
+          "file": "USA00618.webp",
+          "alt": {
+            "fr": "Mannequin en veste tissée à rayures rouges et bleues",
+            "en": "Model in a woven jacket with red and blue stripes"
+          },
+          "credit": "Mannequin : [à compléter]"
+        },
+        {
+          "file": "USA09476.webp",
+          "alt": {
+            "fr": "Robe blanche de dos, dentelle brodée et longs gants",
+            "en": "White gown seen from the back, embroidered lace and long gloves"
+          },
+          "credit": "Mannequin : [à compléter]"
+        }
       ]
     },
     {
       "brand": "Global Fashion Collective",
       "designer": "[à compléter] (défilé 1)",
-      "show": { "fr": "Automne-hiver 2025", "en": "Fall/Winter 2025" },
+      "show": {
+        "fr": "Automne-hiver 2025",
+        "en": "Fall/Winter 2025"
+      },
       "images": [
-        { "file": "USA02218.jpg", "alt": { "fr": "Mannequin en robe drapée bleue et rouge aux manches déployées", "en": "Model in a draped blue and red dress with sweeping sleeves" }, "credit": "Mannequin : [à compléter]" },
-        { "file": "USA02414.jpg", "alt": { "fr": "Mannequin en robe longue blanche à imprimé bleu", "en": "Model in a long white gown with a blue print" }, "credit": "Mannequin : [à compléter]" }
+        {
+          "file": "USA02218.jpg",
+          "alt": {
+            "fr": "Mannequin en robe drapée bleue et rouge aux manches déployées",
+            "en": "Model in a draped blue and red dress with sweeping sleeves"
+          },
+          "credit": "Mannequin : [à compléter]"
+        },
+        {
+          "file": "USA02275.webp",
+          "alt": {
+            "fr": "Deux mannequins en robes sculpturales assorties, bleu et rouge",
+            "en": "Two models in matching sculptural blue and red dresses"
+          },
+          "credit": "Mannequin : [à compléter]"
+        },
+        {
+          "file": "USA02342.webp",
+          "alt": {
+            "fr": "Mannequin en robe-sculpture bleue et rouge nouée sur le buste",
+            "en": "Model in a blue and red sculptural dress knotted across the bust"
+          },
+          "credit": "Mannequin : [à compléter]"
+        },
+        {
+          "file": "USA02523.webp",
+          "alt": {
+            "fr": "Mannequin en bustier gris drapé et jupe ballon en tulle noir",
+            "en": "Model in a draped grey bustier and a black tulle bubble skirt"
+          },
+          "credit": "Mannequin : [à compléter]"
+        },
+        {
+          "file": "USA02462.webp",
+          "alt": {
+            "fr": "Mannequin en haut et jupe longue blancs imprimés de bleu",
+            "en": "Model in a white top and long skirt with a blue print"
+          },
+          "credit": "Mannequin : [à compléter]"
+        },
+        {
+          "file": "USA02414.jpg",
+          "alt": {
+            "fr": "Mannequin en robe longue blanche à imprimé bleu",
+            "en": "Model in a long white gown with a blue print"
+          },
+          "credit": "Mannequin : [à compléter]"
+        }
+      ]
+    },
+    {
+      "brand": "Global Fashion Collective",
+      "designer": "[à compléter] (défilé 2)",
+      "show": {
+        "fr": "Automne-hiver 2025",
+        "en": "Fall/Winter 2025"
+      },
+      "images": [
+        {
+          "file": "USA00079.webp",
+          "alt": {
+            "fr": "Mannequin rousse en veste matelassée kaki brodée d'étoiles et jambières grises",
+            "en": "Red-haired model in a quilted khaki jacket embroidered with stars and grey leg warmers"
+          },
+          "credit": "Mannequin : [à compléter]"
+        },
+        {
+          "file": "USA00337.webp",
+          "alt": {
+            "fr": "Mannequin en bob, robe à sequins verts et bleus et manches turquoise",
+            "en": "Model in a bucket hat, green and blue sequin dress and turquoise sleeves"
+          },
+          "credit": "Mannequin : [à compléter]"
+        },
+        {
+          "file": "USA00452.webp",
+          "alt": {
+            "fr": "Mannequin sous une capuche-sculpture turquoise à motifs géométriques, plumes blanches",
+            "en": "Model under a sculptural turquoise geometric hood, white feathers"
+          },
+          "credit": "Mannequin : [à compléter]"
+        }
       ]
     },
     {
       "brand": "Global Fashion Collective",
       "designer": "Kehang",
-      "show": { "fr": "Automne-hiver 2025", "en": "Fall/Winter 2025" },
+      "show": {
+        "fr": "Automne-hiver 2025",
+        "en": "Fall/Winter 2025"
+      },
       "images": [
-        { "file": "USA00769.jpg", "alt": { "fr": "Mannequin en robe à rayures caramel sur le podium Kehang", "en": "Model in a caramel striped dress on the Kehang runway" }, "credit": "Mannequin : [à compléter]" },
-        { "file": "USA00792.webp", "alt": { "fr": "Robe longue à larges rayures caramel et crème", "en": "Long dress with wide caramel and cream stripes" }, "credit": "Mannequin : [à compléter]" },
-        { "file": "USA00694.webp", "alt": { "fr": "Mannequin en robe beige transparente et capuche", "en": "Model in a sheer beige dress and hood" }, "credit": "Mannequin : [à compléter]" }
+        {
+          "file": "USA00792.webp",
+          "alt": {
+            "fr": "Robe longue à larges rayures caramel et crème",
+            "en": "Long dress with wide caramel and cream stripes"
+          },
+          "credit": "Mannequin : [à compléter]"
+        },
+        {
+          "file": "USA00964.webp",
+          "alt": {
+            "fr": "Mannequin en manteau rayé brun et caramel, capuche relevée",
+            "en": "Model in a brown and caramel striped coat, hood up"
+          },
+          "credit": "Mannequin : [à compléter]"
+        },
+        {
+          "file": "USA00694.webp",
+          "alt": {
+            "fr": "Mannequin en robe beige transparente et capuche",
+            "en": "Model in a sheer beige dress and hood"
+          },
+          "credit": "Mannequin : [à compléter]"
+        },
+        {
+          "file": "USA00633.webp",
+          "alt": {
+            "fr": "Mannequin en robe courte transparente couleur chair et boucles d'oreilles géométriques",
+            "en": "Model in a sheer flesh-toned short dress and geometric earrings"
+          },
+          "credit": "Mannequin : [à compléter]"
+        }
       ]
     },
     {
       "brand": "Global Fashion Collective",
       "designer": "[à compléter] (défilé 4)",
-      "show": { "fr": "Automne-hiver 2025", "en": "Fall/Winter 2025" },
+      "show": {
+        "fr": "Automne-hiver 2025",
+        "en": "Fall/Winter 2025"
+      },
       "images": [
-        { "file": "USA01814.jpg", "alt": { "fr": "Final du défilé : les mannequins en noir alignés sur le podium", "en": "Show finale: models in black lined up on the runway" }, "credit": "" },
-        { "file": "USA01420.webp", "alt": { "fr": "Mannequin en blouson argenté à col de fourrure et pantalon large gris", "en": "Model in a silver jacket with fur collar and wide grey trousers" }, "credit": "Mannequin : [à compléter]" }
+        {
+          "file": "USA01355.webp",
+          "alt": {
+            "fr": "Mannequin rousse en cape à capuche rouge et pantalon large gris",
+            "en": "Red-haired model in a red hooded cape and wide grey trousers"
+          },
+          "credit": "Mannequin : [à compléter]"
+        },
+        {
+          "file": "USA01420.webp",
+          "alt": {
+            "fr": "Mannequin en blouson argenté à col de fourrure et pantalon large gris",
+            "en": "Model in a silver jacket with fur collar and wide grey trousers"
+          },
+          "credit": "Mannequin : [à compléter]"
+        }
+      ]
+    },
+    {
+      "brand": "Global Fashion Collective",
+      "designer": "[à compléter] (défilé 5)",
+      "show": {
+        "fr": "Automne-hiver 2025",
+        "en": "Fall/Winter 2025"
+      },
+      "images": [
+        {
+          "file": "USA09904.webp",
+          "alt": {
+            "fr": "Mannequin en bustier bleu à motifs géométriques et short cargo argenté, jambières à franges",
+            "en": "Model in a blue geometric bustier and silver cargo shorts, fringed leg warmers"
+          },
+          "credit": "Mannequin : [à compléter]"
+        }
       ]
     }
   ],
