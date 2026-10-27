@@ -156,7 +156,7 @@ a:focus-visible, button:focus-visible { outline: 1px solid var(--accent); outlin
   border-bottom: 1px solid var(--line);
   color: inherit;
 }
-.fx-house__brand { font-size: clamp(44px, 6vw, 104px); line-height: 0.9; transition: color 0.3s ease; }
+.fx-house__brand { font-size: clamp(38px, 5vw, 88px); line-height: 0.9; transition: color 0.3s ease; }
 .fx-house:hover .fx-house__brand { color: var(--accent); }
 .fx-house__season { text-align: right; }
 
@@ -334,7 +334,7 @@ a:focus-visible, button:focus-visible { outline: 1px solid var(--accent); outlin
   .page-fashion, .page-season { --gutter: 16px; }
   /* le nom en grand, coupé seulement entre deux mots ; les infos dessous */
   .fx-house { grid-template-columns: 1fr; gap: 10px; }
-  .fx-house__brand { font-size: min(13vw, 60px); overflow-wrap: normal; word-break: normal; hyphens: none; }
+  .fx-house__brand { font-size: min(11vw, 52px); overflow-wrap: normal; word-break: normal; hyphens: none; }
   .fx-house__season { text-align: left; }
   .ss-series__brand { font-size: min(8.4vw, 48px); }   /* « Global Fashion Collective » sur une ligne */
   .fx-hero__title, .ss-opening__title { font-size: min(14vw, 64px); }
