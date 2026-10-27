@@ -186,11 +186,11 @@ a { color: inherit; text-decoration: none; }
 
 .hero__tag {
   margin-top: clamp(12px, 2vh, 22px);
-  font-size: clamp(7.5px, 0.85vw, 10px);
-  letter-spacing: 0.42em;
+  font-size: 12px;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--gold);
-  font-weight: 300;
+  font-weight: 500;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -253,22 +253,22 @@ a { color: inherit; text-decoration: none; }
 
 .world--fashion .world__bg {
   background-image: url('../fashion/images/USA00093.jpg');
-  filter: brightness(0.62) saturate(0.84);
+  filter: brightness(0.86);
 }
 
 .world--riviera .world__bg {
   background-image: url('../riviera/images/USA02706.jpeg');
-  filter: brightness(0.68) saturate(1.0);
+  filter: brightness(0.88);
 }
 
 .world--fashion:hover .world__bg {
   transform: scale(1.05);
-  filter: brightness(0.78) saturate(0.90);
+  filter: brightness(1);
 }
 
 .world--riviera:hover .world__bg {
   transform: scale(1.05);
-  filter: brightness(0.82) saturate(1.08);
+  filter: brightness(1);
 }
 
 .world__vignette {
@@ -276,8 +276,8 @@ a { color: inherit; text-decoration: none; }
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(0, 0, 0, 0.78) 0%,
-    rgba(0, 0, 0, 0.16) 45%,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.08) 45%,
     rgba(0, 0, 0, 0.0)  100%
   );
   z-index: 1;
@@ -314,11 +314,11 @@ a { color: inherit; text-decoration: none; }
 
 .world__location {
   font-family: var(--sans);
-  font-size: clamp(8px, 0.82vw, 10px);
-  font-weight: 300;
-  letter-spacing: 0.36em;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: rgba(245, 241, 234, 0.55);
+  color: rgba(245, 241, 234, 0.85);
 }
 
 .world__cta {
@@ -454,7 +454,7 @@ a { color: inherit; text-decoration: none; }
   background-image: url('../riviera/images/USA02707.jpeg');
   transform: scale(1.06);
   transition: transform 1.4s var(--out);
-  filter: brightness(0.92) contrast(1.02) saturate(0.95) sepia(0.03);
+  filter: none;
 }
 
 .campaign.is-visible .campaign__bg {
@@ -466,9 +466,9 @@ a { color: inherit; text-decoration: none; }
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(5, 5, 5, 0.04)  0%,
-    rgba(5, 5, 5, 0.01)  38%,
-    rgba(5, 5, 5, 0.48)  100%
+    rgba(5, 5, 5, 0)     0%,
+    rgba(5, 5, 5, 0)     50%,
+    rgba(5, 5, 5, 0.32)  100%
   );
   z-index: 1;
 }
@@ -514,11 +514,11 @@ a { color: inherit; text-decoration: none; }
   margin-top: 10px;
 }
 
-/* TODO: image provisoire (SoHo, vitrines Dior et Fendi). Autres candidates :
-   fashion/images/USA00769.webp, fashion/images/USA00630.webp */
+/* New York : un défilé d'une maison cliente (PUBLIC SERV-CE, NYFW septembre 2026),
+   jamais la vitrine d'une marque qui n'est pas cliente */
 .campaign__bg--newyork {
-  background-position: center 40%;
-  background-image: url('../fashion/images/USA05496.webp');
+  background-position: center 45%;
+  background-image: url('../fashion/images/USA01439.webp');
 }
 
 
@@ -565,7 +565,7 @@ a { color: inherit; text-decoration: none; }
 
 .footer__tagline {
   font-family: var(--sans);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--gold);
@@ -713,11 +713,11 @@ a { color: inherit; text-decoration: none; }
 
   .hero__mobile-tag {
     padding: 0 24px;
-    font-size: 10px;
-    letter-spacing: 0.36em;
+    font-size: 12px;
+    letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: rgba(245, 241, 234, 0.38);
-    font-weight: 300;
+    color: rgba(245, 241, 234, 0.8);
+    font-weight: 500;
     margin-top: 18px;
     text-align: center;
   }
@@ -774,12 +774,12 @@ a { color: inherit; text-decoration: none; }
   /* cartes verticales : photos verticales */
   .hero__mobile-card-bg--fashion {
     background-image: url('../fashion/images/USA01536.webp');
-    filter: brightness(0.55) saturate(0.85);
+    filter: brightness(0.78);
   }
 
   .hero__mobile-card-bg--riviera {
     background-image: url('../riviera/images/choice/private.webp');
-    filter: brightness(0.55) saturate(1.0);
+    filter: brightness(0.8);
   }
 
   .hero__mobile-card-overlay {
@@ -841,7 +841,7 @@ a { color: inherit; text-decoration: none; }
   /* ── Footer ─────────────────────────────────────────── */
   .footer { padding: 56px 24px 44px; gap: 28px; }
   .footer__name { font-size: clamp(24px, 6vw, 34px); }
-  .footer__tagline { font-size: 10px; line-height: 2; }
+  .footer__tagline { font-size: 12px; line-height: 2; }
   .footer__cta { margin-top: 10px; margin-bottom: 10px; gap: 8px; }
 }
 
