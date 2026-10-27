@@ -60,26 +60,23 @@ h3 { font-weight: inherit; }
   gap: 6px;
   margin-top: 3.5rem;
 }
+/* Photos horizontales dans des cadres horizontaux : la photo en haut, le texte dessous */
 .audience-card {
   position: relative;
-  height: clamp(440px, 46vw, 620px);
   overflow: hidden;
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
 }
 .audience-card img {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
   object-fit: cover;
   transition: transform .6s ease;
 }
 .audience-card:hover img { transform: scale(1.05); }
-.audience-card::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(10,14,20,.92) 0%, rgba(10,14,20,.35) 50%, transparent 75%);
-}
-.audience-body { position: relative; z-index: 1; padding: 2rem; }
+.audience-body { position: relative; z-index: 1; padding: 1.75rem .25rem 0; }
 .audience-num {
   display: block;
   font-size: .65rem;
@@ -220,17 +217,16 @@ h3 { font-weight: inherit; }
   padding: .45rem .9rem;
 }
 /* ── 3b. RÉALISATIONS ── */
+/* Chaque photo garde son format (verticale ou horizontale), sans recadrage */
 .work-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 4px;
+  columns: 3;
+  column-gap: 4px;
   margin-top: 3rem;
 }
-.work-item { margin: 0; aspect-ratio: 4 / 3; overflow: hidden; }
+.work-item { margin: 0 0 4px; overflow: hidden; break-inside: avoid; }
 .work-item img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   display: block;
   transition: transform .65s ease;
 }
@@ -404,7 +400,7 @@ footer { gap: 1.5rem; flex-wrap: wrap; }
    MOBILE — mêmes seuils que Riviera
    ════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
-  .work-grid { grid-template-columns: repeat(2, 1fr); margin-top: 2rem; }
+  .work-grid { columns: 2; margin-top: 2rem; }
   /* Hero Riviera : lisibilité du texte et du 2e bouton sur la photo claire */
   #hero::after {
     content: '';
@@ -420,18 +416,20 @@ footer { gap: 1.5rem; flex-wrap: wrap; }
   .hs-intro { font-size: .9rem; margin-bottom: 2.5rem; }
 
   .audience-grid { grid-template-columns: 1fr; gap: 4px; margin-top: 2rem; }
-  .audience-card { height: 120vw; max-height: 520px; }
-  .audience-body { padding: 1.5rem 20px; }
+  .audience-body { padding: 1.25rem 0 1.5rem; }
 
   .founding { grid-template-columns: 1fr; gap: 2.5rem; }
-  .founding-photo { aspect-ratio: 4/3; }
+  .founding-photo { aspect-ratio: 4/5; }
   .founding .btn-gold { display: block; }
 
   #methode .process-grid { margin-top: 2rem; }
 
   .faq-item p { padding-right: 0; }
 
-  #contact.h-contact { padding: 5rem 24px; min-height: 100svh; }
+  /* photo horizontale : en bandeau au-dessus du texte, pas recadrée en portrait */
+  #contact.h-contact { padding: 0 24px 5rem; min-height: 0; display: block; }
+  #contact.h-contact::after { display: none; }
+  .h-contact-img { position: relative; display: block; width: calc(100% + 48px); height: auto; aspect-ratio: 3 / 2; margin: 0 -24px 3rem; }
   .h-contact .contact-h { font-size: clamp(2.8rem, 12vw, 5rem); }
   .h-contact-inner { width: 100%; }
 }

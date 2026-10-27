@@ -320,6 +320,18 @@ def img_tag(slug_path, meta, alt, sizes, lazy=True, cls='', extra=''):
             f'data-alt-en="{esc(en)}"{loading}{extra} />')
 
 
+def is_portrait(meta):
+    return meta['h'] > meta['w']
+
+
+def cover_sizes(meta, box_ratio, slots):
+    """sizes d'une image recadrée en "cover" dans un cadre de proportion box_ratio (largeur / hauteur).
+    Une photo plus large que son cadre s'affiche plus large que lui : on l'annonce au navigateur,
+    sinon il charge la version 1000 px et l'étire (photo floue). slots = [(media, vw), ...]."""
+    factor = max(1.0, (meta['w'] / meta['h']) / box_ratio)
+    return ', '.join(f'{m} {round(vw * factor)}vw'.strip() for m, vw in slots)
+
+
 def layout_rows(images, info):
     """Rythme magazine : paysage = pleine largeur ; deux portraits qui se suivent = paire ;
     portrait isolé = seul, centré, en grand. Pour changer le rythme, change l'ordre des images,
@@ -515,6 +527,8 @@ def build_season(s, prev_s, next_s, info, template):
     cover = info.get(s.get('cover', ''))
     if not cover:
         warn(slug, 'pas d\'image d\'ouverture ("cover")')
+    elif is_portrait(cover):
+        warn(slug, 'l\'ouverture ("cover") est une bannière : choisis une photo horizontale')
     url = f'{SITE_URL}/fashion/{slug}/'
     title_fr = f'{tf} — Romain Maulavé'
     title_en = f'{te} — Romain Maulavé'
@@ -569,6 +583,18 @@ def build_season(s, prev_s, next_s, info, template):
         guard.unlink()
 
 
+def season_card(s, info):
+    """La carte d'une saison sur l'accueil Fashion est verticale : "card" (photo verticale), sinon
+    la première photo verticale de la saison. Renvoie (meta, alt)."""
+    if s.get('card') in info:
+        return info[s['card']], s.get('card_alt')
+    for serie in s.get('series', []):
+        for im in serie.get('images', []):
+            if im['file'] in info and is_portrait(info[im['file']]):
+                return info[im['file']], im.get('alt')
+    return info.get(s.get('cover', '')), s.get('cover_alt')
+
+
 def build_index(seasons, infos, template):
     published = [s for s in seasons if not s.get('draft')]
     if not published:
@@ -593,13 +619,15 @@ def build_index(seasons, infos, template):
     pool = []
     for sid, serie in zip(series_ids(latest), latest.get('series', [])):
         for im in serie.get('images', []):
-            if im['file'] in li and im['file'] not in (latest.get('cover'), latest.get('home_hero')):
+            # cadres verticaux (carte, aperçus) : uniquement des photos verticales
+            if (im['file'] in li and is_portrait(li[im['file']])
+                    and im['file'] not in (latest.get('cover'), latest.get('home_hero'), latest.get('card'))):
                 pool.append((sid, im))
     card_img = pool[0][1] if pool else None
     previews = pool[1:7]
     prev_html = ''.join(
         f'<a class="fx-latest__thumb" href="{latest["slug"]}/#{sid}">'
-        f'{img_tag(latest["slug"] + "/images/", li[im["file"]], bi(im.get("alt", "")), "(max-width: 700px) 50vw, 16vw")}</a>'
+        f'{img_tag(latest["slug"] + "/images/", li[im["file"]], bi(im.get("alt", "")), cover_sizes(li[im["file"]], 2 / 3, [("(max-width: 700px)", 50), ("(max-width: 960px)", 33), ("", 16)]))}</a>'
         for sid, im in previews)
     meta_fr = f'{latest.get("city", "")} · {month_label(latest["date"], "fr")}'
     meta_en = f'{latest.get("city", "")} · {month_label(latest["date"], "en")}'
@@ -607,7 +635,7 @@ def build_index(seasons, infos, template):
     latest_card = (
         f'<a class="fx-latest__card reveal" href="{latest["slug"]}/">'
         + (img_tag(f'{latest["slug"]}/images/', li[card_img['file']], bi(card_img.get('alt', '')),
-                   '(max-width: 900px) 100vw, 60vw') if card_img else '')
+                   cover_sizes(li[card_img['file']], 0.6, [('(max-width: 960px)', 100), ('', 60)])) if card_img else '')
         + f'<span class="fx-latest__overlay">{t(meta_fr, meta_en, "span", "label")}'
         f'<span class="fx-latest__title" data-fr="{esc(lf)}<br>{esc(month_label(latest["date"], "fr"))}" data-en="{esc(le)}<br>{esc(month_label(latest["date"], "en"))}">{esc(lf)}<br>{esc(month_label(latest["date"], "fr"))}</span>'
         f'<span class="fx-latest__houses">{esc(houses_latest)}</span>'
@@ -617,12 +645,12 @@ def build_index(seasons, infos, template):
     cards = []
     for s in reversed(published):
         si = infos[s['slug']]
-        c = si.get(s.get('cover', ''))
+        c, c_alt = season_card(s, si)
         sf, se = bi(s['title'])
         cards.append(
             f'<a class="fx-season reveal" href="{s["slug"]}/">'
-            + (img_tag(f'{s["slug"]}/images/', c, bi(s.get('cover_alt') or {'fr': sf, 'en': se}),
-                       '(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw') if c else '<span class="fx-season__empty"></span>')
+            + (img_tag(f'{s["slug"]}/images/', c, bi(c_alt or {'fr': sf, 'en': se}),
+                       cover_sizes(c, 4 / 5, [('(max-width: 700px)', 100), ('(max-width: 960px)', 50), ('', 33)])) if c else '<span class="fx-season__empty"></span>')
             + f'<span class="fx-season__body">{t(s.get("city", ""), s.get("city", ""), "span", "label")}'
             f'<span class="fx-season__title" data-fr="{esc(sf)} <span class=\'gold\'>{esc(month_label(s["date"], "fr"))}</span>" '
             f'data-en="{esc(se)} <span class=\'gold\'>{esc(month_label(s["date"], "en"))}</span>">{esc(sf)} <span class="gold">{esc(month_label(s["date"], "fr"))}</span></span>'
@@ -631,22 +659,31 @@ def build_index(seasons, infos, template):
 
     # Maisons : une ligne par marque et par saison (lien vers sa première série),
     # avec les créateurs connus quand une marque présente plusieurs créateurs (GFC)
+    # Une seule ligne par marque, même si elle revient à plusieurs saisons (GFC) : le lien
+    # mène à la saison la plus récente, la ligne liste toutes les saisons.
     groups = {}
-    for s in published:
+    for s in reversed(published):
         for sid, serie in zip(series_ids(s), s.get('series', [])):
             if not serie.get('images'):
                 continue
-            g = groups.setdefault((serie.get('brand', ''), s['slug']), {'season': s, 'sid': sid, 'designers': []})
+            brand = serie.get('brand', '')
+            g = groups.setdefault(brand.lower(), {'brand': brand, 'season': s, 'sid': sid, 'seasons': [], 'designers': []})
+            if s not in g['seasons']:
+                g['seasons'].append(s)
             d = serie.get('designer', '')
             if not is_placeholder(d) and d not in g['designers']:
                 g['designers'].append(d)
-    rows = sorted(groups.items(), key=lambda kv: (kv[0][0].lower(), kv[1]['season']['date']))
+    rows = sorted(groups.values(), key=lambda g: g['brand'].lower())
+
+    def when(g, lang):
+        cities = ' · '.join(dict.fromkeys(x.get('city', '') for x in g['seasons'] if x.get('city')))
+        return ' · '.join([month_label(x['date'], lang) for x in g['seasons']] + ([cities] if cities else []))
     house_items = ''.join(
-        f'<li><a class="fx-house" href="{g["season"]["slug"]}/#{slugify(brand) or g["sid"]}">'
-        f'<span class="fx-house__brand">{esc(brand)}</span>'
+        f'<li><a class="fx-house" href="{g["season"]["slug"]}/#{slugify(g["brand"]) or g["sid"]}">'
+        f'<span class="fx-house__brand">{esc(g["brand"])}</span>'
         f'<span class="fx-house__designer">{esc(" · ".join(g["designers"]))}</span>'
-        f'<span class="fx-house__season">{t(month_label(g["season"]["date"], "fr"), month_label(g["season"]["date"], "en"))} · {esc(g["season"].get("city", ""))}</span></a></li>'
-        for (brand, _), g in rows)
+        f'{t(when(g, "fr"), when(g, "en"), "span", "fx-house__season")}</a></li>'
+        for g in rows)
 
     url = f'{SITE_URL}/fashion/'
     values = {

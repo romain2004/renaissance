@@ -14,6 +14,8 @@
     "fr": "Mannequin en long manteau à capuche gris sur le podium, public de chaque côté",
     "en": "Model in a long grey hooded coat on the runway, audience on both sides"
   },
+  "card": "USA02218.jpg",
+  "card_alt": { "fr": "Mannequin en robe drapée bleue et rouge aux manches déployées", "en": "Model in a draped blue and red dress with sweeping sleeves" },
   "series": [
     {
       "brand": "FILIPINXT",
@@ -31,8 +33,8 @@
       "designer": "[à compléter] (défilé 1)",
       "show": { "fr": "Automne-hiver 2025", "en": "Fall/Winter 2025" },
       "images": [
-        { "file": "USA02218.webp", "alt": { "fr": "Mannequin en robe drapée bleue et rouge aux manches déployées", "en": "Model in a draped blue and red dress with sweeping sleeves" }, "credit": "Mannequin : [à compléter]" },
-        { "file": "USA02414.webp", "alt": { "fr": "Mannequin en robe longue blanche à imprimé bleu", "en": "Model in a long white gown with a blue print" }, "credit": "Mannequin : [à compléter]" }
+        { "file": "USA02218.jpg", "alt": { "fr": "Mannequin en robe drapée bleue et rouge aux manches déployées", "en": "Model in a draped blue and red dress with sweeping sleeves" }, "credit": "Mannequin : [à compléter]" },
+        { "file": "USA02414.jpg", "alt": { "fr": "Mannequin en robe longue blanche à imprimé bleu", "en": "Model in a long white gown with a blue print" }, "credit": "Mannequin : [à compléter]" }
       ]
     },
     {

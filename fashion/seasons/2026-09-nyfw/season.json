@@ -12,12 +12,16 @@
     "fr": "Septembre 2026 à New York : le défilé collectif de Global Fashion Collective, puis PUBLIC SERV-CE, qui présentait « The Rest Is Noise » le 13 septembre à l'Arte Museum de Chelsea.",
     "en": "September 2026 in New York: the Global Fashion Collective group show, then PUBLIC SERV-CE presenting “The Rest Is Noise” on September 13 at the Arte Museum in Chelsea."
   },
-  "cover": "gfc/USA08767.jpg",
+  "cover": "gfc/USA00726.jpg",
   "cover_alt": {
+    "fr": "Mannequin au crâne rasé en manteau à imprimé multicolore, seule dans la lumière au milieu du public",
+    "en": "Shaved-head model in a multicolour print coat, alone in the light among the audience"
+  },
+  "card": "gfc/USA08767.jpg",
+  "card_alt": {
     "fr": "Mannequin en robe longue blanche transparente et brodée, en pleine marche sur le podium GFC",
     "en": "Model mid-stride in a sheer, embroidered white gown on the GFC runway"
   },
-  "share_position": 0.42,
   "home_hero": "public-serv-ce/USA01439-Enhanced-NR.jpg",
   "home_hero_alt": {
     "fr": "Mannequin en perruque blonde et sweat noir PUBLIC SERV-CE, face à l'objectif dans la pénombre bleue du podium",

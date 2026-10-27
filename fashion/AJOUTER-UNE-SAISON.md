@@ -59,7 +59,8 @@ Le plus simple : copie le dossier d'une saison existante, renomme-le, puis vide 
 | `title`, `season`, `city`, `date` | Le titre affiché est « `title` · mois » (« New York Fashion Week · Février 2027 »), le mois venant de `date` (`AAAA-MM`). `season` (AW27, SS28…) sert de repère interne : la collection s'écrit dans le `show` de chaque série (« Printemps-été 2027 »). |
 | `draft` | `true` : la saison reste cachée (pas sur l'accueil Fashion, pas dans le sitemap, jamais envoyée sur git). Passe à `false` pour la publier. |
 | `intro` | Une phrase d'introduction au maximum. Laisse `""` pour ne rien afficher. |
-| `cover`, `cover_alt` | L'image d'ouverture en plein écran, et sa description. |
+| `cover`, `cover_alt` | L'image d'ouverture en plein écran (une bannière : **toujours une photo horizontale**), et sa description. |
+| `card`, `card_alt` | Facultatifs. La photo de la carte de la saison sur l'accueil Fashion : **une photo verticale** (la carte est verticale). Sans ce champ, c'est la première photo verticale de la saison. |
 | `share_position` | Facultatif. L'image de partage (LinkedIn, WhatsApp…) est la couverture recadrée en 1200 × 630, générée dans `images/share/fashion-<saison>.jpg`. Ce nombre règle le cadrage vertical : `0` garde le haut, `1` le bas (par défaut `0.2` pour une photo verticale, `0.5` sinon). |
 | `home_hero`, `home_hero_alt` | Facultatifs. La photo plein écran en haut de l'accueil Fashion, quand c'est la dernière saison. Mets-y une photo horizontale ; sans ce champ, c'est la couverture. |
 | `series` | Une entrée par marque, dans l'ordre d'affichage. |
