@@ -287,24 +287,33 @@ def img_tag(slug_path, meta, alt, sizes, lazy=True, cls='', extra=''):
 
 def layout_rows(images, info):
     """Rythme magazine : paysage = pleine largeur ; deux portraits qui se suivent = paire ;
-    portrait isolé = seul, centré. Pour changer le rythme, change l'ordre des images."""
+    portrait isolé = seul, centré, en grand. Pour changer le rythme, change l'ordre des images,
+    ou force la mise en page d'un portrait avec "layout" : "solo" (seul, en grand) ou
+    "detail" (plus petit, avec de l'air autour)."""
     imgs = [im for im in images if im['file'] in info]
+
+    def portrait(im):
+        m = info[im['file']]
+        return m['h'] > m['w']
+
     rows, i = [], 0
     while i < len(imgs):
-        m = info[imgs[i]['file']]
-        portrait = m['h'] > m['w']
+        im = imgs[i]
         nxt = imgs[i + 1] if i + 1 < len(imgs) else None
-        nxt_portrait = nxt and info[nxt['file']]['h'] > info[nxt['file']]['w']
-        if not portrait:
-            rows.append(('full', [imgs[i]])); i += 1
-        elif nxt_portrait:
-            rows.append(('pair', [imgs[i], nxt])); i += 2
+        forced = im.get('layout') in ('solo', 'detail')
+        if not portrait(im):
+            rows.append(('full', [im])); i += 1
+        elif forced:
+            rows.append((im['layout'], [im])); i += 1
+        elif nxt and portrait(nxt) and nxt.get('layout') not in ('solo', 'detail'):
+            rows.append(('pair', [im, nxt])); i += 2
         else:
-            rows.append(('detail', [imgs[i]])); i += 1
+            rows.append(('solo', [im])); i += 1
     return rows
 
 
-SIZES = {'full': '100vw', 'pair': '(max-width: 700px) 100vw, 50vw', 'detail': '(max-width: 700px) 100vw, 46vw'}
+SIZES = {'full': '100vw', 'pair': '(max-width: 700px) 100vw, 50vw',
+         'solo': '(max-width: 700px) 100vw, 60vw', 'detail': '(max-width: 700px) 80vw, 34vw'}
 
 
 def render_rows(s, serie, info):
@@ -312,7 +321,7 @@ def render_rows(s, serie, info):
     brand = serie.get('brand') or ''
     designer = serie.get('designer') or ''
     caption_parts = [brand] + ([] if is_placeholder(designer) else [designer])
-    rows_html = []
+    rows_html, n_detail = [], 0
     for kind, ims in layout_rows(serie['images'], info):
         figs = []
         for im in ims:
@@ -324,15 +333,28 @@ def render_rows(s, serie, info):
             meta = info[im['file']]
             extra = (f' data-full="images/{meta["stem"]}-2000.webp" data-caption="{esc(caption)}"')
             figs.append(f'<figure class="ss-item">{img_tag("images/", meta, alt, SIZES[kind], extra=extra)}</figure>')
-        rows_html.append(f'<div class="ss-row ss-row--{kind} reveal">{"".join(figs)}</div>')
+        side = ''
+        if kind == 'detail':
+            side = ' ss-row--left' if n_detail % 2 == 0 else ' ss-row--right'
+            n_detail += 1
+        rows_html.append(f'<div class="ss-row ss-row--{kind}{side} reveal">{"".join(figs)}</div>')
     return ''.join(rows_html)
 
 
 def serie_meta(s, serie):
+    """Sous le nom de la marque : la collection, puis le lieu et la date en plus petit."""
     show_fr, show_en = bi(serie.get('show', ''))
-    city = s.get('city', '')
-    return (' · '.join(x for x in (show_fr, city, month_label(s['date'], 'fr')) if x),
-            ' · '.join(x for x in (show_en, city, month_label(s['date'], 'en')) if x))
+    venue_fr, venue_en = bi(serie.get('venue', ''))
+    day = str(serie.get('day', '') or '')
+    if is_placeholder(day):
+        day = ''
+    when = {lang: (f'{day} {month_label(s["date"], lang).lower()}' if lang == 'fr' else
+                   f'{month_label(s["date"], lang).split()[0]} {day}, {s["date"][:4]}') if day
+            else month_label(s['date'], lang) for lang in ('fr', 'en')}
+    place = {lang: ' · '.join(x for x in (None if is_placeholder(v) else v, s.get('city', ''), when[lang]) if x)
+             for lang, v in (('fr', venue_fr), ('en', venue_en))}
+    show = t(show_fr, show_en, 'p', 'ss-series__meta') if show_fr else ''
+    return show + t(place['fr'], place['en'], 'p', 'ss-series__place')
 
 
 def serie_credits(s, serie):
@@ -354,13 +376,13 @@ def render_brand(s, brand, items, info, index):
         designer_html = '' if is_placeholder(designer) else f'<p class="ss-series__designer">{esc(designer)}</p>'
         anchor = f'<span id="{sid}" class="ss-anchor"></span>' if sid != bid else ''
         return f'''
-  <section class="ss-series" id="{bid}">{anchor}
+  <section class="ss-series{' ss-series--next' if index > 1 else ''}" id="{bid}">{anchor}
     <header class="ss-series__head reveal">
       <span class="ss-series__num">{index:02d}</span>
       <div>
         <h2 class="ss-series__brand">{esc(brand)}</h2>
         {designer_html}
-        {t(*serie_meta(s, serie), 'p', 'ss-series__meta')}
+        {serie_meta(s, serie)}
       </div>
     </header>
     {render_rows(s, serie, info)}
@@ -374,13 +396,13 @@ def render_brand(s, brand, items, info, index):
     <div class="ss-chapter"{'' if sid == bid else f' id="{sid}"'}>
       <header class="ss-chapter__head reveal">
         {title}
-        {t(*serie_meta(s, serie), 'p', 'ss-series__meta')}
+        {serie_meta(s, serie)}
       </header>
       {render_rows(s, serie, info)}
       {t(*serie_credits(s, serie), 'p', 'ss-credits')}
     </div>''')
     return f'''
-  <section class="ss-series ss-series--multi" id="{bid}">
+  <section class="ss-series ss-series--multi{' ss-series--next' if index > 1 else ''}" id="{bid}">
     <header class="ss-series__head reveal">
       <span class="ss-series__num">{index:02d}</span>
       <div><h2 class="ss-series__brand">{esc(brand)}</h2></div>
@@ -404,7 +426,7 @@ def render_backstage(s, info):
             cap = im.get('credit', '')
             extra = f' data-full="images/{meta["stem"]}-2000.webp" data-caption="{esc("" if is_placeholder(cap) else cap)}"'
             figs.append(f'<figure class="ss-item">{img_tag("images/", meta, alt, SIZES[kind], extra=extra)}</figure>')
-        rows.append(f'<div class="ss-row ss-row--{kind}{" ss-row--left" if kind == "detail" else ""} reveal">{"".join(figs)}</div>')
+        rows.append(f'<div class="ss-row ss-row--{kind} reveal">{"".join(figs)}</div>')
     return f'''
   <section class="ss-series ss-series--backstage" id="coulisses">
     <header class="ss-series__head reveal">
@@ -457,7 +479,9 @@ def build_season(s, prev_s, next_s, info, template):
     cover_html = ''
     if cover:
         alt = bi(s.get('cover_alt') or {'fr': tf, 'en': te})
-        cover_html = img_tag('images/', cover, alt, '100vw', lazy=False, cls='ss-opening__img')
+        pos = s.get('cover_position')
+        cover_html = img_tag('images/', cover, alt, '100vw', lazy=False, cls='ss-opening__img',
+                             extra=f' style="object-position: {esc(pos)}"' if pos else '')
     # Un bloc par marque (dans l'ordre de première apparition), numérotation continue ;
     # une série sans photos est ignorée (et signalée).
     brands = {}

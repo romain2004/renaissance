@@ -31,6 +31,7 @@ a:focus-visible, button:focus-visible {
 }
 
 /* ── Accueil Fashion ──────────────────────────────────────── */
+.page-fashion .hero { height: 100svh; min-height: min(640px, 100svh); }
 .fx-hero__label { margin-bottom: 22px; }
 .fx-section-head { margin-bottom: 48px; }
 
@@ -43,7 +44,8 @@ a:focus-visible, button:focus-visible {
 .fx-latest__card {
   position: relative;
   display: block;
-  min-height: 560px;
+  min-height: min(560px, 100svh);
+  max-height: 100svh;
   overflow: hidden;
   background: var(--grey-dark);
 }
@@ -106,7 +108,7 @@ a:focus-visible, button:focus-visible {
   grid-template-columns: repeat(3, 1fr);
   gap: 4px;
 }
-.fx-season { position: relative; display: block; overflow: hidden; aspect-ratio: 4 / 5; background: var(--grey-dark); }
+.fx-season { position: relative; display: block; overflow: hidden; aspect-ratio: 4 / 5; max-height: 100svh; background: var(--grey-dark); }
 .fx-season img, .fx-season__empty {
   position: absolute;
   inset: 0;
@@ -176,7 +178,8 @@ a:focus-visible, button:focus-visible {
 .ss-opening {
   position: relative;
   height: 100vh;
-  min-height: 560px;
+  height: 100svh;
+  min-height: min(560px, 100svh);
   overflow: hidden;
   display: flex;
   align-items: flex-end;
@@ -256,10 +259,27 @@ a:focus-visible, button:focus-visible {
   text-transform: uppercase;
   color: var(--grey-text);
 }
+.ss-series__place {
+  margin-top: 8px;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* Changement de marque : un vrai temps de respiration, le nom en très grand */
+.ss-series--next {
+  margin-top: 120px;
+  padding-top: 140px;
+  border-top: 1px solid #1c1c1c;
+}
+.ss-series--next > .ss-series__head { margin-bottom: 72px; }
+.ss-series--next .ss-series__brand { font-size: clamp(64px, 12vw, 190px); line-height: 0.84; }
 
 /* Chaque photo tient en entier dans l'écran : hauteur plafonnée, largeur libre, jamais recadrée */
 .ss-row {
   --fit-h: calc(100vh - var(--nav-height) - 40px);
+  --fit-h: calc(100svh - var(--nav-height) - 40px);
   display: flex;
   justify-content: center;
   gap: 6px;
@@ -281,8 +301,14 @@ a:focus-visible, button:focus-visible {
 .ss-row--full { margin-left: calc(var(--page-gutter) * -1); margin-right: calc(var(--page-gutter) * -1); }
 /* deux portraits côte à côte, centrés ensemble */
 .ss-row--pair .ss-item { max-width: calc(50% - 3px); }
-/* portrait seul : centré, en grand */
-.ss-row--detail { justify-content: center; }
+/* portrait seul : centré, en grand, le fond de la page autour (« tirage exposé ») */
+.ss-row--solo { justify-content: center; margin: 48px 0; }
+/* détail : plus petit, décalé, avec de l'air autour */
+.ss-row--detail { margin: 96px 0; }
+.ss-row--detail .ss-item { max-width: 34%; }
+.ss-row--detail img { max-height: min(var(--fit-h), 72svh); }
+.ss-row--left { justify-content: flex-start; padding-left: 8%; }
+.ss-row--right { justify-content: flex-end; padding-right: 8%; }
 
 /* Marque à plusieurs créateurs (GFC) : un chapitre par créateur sous un seul titre */
 .ss-chapter { padding-top: 72px; }
@@ -343,6 +369,7 @@ a:focus-visible, button:focus-visible {
 .ss-pager__back:hover { border-color: var(--gold); color: var(--gold); }
 
 /* ── Lightbox (apparence de style.css, + flèches et légende) ─ */
+.ss-lightbox .lightbox__backdrop { background: #000; }
 .ss-lightbox__figure {
   position: relative;
   z-index: 2;
@@ -356,6 +383,8 @@ a:focus-visible, button:focus-visible {
   display: block;
   max-width: 88vw;
   max-height: 82vh;
+  max-height: 82svh;
+  object-fit: contain;
   width: auto;
   height: auto;
 }
@@ -401,7 +430,7 @@ a:focus-visible, button:focus-visible {
   .fx-lang { display: none; }
   .fx-lang--menu { display: flex; }
   .fx-latest__grid { grid-template-columns: 1fr; }
-  .fx-latest__card { min-height: 70vh; }
+  .fx-latest__card { min-height: 70vh; min-height: 70svh; }
   .fx-latest__thumbs { grid-template-columns: repeat(3, 1fr); }
   .fx-seasons__grid { grid-template-columns: 1fr 1fr; }
   .ss-pager { grid-template-columns: 1fr 1fr; }
@@ -424,9 +453,18 @@ a:focus-visible, button:focus-visible {
   .ss-row--pair .ss-item { max-width: 100%; }
   .ss-pager { margin-top: 96px; }
   .ss-lightbox__nav { top: auto; bottom: 20px; margin-top: 0; }
-  .ss-lightbox__img { max-width: 94vw; max-height: 74vh; }
+  .ss-lightbox__img { max-width: 94vw; max-height: 74vh; max-height: 74svh; }
+  .ss-row--solo { margin: 24px 0; }
+  .ss-row--detail { margin: 56px 0; }
+  .ss-row--detail .ss-item { max-width: 78%; }
+  .ss-row--left { align-items: flex-start; padding-left: 0; }
+  .ss-row--right { align-items: flex-end; padding-right: 0; }
+  .ss-series--next { margin-top: 72px; padding-top: 88px; }
+  .ss-series--next > .ss-series__head { margin-bottom: 40px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .fx-latest__card img, .fx-latest__thumb img, .fx-season img, .ss-item img { transition: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .ss-item:hover img, .fx-latest__card:hover img, .fx-season:hover img { transform: none; }
 }

@@ -63,7 +63,8 @@ Le plus simple : copie le dossier d'une saison existante, renomme-le, puis vide 
 | `series` | Une entrée par marque, dans l'ordre d'affichage. |
 | `designer` | Le créateur. Utile pour GFC, qui présente plusieurs créateurs : fais une série par créateur, avec la même marque. `[à compléter]` le masque sur le site. |
 | `show` | La collection (et le nom du défilé s'il en a un), en FR et en EN : « Printemps-été 2027 · « The Rest Is Noise » ». |
-| `images` | 3 à 8 images par série, dans l'ordre voulu. `alt` décrit l'image en FR et en EN. `credit` est facultatif (mannequin, stylisme…). |
+| `venue`, `day` | Facultatifs. Le lieu et le jour du défilé, affichés en petit sous la collection : « Arte Museum, Chelsea · New York · 13 septembre 2026 ». Sans eux, seuls la ville et le mois s'affichent. |
+| `images` | Les images de la série, dans l'ordre voulu. `alt` décrit l'image en FR et en EN. `credit` est facultatif (mannequin, stylisme…). `layout` est facultatif pour une photo verticale : `"solo"` (seule, en grand) ou `"detail"` (plus petite, décalée, avec de l'air autour). |
 | `backstage` | Des images hors podium (coulisses, public, ambiance), avec le même format que `images`. Laisse `[]` s'il n'y en a pas. |
 | `backstage_title` | Le titre de cette section, par exemple `{ "fr": "Dans la salle", "en": "In the room" }`. Par défaut : « Coulisses / Backstage ». |
 
@@ -87,7 +88,7 @@ Puis ouvre http://localhost:8000/fashion/2027-02-nyfw/.
 
 Le script :
 - convertit chaque photo en WebP 1000 px et 2000 px (moins de 400 Ko environ en 2000 px), et ne reconvertit que les photos nouvelles ou modifiées ;
-- choisit la mise en page selon l'orientation de chaque photo : un paysage en pleine largeur, deux portraits côte à côte, un portrait seul en « détail » décalé ;
+- choisit la mise en page selon l'orientation de chaque photo : un paysage en pleine largeur, deux portraits qui se suivent côte à côte, un portrait isolé seul et centré (ou en « détail » avec `"layout": "detail"`) ; aucune photo n'est plus haute que l'écran ;
 - masque une série qui n'a pas encore de photos (elle réapparaît dès que tu en ajoutes) ;
 - génère la page de la saison, l'accueil Fashion (dernière saison, liste des saisons, liste des maisons) et le `sitemap.xml` ;
 - affiche à la fin un résumé avec les avertissements : image manquante, `alt` vide, marque sans images, champs `[à compléter]`.
