@@ -31,60 +31,47 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-  <!-- site:head -->
-  <!-- Commun à tout le site (tools/build-site.py) : police du logo, en-tête, écran de chargement -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500&display=swap">
-  <link rel="stylesheet" href="/css/site.css?v=e0480b6a">
-  <script>
-    /* Écran de chargement : une fois par session, jamais si l'utilisateur réduit les animations.
-       Il s'efface tout seul en CSS : même si le JavaScript échoue, il ne bloque rien. */
-    try {
-      if (!matchMedia('(prefers-reduced-motion: reduce)').matches && !sessionStorage.getItem('rm-loader')) {
-        document.documentElement.classList.add('rm-loading');
-        sessionStorage.setItem('rm-loader', '1');
-      }
-    } catch (e) {}
-  </script>
-  <!-- /site:head -->
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/hospitality.css" />
 </head>
 <body>
 
   <!-- CURSOR -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
 
   <!-- NAV -->
-  <!-- site:header -->
-  <div class="site-loader" aria-hidden="true"><span class="site-loader__name">Romain Maulavé</span></div>
-
-  <header class="site-header" id="site-header">
-    <a class="site-header__logo" href="/">Romain Maulavé</a>
-    <nav class="site-header__nav" aria-label="Navigation">
-      <a href="/fashion/" data-site-section="fashion">Fashion</a>
-      <a href="/riviera/" data-site-section="riviera">Riviera</a>
-      <a href="/contact/" data-site-section="contact">Contact</a>
-    </nav>
-    <div class="site-lang" role="group" aria-label="Langue / Language">
-      <button type="button" class="site-lang__btn" data-site-lang="en">EN</button>
-      <span class="site-lang__sep" aria-hidden="true">|</span>
-      <button type="button" class="site-lang__btn" data-site-lang="fr">FR</button>
+  <nav id="main-nav">
+    <a href="../../index.html" class="nav-logo">ROMAIN <span>MAULAVÉ</span></a>
+    <ul class="nav-links">
+      <li><a href="../#services" data-fr="Particuliers" data-en="Private">Particuliers</a></li>
+      <li><a href="#offres" data-fr="Expériences" data-en="Experiences">Expériences</a></li>
+      <li><a href="#methode" data-fr="Méthode" data-en="Process">Méthode</a></li>
+      <li><a href="../#about" data-fr="À Propos" data-en="About">À Propos</a></li>
+      <li><a href="#contact" data-fr="Contact" data-en="Contact">Contact</a></li>
+    </ul>
+    <div class="lang-switcher">
+      <button id="lang-en" class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+      <span class="lang-sep">|</span>
+      <button id="lang-fr" class="lang-btn lang-active" data-lang="fr" onclick="setLang('fr')">FR</button>
     </div>
-    <button type="button" class="site-header__burger" aria-label="Menu" aria-expanded="false" aria-controls="site-menu"><span></span><span></span></button>
-  </header>
+    <a href="#contact" class="nav-cta" data-fr="Réserver" data-en="Book Now">Réserver</a>
+    <button class="burger" id="burgerBtn" aria-label="Menu" aria-expanded="false" aria-controls="menuOverlay"><span></span><span></span><span></span></button>
+  </nav>
 
-  <div class="site-menu" id="site-menu">
-    <a href="/fashion/">Fashion</a>
-    <a href="/riviera/">Riviera</a>
-    <a href="/contact/">Contact</a>
-    <div class="site-lang" role="group" aria-label="Langue / Language">
-      <button type="button" class="site-lang__btn" data-site-lang="en">EN</button>
-      <span class="site-lang__sep" aria-hidden="true">|</span>
-      <button type="button" class="site-lang__btn" data-site-lang="fr">FR</button>
+  <div class="menu-overlay" id="menuOverlay">
+    <span class="menu-sub">Menu</span>
+    <a href="../#services" class="menu-link" data-fr="Particuliers" data-en="Private">Particuliers</a>
+    <a href="#offres" class="menu-link" data-fr="Expériences" data-en="Experiences">Expériences</a>
+    <a href="#methode" class="menu-link" data-fr="Méthode" data-en="Process">Méthode</a>
+    <a href="../#about" class="menu-link" data-fr="À Propos" data-en="About">À Propos</a>
+    <a href="#contact" class="menu-link" style="color:var(--gold);">Contact</a>
+    <div class="lang-switcher lang-switcher--menu">
+      <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn lang-active" data-lang="fr" onclick="setLang('fr')">FR</button>
     </div>
   </div>
-  <!-- /site:header -->
 
   <div class="breadcrumb" role="navigation" aria-label="Fil d'Ariane">
     <a href="../">Riviera</a>
@@ -105,15 +92,6 @@
     </div>
     <div class="scroll-line"><span data-fr="Défiler" data-en="Scroll">Défiler</span></div>
   </section>
-
-  <!-- Liens de la page (l'en-tête est commun à tout le site) -->
-  <nav class="page-nav" aria-label="Dans cette page">
-    <a href="../#services" data-fr="Particuliers" data-en="Private">Particuliers</a>
-    <a href="#offres" data-fr="Expériences" data-en="Experiences">Expériences</a>
-    <a href="#methode" data-fr="Méthode" data-en="Process">Méthode</a>
-    <a href="../#about" data-fr="À propos" data-en="About">À propos</a>
-    <a href="#contact" data-fr="Réserver" data-en="Book">Réserver</a>
-  </nav>
 
   <!-- ═══ 2 — POUR QUI ═══ -->
   <section class="hs" id="pour-qui">
@@ -403,8 +381,5 @@
   </footer>
 
   <script src="../js/main.js"></script>
-  <!-- site:scripts -->
-  <script src="/js/site.js?v=1a05799a" defer></script>
-  <!-- /site:scripts -->
 </body>
 </html>

@@ -58,7 +58,7 @@ const dot  = document.getElementById('cursor-dot');
 const ring = document.getElementById('cursor-ring');
 let mx = 0, my = 0, rx = 0, ry = 0;
 
-if (dot && ring && window.matchMedia('(hover: hover)').matches) {
+if (window.matchMedia('(hover: hover)').matches) {
   document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
 
   function animCursor() {
@@ -74,8 +74,8 @@ if (dot && ring && window.matchMedia('(hover: hover)').matches) {
 }
 
 /* ── NAV SCROLL BLUR ── */
-const nav = document.getElementById('main-nav');   // ancien menu : l'en-tête commun (js/site.js) le remplace
-if (nav) window.addEventListener('scroll', () => {
+const nav = document.getElementById('main-nav');
+window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 60);
 }, { passive: true });
 
@@ -137,7 +137,26 @@ if (srvImgs.length) {
 }
 
 /* ── BURGER MENU ── */
-/* Menu mobile : géré par l'en-tête commun (js/site.js). */
+const burgerBtn   = document.getElementById('burgerBtn');
+const menuOverlay = document.getElementById('menuOverlay');
+
+function toggleMenu(force) {
+  const open = force !== undefined ? force : !burgerBtn.classList.contains('open');
+  burgerBtn.classList.toggle('open', open);
+  burgerBtn.setAttribute('aria-expanded', open);
+  menuOverlay.classList.toggle('open', open);
+  document.body.classList.toggle('no-scroll', open);
+}
+
+burgerBtn.addEventListener('click', () => toggleMenu());
+
+menuOverlay.querySelectorAll('.menu-link').forEach(link => {
+  link.addEventListener('click', () => toggleMenu(false));
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && menuOverlay.classList.contains('open')) toggleMenu(false);
+});
 
 /* ── LIGHTBOX (galerie Selected Work) ── */
 const lightbox = document.getElementById('lightbox');
