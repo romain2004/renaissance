@@ -268,7 +268,7 @@ def load_seasons(include_drafts):
 
 
 def season_files(s):
-    files = [s['cover']] if s.get('cover') else []
+    files = [x for x in (s.get('cover'), s.get('home_hero')) if x]
     for group in s.get('series', []) + ([{'images': s['backstage']}] if s.get('backstage') else []):
         files += [im['file'] for im in group.get('images', [])]
     return list(dict.fromkeys(files))
@@ -577,19 +577,23 @@ def build_index(seasons, infos, template):
     latest = published[-1]
     li = infos[latest['slug']]
     cover = li.get(latest.get('cover', ''))
+    # Le hero de l'accueil Fashion est plein écran et horizontal : "home_hero" permet d'y mettre
+    # une autre photo que la couverture de la saison (souvent verticale).
+    hero = li.get(latest.get('home_hero', '')) or cover
+    hero_alt = latest.get('home_hero_alt') if latest.get('home_hero') in li else latest.get('cover_alt')
     tf, te = season_title(latest)
     lf, le = bi(latest['title'])
 
     # Hero
-    hero_img = img_tag(f'{latest["slug"]}/images/', cover, bi(latest.get('cover_alt') or {'fr': tf, 'en': te}),
-                       '100vw', lazy=False, cls='hero__bg-img') if cover else ''
+    hero_img = img_tag(f'{latest["slug"]}/images/', hero, bi(hero_alt or {'fr': tf, 'en': te}),
+                       '100vw', lazy=False, cls='hero__bg-img') if hero else ''
 
     # Dernière saison : grande carte + 6 aperçus. La carte prend la 1re photo de la
     # 1re série (pas l'ouverture, déjà dans le hero) ; les aperçus prennent les suivantes.
     pool = []
     for sid, serie in zip(series_ids(latest), latest.get('series', [])):
         for im in serie.get('images', []):
-            if im['file'] in li and im['file'] != latest.get('cover'):
+            if im['file'] in li and im['file'] not in (latest.get('cover'), latest.get('home_hero')):
                 pool.append((sid, im))
     card_img = pool[0][1] if pool else None
     previews = pool[1:7]
@@ -653,8 +657,8 @@ def build_index(seasons, infos, template):
                                'Romain Maulavé · Fashion Week, au bord du podium',
                                'Les défilés de la New York Fashion Week photographiés par Romain Maulavé, saison par saison.',
                                'Trois silhouettes du défilé GFC à la New York Fashion Week : cape rouge, robe blanche brodée, robe noire pailletée'),
-        'preload': (f'<link rel="preload" as="image" href="{latest["slug"]}/images/{cover["stem"]}-1000.webp" '
-                    f'imagesrcset="{latest["slug"]}/images/{cover["stem"]}-1000.webp 1000w, {latest["slug"]}/images/{cover["stem"]}-2000.webp 2000w" imagesizes="100vw" />') if cover else '',
+        'preload': (f'<link rel="preload" as="image" href="{latest["slug"]}/images/{hero["stem"]}-1000.webp" '
+                    f'imagesrcset="{latest["slug"]}/images/{hero["stem"]}-1000.webp 1000w, {latest["slug"]}/images/{hero["stem"]}-2000.webp 2000w" imagesizes="100vw" />') if hero else '',
         'hero_img': hero_img,
         'hero_label': t(f'Dernière saison · {tf}', f'Latest season · {te}', 'span', 'label fx-hero__label'),
         'latest_url': f'{latest["slug"]}/',

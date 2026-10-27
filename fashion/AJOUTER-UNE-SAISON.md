@@ -61,6 +61,7 @@ Le plus simple : copie le dossier d'une saison existante, renomme-le, puis vide 
 | `intro` | Une phrase d'introduction au maximum. Laisse `""` pour ne rien afficher. |
 | `cover`, `cover_alt` | L'image d'ouverture en plein écran, et sa description. |
 | `share_position` | Facultatif. L'image de partage (LinkedIn, WhatsApp…) est la couverture recadrée en 1200 × 630, générée dans `images/share/fashion-<saison>.jpg`. Ce nombre règle le cadrage vertical : `0` garde le haut, `1` le bas (par défaut `0.2` pour une photo verticale, `0.5` sinon). |
+| `home_hero`, `home_hero_alt` | Facultatifs. La photo plein écran en haut de l'accueil Fashion, quand c'est la dernière saison. Mets-y une photo horizontale ; sans ce champ, c'est la couverture. |
 | `series` | Une entrée par marque, dans l'ordre d'affichage. |
 | `designer` | Le créateur. Utile pour GFC, qui présente plusieurs créateurs : fais une série par créateur, avec la même marque. `[à compléter]` le masque sur le site. |
 | `show` | La collection (et le nom du défilé s'il en a un), en FR et en EN : « Printemps-été 2027 · « The Rest Is Noise » ». |
