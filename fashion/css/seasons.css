@@ -108,23 +108,23 @@ a:focus-visible, button:focus-visible {
   grid-template-columns: repeat(3, 1fr);
   gap: 4px;
 }
-.fx-season { position: relative; display: block; overflow: hidden; aspect-ratio: 4 / 5; max-height: 100svh; background: var(--grey-dark); }
+/* Carte de saison : la photo verticale en entier (rien par-dessus), le titre dessous */
+.fx-season { position: relative; display: block; }
 .fx-season img, .fx-season__empty {
-  position: absolute;
-  inset: 0;
+  display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  max-height: calc(100svh - var(--nav-height) - 40px);
   object-fit: cover;
-  transition: transform 0.9s ease;
+  background: var(--grey-dark);
+  transition: opacity 0.5s ease;
 }
-.fx-season:hover img { transform: scale(1.04); }
+.fx-season:hover img { opacity: 0.85; }
 .fx-season__body {
-  position: absolute;
-  inset: auto 0 0 0;
-  padding: 28px;
+  padding: 24px 0 8px;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0));
 }
 .fx-season__body .label { margin-bottom: 10px; }
 .fx-season__title {
