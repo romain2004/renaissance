@@ -1,0 +1,82 @@
+/* ============================================================
+   BARRE DE DÉFILEMENT — commune à tout le site (js/scroll-indicator.js)
+   La barre native reste (on peut la saisir et la faire glisser) ; on l'habille :
+   · le rail : une ligne fine (blanc 25 %), avec les graduations du mètre ruban
+     sur Fashion et l'horizon en bas sur la Riviera ;
+   · la partie mobile : une ligne orange et le symbole (aiguille, soleil, point).
+   Safari et Chrome affichent le dessin (::-webkit-scrollbar) ; Firefox, une barre
+   fine aux couleurs du site. Sur mobile : une barre orange de 2 px sous l'en-tête.
+   La variante vient de data-scroll sur <html> (posé par le script) :
+   "tape" (Fashion), "sun" (Riviera), "dot" (accueil, contact).
+   ============================================================ */
+
+/* Firefox : seulement la finesse et la couleur */
+@supports (-moz-appearance: none) {
+  html { scrollbar-width: thin; scrollbar-color: #F5A623 transparent; }
+}
+
+/* ── Safari, Chrome : le dessin ── */
+::-webkit-scrollbar { width: 14px; height: 6px; background: transparent; }
+::-webkit-scrollbar-button { display: none; }
+::-webkit-scrollbar-corner { background: transparent; }
+
+/* le rail : une ligne fine au centre */
+::-webkit-scrollbar-track {
+  background: linear-gradient(rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.25)) 6.5px 0 / 1px 100% no-repeat;
+}
+/* la partie mobile : la ligne en orange + le symbole */
+::-webkit-scrollbar-thumb {
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14'%3E%3Ccircle cx='7' cy='7' r='3' fill='%23F5A623'/%3E%3C/svg%3E") center / 14px 14px no-repeat,
+    linear-gradient(#F5A623, #F5A623) 6.5px 0 / 1px 100% no-repeat;
+}
+
+/* Fashion : mètre ruban de couturier — graduations tous les 10 px (4 px), tous les 50 px (8 px) ;
+   l'aiguille, horizontale, pointe vers la gauche */
+html[data-scroll="tape"] ::-webkit-scrollbar-track {
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='50'%3E%3Cg stroke='white' stroke-opacity='.25'%3E%3Cpath d='M2 .5H10M6 10.5H10M6 20.5H10M6 30.5H10M6 40.5H10'/%3E%3C/g%3E%3C/svg%3E") 0 0 / 14px 50px repeat-y,
+    linear-gradient(rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.25)) 9.5px 0 / 1px 100% no-repeat;
+}
+html[data-scroll="tape"] ::-webkit-scrollbar-thumb {
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='8'%3E%3Cpath d='M0.5 4 L9 2.8 L9 5.2 Z' fill='%23F5A623'/%3E%3Cellipse cx='11' cy='4' rx='2.2' ry='1.4' fill='none' stroke='%23F5A623'/%3E%3C/svg%3E") center / 14px 8px no-repeat,
+    linear-gradient(#F5A623, #F5A623) 9.5px 0 / 1px 100% no-repeat;
+}
+
+/* Riviera : soleil couchant — un horizon au bas du rail ; le soleil au bas de la partie
+   mobile, qui touche l'horizon en bas de page */
+html[data-scroll="sun"] ::-webkit-scrollbar-track {
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)) center bottom 4px / 12px 1px no-repeat,
+    linear-gradient(rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.25)) 6.5px 0 / 1px 100% no-repeat;
+}
+html[data-scroll="sun"] ::-webkit-scrollbar-thumb {
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14'%3E%3Ccircle cx='7' cy='7' r='7' fill='%23F5A623' fill-opacity='.16'/%3E%3Ccircle cx='7' cy='7' r='4' fill='%23F5A623'/%3E%3C/svg%3E") center bottom / 14px 14px no-repeat,
+    linear-gradient(#F5A623, #F5A623) 6.5px 0 / 1px calc(100% - 7px) no-repeat;
+}
+
+/* ── Barre horizontale (mobile) ── */
+.rm-scroll-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;                    /* calée sous l'en-tête par le script */
+  z-index: 150;              /* au-dessus du contenu, sous les en-têtes et les lightbox */
+  height: 2px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.rm-scroll-bar.is-visible { opacity: 1; }
+.rm-scroll-bar span {
+  display: block;
+  height: 100%;
+  background: #F5A623;
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  will-change: transform;
+}
+@media (min-width: 768px) { .rm-scroll-bar { display: none; } }
+@media (prefers-reduced-motion: reduce) { .rm-scroll-bar { transition: none; } }
